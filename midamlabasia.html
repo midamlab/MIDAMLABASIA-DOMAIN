@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Midam Lab Asia — Next-Gen Aesthetic Solutions</title>
+<style>
+  :root {
+    --rose:    #C4957A;
+    --rose-dk: #A87860;
+    --rose-lt: #EDD9CE;
+    --rose-bg: #F5EDE8;
+    --dark:    #1C1210;
+    --gray:    #6B5E58;
+    --white:   #FFFFFF;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Georgia','Times New Roman',serif; color:var(--dark); background:var(--white); overflow-x:hidden; }
+
+  /* ══ NAV ══ */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    background:rgba(255,255,255,0.97); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(196,149,122,0.2);
+    padding:0 56px; display:flex; align-items:center;
+    justify-content:space-between; height:72px;
+  }
+  .logo-wrap { display:flex; align-items:center; gap:12px; text-decoration:none; cursor:pointer; }
+  .logo-icon svg { width:36px; height:36px; }
+  .logo-text {
+    font-family:'Arial',sans-serif; font-size:15px; font-weight:400;
+    letter-spacing:3px; text-transform:uppercase; color:var(--rose);
+  }
+  .nav-links { display:flex; gap:0; list-style:none; height:72px; }
+  .nav-links li { position:relative; }
+  .nav-links a {
+    display:flex; align-items:center; height:72px; padding:0 22px;
+    font-family:'Arial',sans-serif; font-size:12px; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--gray); text-decoration:none;
+    transition:color .2s; cursor:pointer; border-bottom:2px solid transparent;
+    transition:color .2s, border-color .2s;
+  }
+  .nav-links a:hover { color:var(--rose); }
+  .nav-links a.active { color:var(--rose); border-bottom-color:var(--rose); }
+  .nav-cta {
+    font-family:'Arial',sans-serif; font-size:11px; letter-spacing:2px;
+    text-transform:uppercase; background:var(--rose); color:#fff;
+    padding:10px 22px; text-decoration:none; transition:background .2s; cursor:pointer;
+  }
+  .nav-cta:hover { background:var(--rose-dk); }
+
+  /* ══ PAGES ══ */
+  .page { display:none; min-height:100vh; padding-top:72px; }
+  .page.active { display:block; }
+
+  /* ══ HOME — HERO SLIDER ══ */
+  .hero { position:relative; height:calc(100vh - 72px); overflow:hidden; }
+  .slides { display:flex; transition:transform .8s cubic-bezier(.77,0,.175,1); height:100%; }
+  .slide { min-width:100%; height:100%; position:relative; background:var(--dark); }
+  .slide img { width:100%; height:100%; object-fit:contain; opacity:.9; }
+  .slide-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(to right,rgba(28,18,16,.75) 0%,rgba(28,18,16,.2) 55%,transparent 100%);
+    display:flex; align-items:center; padding:0 96px;
+  }
+  .slide-text { max-width:520px; }
+  .slide-eyebrow {
+    font-family:'Arial',sans-serif; font-size:11px; letter-spacing:4px;
+    text-transform:uppercase; color:var(--rose-lt); margin-bottom:18px;
+  }
+  .slide-text h1 { font-size:58px; font-weight:400; color:#fff; line-height:1.1; margin-bottom:18px; }
+  .slide-text h1 em { font-style:italic; color:var(--rose-lt); }
+  .slide-text p { font-size:16px; color:rgba(255,255,255,.7); margin-bottom:34px; line-height:1.7; }
+  .slide-btn {
+    display:inline-block; font-family:'Arial',sans-serif; font-size:11px;
+    letter-spacing:2.5px; text-transform:uppercase; background:var(--rose);
+    color:#fff; padding:13px 32px; text-decoration:none; transition:background .2s; cursor:pointer;
+  }
+  .slide-btn:hover { background:var(--rose-dk); }
+  .slide-btn.outline {
+    background:transparent; border:1px solid rgba(255,255,255,.5); margin-left:14px;
+  }
+  .slide-btn.outline:hover { background:rgba(255,255,255,.1); }
+  .slider-dots {
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+    display:flex; gap:10px; z-index:10;
+  }
+  .dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.35); border:none; cursor:pointer; padding:0; transition:background .3s; }
+  .dot.active { background:var(--rose); }
+  .slider-arrow {
+    position:absolute; top:50%; transform:translateY(-50%);
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2);
+    color:#fff; width:48px; height:48px; font-size:20px; cursor:pointer;
+    z-index:10; transition:background .2s; display:flex; align-items:center; justify-content:center;
+  }
+  .slider-arrow:hover { background:rgba(196,149,122,.6); }
+  .slider-prev { left:32px; }
+  .slider-next { right:32px; }
+
+  /* home stats bar */
+  .stats-bar {
+    background:var(--dark); padding:52px 56px;
+    display:flex; justify-content:space-around; gap:32px;
+  }
+  .stat-item { text-align:center; }
+  .stat-num { font-size:42px; color:var(--rose-lt); display:block; margin-bottom:8px; }
+  .stat-lbl { font-family:'Arial',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.4); }
+
+  /* home brand strip */
+  .brand-strip {
+    background:var(--rose-bg); padding:72px 96px;
+    display:flex; gap:64px; align-items:center;
+  }
+  .brand-strip-logo { flex-shrink:0; }
+  .brand-strip-logo svg { width:80px; height:90px; }
+  .brand-strip-text h2 { font-size:34px; font-weight:400; margin-bottom:16px; }
+  .brand-strip-text p { font-size:16px; color:var(--gray); line-height:1.8; max-width:640px; }
+
+  /* ══ PORTFOLIO PAGE ══ */
+  .port-hero {
+    width:100%; height:420px; position:relative; overflow:hidden; background:var(--dark);
+  }
+  .port-hero img { width:100%; height:100%; object-fit:cover; opacity:.55; }
+  .port-hero-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(to right,rgba(28,18,16,.8) 0%,rgba(28,18,16,.3) 60%,transparent 100%);
+    display:flex; align-items:center; padding:0 96px;
+  }
+
+  /* Company hero — taller, image-forward */
+  #page-company .port-hero {
+    height:560px;
+  }
+  #page-company .port-hero img {
+    object-fit:cover; object-position:center 30%; opacity:.6;
+  }
+  #page-company .port-hero-overlay {
+    background:linear-gradient(105deg,rgba(28,18,16,.85) 0%,rgba(28,18,16,.45) 55%,rgba(196,149,122,.08) 100%);
+  }
+  #page-company .port-hero-overlay h1 { font-size:58px; }
+  #page-company .port-hero-overlay p  { font-size:17px; max-width:520px; color:rgba(255,255,255,.72); }
+  .port-hero-overlay h1 { font-size:52px; color:#fff; font-weight:400; }
+  .port-hero-overlay h1 em { font-style:italic; color:var(--rose-lt); }
+  .port-hero-overlay p { font-size:16px; color:rgba(255,255,255,.6); margin-top:14px; max-width:500px; line-height:1.7; }
+
+  .port-intro {
+    padding:72px 96px; border-bottom:1px solid rgba(196,149,122,.15);
+  }
+  .port-intro p {
+    font-size:17px; color:var(--gray); line-height:1.9; max-width:760px;
+  }
+  .port-intro h3 { font-size:24px; font-weight:400; margin-bottom:16px; color:var(--dark); }
+  .eyebrow {
+    font-family:'Arial',sans-serif; font-size:11px; letter-spacing:4px;
+    text-transform:uppercase; color:var(--rose); margin-bottom:14px;
+  }
+
+  .port-grid {
+    display:grid; grid-template-columns:repeat(2,1fr); gap:0; padding:0 56px 80px;
+  }
+  .port-card { position:relative; overflow:hidden; background:var(--dark); cursor:pointer; }
+  .port-card img { width:100%; height:380px; object-fit:cover; opacity:.65; transition:opacity .4s, transform .5s; }
+  .port-card:hover img { opacity:.45; transform:scale(1.04); }
+  .port-card-info {
+    position:absolute; bottom:0; left:0; right:0;
+    background:linear-gradient(transparent,rgba(28,18,16,.92));
+    padding:48px 36px 32px;
+  }
+  .port-card-info .p-tag {
+    font-family:'Arial',sans-serif; font-size:10px; letter-spacing:2px;
+    text-transform:uppercase; color:var(--rose-lt); margin-bottom:8px;
+  }
+  .port-card-info h3 { font-size:28px; color:#fff; font-weight:400; }
+  .port-card-info p { font-size:13px; color:rgba(255,255,255,.5); margin-top:8px; line-height:1.6; }
+  .port-card-info button {
+    display:inline-block; margin-top:16px; font-family:'Arial',sans-serif;
+    font-size:10px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--rose-lt); background:none; border:none;
+    border-bottom:1px solid rgba(237,217,206,.4); padding-bottom:2px; cursor:pointer;
+  }
+
+  /* ══ PRODUCT PAGES ══ */
+  .prod-banner { width:100%; height:500px; position:relative; overflow:hidden; background:var(--dark); }
+  .prod-banner img { width:100%; height:100%; object-fit:cover; opacity:.68; }
+  .prod-banner-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(to right,rgba(28,18,16,.82) 0%,rgba(28,18,16,.25) 60%,transparent 100%);
+    display:flex; align-items:center; padding:0 96px;
+  }
+  .prod-banner-text { max-width:500px; }
+  .prod-tag {
+    font-family:'Arial',sans-serif; font-size:10px; letter-spacing:3px;
+    text-transform:uppercase; color:var(--rose); background:rgba(196,149,122,.15);
+    display:inline-block; padding:5px 16px; margin-bottom:18px;
+  }
+  .prod-banner-text h1 { font-size:52px; font-weight:400; color:#fff; margin-bottom:16px; line-height:1.1; }
+  .prod-banner-text h1 em { font-style:italic; color:var(--rose-lt); }
+  .prod-banner-text p { font-size:15px; color:rgba(255,255,255,.65); line-height:1.7; }
+
+  /* info strip */
+  .info-strip { display:flex; background:var(--rose-bg); }
+  .info-cell { flex:1; padding:52px 44px; border-right:1px solid rgba(196,149,122,.2); }
+  .info-cell:last-child { border-right:none; }
+  .info-cell h4 {
+    font-family:'Arial',sans-serif; font-size:11px; letter-spacing:3px;
+    text-transform:uppercase; color:var(--rose); margin-bottom:14px;
+  }
+  .info-cell p { font-size:15px; color:var(--gray); line-height:1.7; }
+
+  /* gallery */
+  .prod-gallery { padding:56px; background:#fff; }
+  .gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  .gallery-grid.g3 { grid-template-columns:repeat(3,1fr); }
+  .g-item { aspect-ratio:1; overflow:hidden; background:var(--rose-bg); }
+  .g-item img { width:100%; height:100%; object-fit:cover; transition:transform .5s; display:block; }
+  .g-item:hover img { transform:scale(1.06); }
+  .g-item.wide { grid-column:span 2; aspect-ratio:2; }
+
+  /* ══ PRODUCT DETAIL ══ */
+  .prod-detail { padding:72px 80px; background:#fff; }
+  .prod-detail-inner { max-width:1100px; margin:0 auto; }
+  .prod-detail .section-eyebrow {
+    font-family:'Arial',sans-serif; font-size:11px; letter-spacing:3px;
+    text-transform:uppercase; color:var(--rose); margin-bottom:10px;
+  }
+  .prod-detail h2 { font-size:34px; font-weight:700; color:var(--dark); margin-bottom:10px; line-height:1.25; }
+  .prod-detail .prod-intro { font-size:16px; color:var(--gray); line-height:1.8; margin-bottom:52px; max-width:820px; }
+  .pd-block { margin-bottom:52px; }
+  .pd-block h3 {
+    font-family:'Arial',sans-serif; font-size:11px; letter-spacing:3px;
+    text-transform:uppercase; color:var(--rose); padding-bottom:12px;
+    border-bottom:1px solid var(--rose-lt); margin-bottom:24px;
+  }
+  .pd-block p { font-size:15px; color:var(--gray); line-height:1.85; }
+  .pd-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .pd-step {
+    background:var(--rose-bg); border-radius:4px; padding:24px 20px;
+  }
+  .pd-step-num {
+    width:36px; height:36px; background:var(--rose); color:#fff; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Arial',sans-serif; font-size:14px; font-weight:700;
+    margin-bottom:14px;
+  }
+  .pd-step h4 { font-size:14px; font-weight:700; color:var(--dark); margin-bottom:6px; }
+  .pd-step p { font-size:13px; color:var(--gray); line-height:1.7; }
+  .pd-ingredients { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .pd-ing {
+    display:flex; gap:16px; align-items:flex-start;
+    background:var(--rose-bg); padding:20px; border-radius:4px;
+  }
+  .pd-ing-icon {
+    width:40px; height:40px; min-width:40px; background:var(--rose); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Arial',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.5px; color:#fff; text-align:center; line-height:1.2;
+  }
+  .pd-ing-text h4 { font-size:14px; font-weight:700; color:var(--dark); margin-bottom:4px; }
+  .pd-ing-text p { font-size:13px; color:var(--gray); line-height:1.65; }
+  .pd-effects { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .pd-effect {
+    border-left:3px solid var(--rose); padding:16px 20px; background:var(--rose-bg); border-radius:0 4px 4px 0;
+  }
+  .pd-effect h4 { font-size:14px; font-weight:700; color:var(--dark); margin-bottom:4px; }
+  .pd-effect p { font-size:13px; color:var(--gray); line-height:1.65; }
+  .pd-stat-row {
+    display:flex; gap:0; border:1px solid var(--rose-lt); border-radius:4px; overflow:hidden; margin-top:28px;
+  }
+  .pd-stat {
+    flex:1; padding:24px 20px; text-align:center; border-right:1px solid var(--rose-lt);
+  }
+  .pd-stat:last-child { border-right:none; }
+  .pd-stat .ps-num { font-size:38px; font-weight:700; color:var(--rose); line-height:1; }
+  .pd-stat .ps-lbl { font-family:'Arial',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); margin-top:6px; }
+  .pd-protocol-list { list-style:none; }
+  .pd-protocol-list li {
+    display:flex; gap:16px; align-items:flex-start;
+    padding:16px 0; border-bottom:1px solid var(--rose-lt);
+    font-size:15px; color:var(--gray); line-height:1.7;
+  }
+  .pd-protocol-list li:last-child { border-bottom:none; }
+  .pd-protocol-list li::before {
+    content:attr(data-n); min-width:28px; height:28px;
+    background:var(--rose); color:#fff; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Arial',sans-serif; font-size:12px; font-weight:700;
+    margin-top:2px;
+  }
+
+  /* ══ CONTACT (shared footer section) ══ */
+  .contact-section {
+    display:grid; grid-template-columns:1fr 1fr; background:var(--dark);
+  }
+  .contact-left { padding:80px 72px; }
+  .contact-left .eyebrow { color:var(--rose-lt); margin-bottom:14px; }
+  .contact-left h2 { font-size:38px; color:#fff; margin-bottom:16px; }
+  .contact-left > p { font-size:15px; color:rgba(255,255,255,.5); margin-bottom:48px; line-height:1.7; }
+  .c-item { margin-bottom:26px; }
+  .c-label { font-family:'Arial',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--rose); margin-bottom:6px; }
+  .c-val { font-size:17px; color:#fff; }
+  .c-val a { color:#fff; text-decoration:none; }
+  .c-val a:hover { color:var(--rose-lt); }
+  .contact-right { padding:80px 72px; background:rgba(255,255,255,.03); }
+  .f-group { margin-bottom:14px; }
+  .f-group input, .f-group textarea {
+    width:100%; background:rgba(255,255,255,.05); border:1px solid rgba(196,149,122,.25);
+    color:#fff; padding:13px 17px; font-family:'Georgia',serif; font-size:15px;
+    outline:none; transition:border .2s; resize:none;
+  }
+  .f-group input::placeholder, .f-group textarea::placeholder { color:rgba(255,255,255,.3); }
+  .f-group input:focus, .f-group textarea:focus { border-color:var(--rose); }
+  .f-submit {
+    width:100%; background:var(--rose); color:#fff; border:none;
+    padding:14px; font-family:'Arial',sans-serif; font-size:12px;
+    letter-spacing:2.5px; text-transform:uppercase; cursor:pointer;
+    transition:background .2s; margin-top:6px;
+  }
+  .f-submit:hover { background:var(--rose-dk); }
+
+  /* ══ BROCHURE ATTACHMENT ══ */
+  .brochure-section {
+    padding: 56px 80px;
+    background: var(--rose-bg);
+    border-top: 1px solid rgba(196,149,122,.2);
+  }
+  .brochure-section .eyebrow { margin-bottom: 10px; }
+  .brochure-section h3 {
+    font-size: 22px; font-weight: 400; color: var(--dark);
+    margin-bottom: 28px;
+  }
+  .brochure-card {
+    display: inline-flex; align-items: center; gap: 20px;
+    background: #fff; border: 1px solid rgba(196,149,122,.3);
+    padding: 20px 32px 20px 24px; text-decoration: none;
+    transition: box-shadow .25s, border-color .25s; cursor: pointer;
+    border-radius: 2px;
+  }
+  .brochure-card:hover {
+    box-shadow: 0 4px 20px rgba(196,149,122,.25);
+    border-color: var(--rose);
+  }
+  .brochure-icon {
+    width: 48px; height: 56px; background: #e53935;
+    border-radius: 3px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; position: relative;
+  }
+  .brochure-icon::after {
+    content: 'PDF'; color: #fff; font-family: Arial, sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  }
+  .brochure-icon-fold {
+    position: absolute; top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 12px 12px 0;
+    border-color: transparent rgba(255,255,255,.4) transparent transparent;
+  }
+  .brochure-meta { display: flex; flex-direction: column; gap: 4px; }
+  .brochure-meta strong {
+    font-family: Arial, sans-serif; font-size: 14px;
+    font-weight: 600; color: var(--dark); letter-spacing: .3px;
+  }
+  .brochure-meta span {
+    font-family: Arial, sans-serif; font-size: 12px;
+    color: var(--gray); letter-spacing: .5px;
+  }
+  .brochure-dl {
+    margin-left: 12px;
+    font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--rose); border-bottom: 1px solid var(--rose);
+    padding-bottom: 1px; white-space: nowrap;
+  }
+
+  /* ══ FOOTER ══ */
+  footer {
+    background:#111; padding:28px 56px;
+    display:flex; align-items:center; justify-content:space-between;
+    border-top:1px solid rgba(196,149,122,.1);
+  }
+  .footer-links { display:flex; gap:24px; }
+  .footer-links a {
+    font-family:'Arial',sans-serif; font-size:11px; letter-spacing:1.5px;
+    text-transform:uppercase; color:rgba(255,255,255,.3); text-decoration:none;
+    transition:color .2s; cursor:pointer;
+  }
+  .footer-links a:hover { color:var(--rose-lt); }
+  footer p { font-family:'Arial',sans-serif; font-size:11px; color:rgba(255,255,255,.2); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav>
+  <div class="logo-wrap" onclick="showPage('home')">
+    <div class="logo-icon">
+      <svg viewBox="0 0 80 95" fill="none">
+        <path d="M40 6C18 6 6 20 6 40L6 60C6 78 40 92 40 92C40 92 74 78 74 60L74 40C74 20 62 6 40 6Z" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linejoin="round"/>
+        <path d="M40 74C28 68 14 54 16 38C18 26 30 24 36 38C38 46 39 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M40 74C52 68 66 54 64 38C62 26 50 24 44 38C42 46 41 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M40 74L40 62" stroke="#C4957A" stroke-width="3" stroke-linecap="round"/>
+        <path d="M40 62C36 50 28 44 30 30C32 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M40 62C44 50 52 44 50 30C48 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="logo-text">MIDAM LAB ASIA</div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a id="nav-company"  onclick="showPage('company')">Company</a></li>
+    <li><a id="nav-portfolio" onclick="showPage('portfolio')">Portfolio</a></li>
+    <li><a id="nav-ddcut"     onclick="showPage('ddcut')">D.D. Cut</a></li>
+    <li><a id="nav-ddbeam"   onclick="showPage('ddbeam')">D.D. Beam</a></li>
+    <li><a id="nav-vivi"     onclick="showPage('vivi')">ViVi</a></li>
+    <li><a id="nav-highvivi" onclick="showPage('highvivi')">High ViVi</a></li>
+  </ul>
+
+  <a class="nav-cta" onclick="showPage('portfolio'); setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100)">Contact Us</a>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero Slider -->
+  <section class="hero">
+    <div class="slides" id="slides">
+      <div class="slide">
+        <img src="http://www.knamedicos.com/default/img/hblock/design/slider02/img/img1.jpg" alt="D.D. Cut">
+        <div class="slide-overlay">
+          <div class="slide-text">
+            <p class="slide-eyebrow">Dew Diamond Series · Lipolysis</p>
+            <h1>D.D. <em>Cut</em></h1>
+            <p>High-Concentration Lipolysis Solution for precision fat reduction and enhanced skin elasticity in professional clinics.</p>
+            <span class="slide-btn" onclick="showPage('ddcut')">Explore D.D. Cut</span>
+            <span class="slide-btn outline" onclick="showPage('portfolio')">View All</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="http://www.knamedicos.com/default/img/hblock/design/slider02/img/img2.jpg" alt="D.D. Beam">
+        <div class="slide-overlay">
+          <div class="slide-text">
+            <p class="slide-eyebrow">Dew Diamond Series · Antioxidant</p>
+            <h1>D.D. <em>Beam</em></h1>
+            <p>Ultimate Antioxidant Skin Booster — 30 proven safe ingredients for radiant, luminous skin renewal.</p>
+            <span class="slide-btn" onclick="showPage('ddbeam')">Explore D.D. Beam</span>
+            <span class="slide-btn outline" onclick="showPage('portfolio')">View All</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="http://www.knamedicos.com/default/img/hblock/design/slider02/img/img3.jpg" alt="ViVi">
+        <div class="slide-overlay">
+          <div class="slide-text">
+            <p class="slide-eyebrow">All-in-One Skin Remodeling</p>
+            <h1><em>ViVi</em> Ampoule</h1>
+            <p>Next-Gen Professional Skin Remodeling — BHA + PHA + PLLA + HA powered by MPPT™. Visible transformation in 2 weeks.</p>
+            <span class="slide-btn" onclick="showPage('vivi')">Explore ViVi</span>
+            <span class="slide-btn outline" onclick="showPage('portfolio')">View All</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="slider-arrow slider-prev" onclick="moveSlide(-1)">&#8592;</button>
+    <button class="slider-arrow slider-next" onclick="moveSlide(1)">&#8594;</button>
+    <div class="slider-dots" id="dots">
+      <button class="dot active" onclick="goSlide(0)"></button>
+      <button class="dot" onclick="goSlide(1)"></button>
+      <button class="dot" onclick="goSlide(2)"></button>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-num">5</span><span class="stat-lbl">Premium Product Lines</span></div>
+    <div class="stat-item"><span class="stat-num">90%</span><span class="stat-lbl">Client Satisfaction Rate</span></div>
+    <div class="stat-item"><span class="stat-num">30+</span><span class="stat-lbl">Active Ingredients</span></div>
+    <div class="stat-item"><span class="stat-num">0</span><span class="stat-lbl">Downtime Required</span></div>
+  </div>
+
+  <!-- Brand Strip -->
+  <div class="brand-strip">
+    <div class="brand-strip-logo">
+      <svg viewBox="0 0 80 95" fill="none">
+        <path d="M40 6C18 6 6 20 6 40L6 60C6 78 40 92 40 92C40 92 74 78 74 60L74 40C74 20 62 6 40 6Z" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linejoin="round"/>
+        <path d="M40 74C28 68 14 54 16 38C18 26 30 24 36 38C38 46 39 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M40 74C52 68 66 54 64 38C62 26 50 24 44 38C42 46 41 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M40 74L40 62" stroke="#C4957A" stroke-width="3" stroke-linecap="round"/>
+        <path d="M40 62C36 50 28 44 30 30C32 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M40 62C44 50 52 44 50 30C48 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="brand-strip-text">
+      <p class="eyebrow">We curate the science. You define the beauty.</p>
+      <h2>Leading the Global Aesthetic Revolution<br>with Bio-Precision Solutions.</h2>
+      <p style="margin-top:16px;">Join a global network of experts dedicated to delivering Midam Lab Asia's cutting-edge solutions to discerning clients and high-end clinics worldwide.</p>
+    </div>
+  </div>
+
+</div><!-- /page-home -->
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: COMPANY
+══════════════════════════════════════════ -->
+<div class="page" id="page-company">
+
+  <div class="port-hero">
+    <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1920&q=80" alt="Company">
+    <div class="port-hero-overlay">
+      <div>
+        <p class="eyebrow" style="color:var(--rose-lt);">About Us</p>
+        <h1><em>Company</em></h1>
+        <p>Creating stories of beauty — with purity, precision, and purpose.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission Statement -->
+  <div style="background:var(--rose-bg);padding:72px 96px;display:flex;gap:80px;align-items:flex-start;">
+    <div style="flex-shrink:0;">
+      <svg viewBox="0 0 80 95" fill="none" width="64" height="76">
+        <path d="M40 6C18 6 6 20 6 40L6 60C6 78 40 92 40 92C40 92 74 78 74 60L74 40C74 20 62 6 40 6Z" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linejoin="round"/>
+        <path d="M40 74C28 68 14 54 16 38C18 26 30 24 36 38C38 46 39 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M40 74C52 68 66 54 64 38C62 26 50 24 44 38C42 46 41 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M40 74L40 62" stroke="#C4957A" stroke-width="3" stroke-linecap="round"/>
+        <path d="M40 62C36 50 28 44 30 30C32 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M40 62C44 50 52 44 50 30C48 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div>
+      <p class="eyebrow">Our Mission</p>
+      <h2 style="font-size:32px;font-weight:400;color:var(--dark);margin-bottom:20px;line-height:1.3;">We create stories of beauty —<br><em style="font-style:italic;color:var(--rose);">for those who define it.</em></h2>
+      <p style="font-size:16px;color:var(--gray);line-height:1.9;max-width:680px;">Midam Lab Asia is dedicated to the pursuit of beauty in its most authentic form. Our mission is to supply exceptional aesthetic solutions crafted from the highest-purity ingredients and the most optimal formulations available — empowering clinics and professionals across Southeast Asia to deliver transformative results that speak for themselves.</p>
+    </div>
+  </div>
+
+  <!-- About Midam Lab Asia -->
+  <div style="padding:80px 96px;background:#fff;border-bottom:1px solid rgba(196,149,122,.12);">
+    <div style="max-width:1000px;margin:0 auto;">
+      <p class="eyebrow">Who We Are</p>
+      <h2 style="font-size:30px;font-weight:400;color:var(--dark);margin-bottom:28px;">Midam Lab Asia</h2>
+      <p style="font-size:16px;color:var(--gray);line-height:1.9;margin-bottom:20px;">Midam Lab Asia is the regional distribution and brand partner of K-Na Cosmedicos (K-Na Holdings, Ltd.), a Korean-based professional aesthetic company that has built a globally recognized portfolio of bio-precision skin solutions. Together, we bridge world-class Korean formulation science with the dynamic and fast-growing aesthetic markets of Southeast Asia.</p>
+      <p style="font-size:16px;color:var(--gray);line-height:1.9;">Our name reflects our purpose: <strong style="color:var(--dark);">Midam</strong> — meaning "to tell a story" — embodies our belief that every treatment, every product, and every result is a chapter in the ongoing story of beauty. We do not simply distribute products. We curate experiences, build partnerships, and advance a vision of beauty that is precise, purposeful, and transformative.</p>
+    </div>
+  </div>
+
+  <!-- Partnership Block -->
+  <div style="background:var(--dark);padding:80px 96px;">
+    <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;">
+      <div>
+        <p class="eyebrow" style="color:var(--rose-lt);">Strategic Partnership</p>
+        <h2 style="font-size:28px;font-weight:400;color:#fff;margin-bottom:20px;line-height:1.35;">Long-term Partner of<br>K-Na Cosmedicos</h2>
+        <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.9;margin-bottom:20px;">Midam Lab Asia has cultivated a deep, long-standing partnership with K-Na Cosmedicos — one of Korea's leading professional aesthetic manufacturers. This relationship is built on mutual trust, shared standards of excellence, and a common vision for elevating professional skincare across the Asia-Pacific region.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.9;">Through this partnership, Midam Lab Asia holds exclusive access to K-Na Cosmedicos' full portfolio of clinically validated solutions — including the D.D. (Dew Diamond) Series, ViVi, and High ViVi — ensuring that Southeast Asian clinics receive the same world-class products trusted by professionals in Korea and beyond.</p>
+      </div>
+      <div>
+        <p class="eyebrow" style="color:var(--rose-lt);">Southeast Asia · Thailand Market</p>
+        <h2 style="font-size:28px;font-weight:400;color:#fff;margin-bottom:20px;line-height:1.35;">Leading the Expansion<br>into Thailand</h2>
+        <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.9;margin-bottom:20px;">As a strategic partner of K-Na Cosmedicos, Midam Lab Asia is at the forefront of expanding the brand's presence into the Thailand market — one of Southeast Asia's most dynamic and rapidly growing aesthetic industries. Thailand represents a critical gateway into the broader ASEAN region, and Midam Lab Asia is uniquely positioned to lead this expansion.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.9;">Through close collaboration with local clinic partners, KOLs, and distribution networks across Thailand, Midam Lab Asia is building a foundation for long-term brand leadership in one of the region's most discerning and beauty-forward markets.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Values -->
+  <div style="padding:80px 96px;background:var(--rose-bg);">
+    <div style="max-width:1000px;margin:0 auto;">
+      <p class="eyebrow" style="text-align:center;">Our Values</p>
+      <h2 style="font-size:28px;font-weight:400;color:var(--dark);text-align:center;margin-bottom:48px;">Purity · Precision · Partnership</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+        <div style="background:#fff;padding:36px 28px;border-top:3px solid var(--rose);">
+          <h4 style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:14px;">Purity</h4>
+          <p style="font-size:15px;color:var(--gray);line-height:1.8;">We source only the highest-purity raw materials available. Every ingredient is selected with rigorous scientific criteria — because what goes into a formula determines what comes out on skin.</p>
+        </div>
+        <div style="background:#fff;padding:36px 28px;border-top:3px solid var(--rose);">
+          <h4 style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:14px;">Precision</h4>
+          <p style="font-size:15px;color:var(--gray);line-height:1.8;">Optimal formulation is not accidental — it is the result of meticulous R&amp;D, clinical validation, and an uncompromising commitment to efficacy. Our products are engineered to perform, every time.</p>
+        </div>
+        <div style="background:#fff;padding:36px 28px;border-top:3px solid var(--rose);">
+          <h4 style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:14px;">Partnership</h4>
+          <p style="font-size:15px;color:var(--gray);line-height:1.8;">We grow with our partners. From K-Na Cosmedicos in Korea to clinic partners across Southeast Asia, we believe that the best results are achieved through collaboration, trust, and shared ambition.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer style="background:#111;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(196,149,122,.1)">
+    <div class="logo-wrap" onclick="showPage('home')" style="cursor:pointer;"><div class="logo-icon"><svg viewBox="0 0 80 95" fill="none" width="28" height="28"><path d="M40 6C18 6 6 20 6 40L6 60C6 78 40 92 40 92C40 92 74 78 74 60L74 40C74 20 62 6 40 6Z" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linejoin="round"/><path d="M40 74C28 68 14 54 16 38C18 26 30 24 36 38C38 46 39 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74C52 68 66 54 64 38C62 26 50 24 44 38C42 46 41 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74L40 62" stroke="#C4957A" stroke-width="3" stroke-linecap="round"/><path d="M40 62C36 50 28 44 30 30C32 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 62C44 50 52 44 50 30C48 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div><div class="logo-text" style="color:#C4957A;">MIDAMLABASIA</div></div>
+    <p style="font-family:Arial;font-size:11px;color:rgba(255,255,255,.2);">© 2026 Midam Lab Asia · All Rights Reserved</p>
+  </footer>
+</div><!-- /page-company -->
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: PORTFOLIO
+══════════════════════════════════════════ -->
+<div class="page" id="page-portfolio">
+
+  <div class="port-hero">
+    <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img2.jpg" alt="Portfolio">
+    <div class="port-hero-overlay">
+      <div>
+        <p class="eyebrow" style="color:var(--rose-lt);">Our Products</p>
+        <h1><em>Portfolio</em></h1>
+        <p>Bio-Precision Aesthetic Solutions for Professional Clinics Worldwide</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="port-intro">
+    <p class="eyebrow">Midam Lab Asia</p>
+    <h3>We curate the science. You define the beauty.</h3>
+    <p>
+      Midam Lab Asia pioneers the fusion of innovative medical technology and artistic design. By offering a unique portfolio of premium skincare solutions, we empower clinics and professionals worldwide to provide transformative results that exceed client expectations.
+    </p>
+    <p style="margin-top:18px;">
+      Join a global network of experts dedicated to delivering Midam Lab Asia's cutting-edge solutions to discerning clients and high-end clinics worldwide. Our professional-grade aesthetic solutions — the D.D. (Dew Diamond) Series — are engineered for non-invasive skin and body remodeling with clinical precision.
+    </p>
+  </div>
+
+  <div class="port-grid">
+    <div class="port-card">
+      <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img3.jpg" alt="D.D. Cut">
+      <div class="port-card-info">
+        <p class="p-tag">Dew Diamond · Lipolysis</p>
+        <h3>D.D. Cut</h3>
+        <p>High-concentration lipolysis for fat reduction and skin elasticity</p>
+        <button onclick="showPage('ddcut')">View Product →</button>
+      </div>
+    </div>
+    <div class="port-card">
+      <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img4.jpg" alt="D.D. Beam">
+      <div class="port-card-info">
+        <p class="p-tag">Dew Diamond · Antioxidant</p>
+        <h3>D.D. Beam</h3>
+        <p>Ultimate antioxidant booster with 30 proven safe ingredients</p>
+        <button onclick="showPage('ddbeam')">View Product →</button>
+      </div>
+    </div>
+    <div class="port-card">
+      <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img5.jpg" alt="ViVi">
+      <div class="port-card-info">
+        <p class="p-tag">All-in-One · Skin Remodeling</p>
+        <h3>ViVi Ampoule</h3>
+        <p>BHA + PHA + PLLA + HA — MPPT™ technology for visible results</p>
+        <button onclick="showPage('vivi')">View Product →</button>
+      </div>
+    </div>
+    <div class="port-card">
+      <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img6.jpg" alt="High ViVi">
+      <div class="port-card-info">
+        <p class="p-tag">Premium · Advanced Protocol</p>
+        <h3>High ViVi</h3>
+        <p>Advanced skin remodeling for intensive clinical protocols</p>
+        <button onclick="showPage('highvivi')">View Product →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="contact-anchor"></div>
+  <div class="contact-section">
+    <div class="contact-left">
+      <p class="eyebrow">Get In Touch</p>
+      <h2>Partner With<br>Midam Lab Asia</h2>
+      <p>Whether you're a clinic, distributor, or content creator — let's grow together across Southeast Asia.</p>
+      <div class="c-item"><p class="c-label">Website</p><p class="c-val">www.midamlabasia.com</p></div>
+      <div class="c-item"><p class="c-label">Email</p><p class="c-val"><a href="mailto:cmo@midamlabasia.com">cmo@midamlabasia.com</a></p></div>
+      <div class="c-item"><p class="c-label">Region</p><p class="c-val">Southeast Asia</p></div>
+    </div>
+    <div class="contact-right">
+      <form onsubmit="return false;">
+        <div class="f-group"><input type="text" placeholder="Your Name"></div>
+        <div class="f-group"><input type="email" placeholder="Email Address"></div>
+        <div class="f-group"><input type="text" placeholder="Company / Clinic Name"></div>
+        <div class="f-group"><textarea rows="5" placeholder="Tell us about your interest..."></textarea></div>
+        <button class="f-submit">Send Inquiry</button>
+      </form>
+    </div>
+  </div>
+  <footer>
+    <div class="logo-wrap" onclick="showPage('home')" style="cursor:pointer;">
+      <div class="logo-icon"><svg viewBox="0 0 80 95" fill="none" width="28" height="28"><path d="M40 6C18 6 6 20 6 40L6 60C6 78 40 92 40 92C40 92 74 78 74 60L74 40C74 20 62 6 40 6Z" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linejoin="round"/><path d="M40 74C28 68 14 54 16 38C18 26 30 24 36 38C38 46 39 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74C52 68 66 54 64 38C62 26 50 24 44 38C42 46 41 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74L40 62" stroke="#C4957A" stroke-width="3" stroke-linecap="round"/><path d="M40 62C36 50 28 44 30 30C32 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 62C44 50 52 44 50 30C48 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+      <div class="logo-text" style="color:#C4957A;">MIDAMLABASIA</div>
+    </div>
+    <div class="footer-links">
+      <a onclick="showPage('portfolio')">Portfolio</a>
+      <a onclick="showPage('ddcut')">D.D. Cut</a>
+      <a onclick="showPage('ddbeam')">D.D. Beam</a>
+      <a onclick="showPage('vivi')">ViVi</a>
+      <a onclick="showPage('highvivi')">High ViVi</a>
+    </div>
+    <p>© 2026 Midam Lab Asia · All Rights Reserved</p>
+  </footer>
+</div><!-- /page-portfolio -->
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: D.D. CUT
+══════════════════════════════════════════ -->
+<div class="page" id="page-ddcut">
+  <div class="prod-banner">
+    <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img3.jpg" alt="D.D. Cut">
+    <div class="prod-banner-overlay">
+      <div class="prod-banner-text">
+        <span class="prod-tag">Dew Diamond Series</span>
+        <h1>D.D. <em>Cut</em></h1>
+        <p>High-Concentration Lipolysis Solution — precision-engineered for maximum fat reduction and skin elasticity enhancement in a clinical setting.</p>
+      </div>
+    </div>
+  </div>
+  <!-- DD CUT CONTENT -->
+  <div class="info-strip">
+    <div class="info-cell"><h4>Classification</h4><p>Professional-Grade Contouring Ampoule Solution — topical, device-compatible, zero downtime.</p></div>
+    <div class="info-cell"><h4>Core Technology</h4><p>Proprietary Protein Blending Ratio — Bromelain 0.5% · Lecithin 1.0% · Centella Asiatica 3.346%</p></div>
+    <div class="info-cell"><h4>Regulatory</h4><p>KFDA/MFDS (Korea) · TFDA Thailand Registered (10-2-6900003393) · GS1 Global GTIN · ISO 22716 GMP</p></div>
+  </div>
+
+  <div class="prod-detail">
+    <div class="prod-detail-inner">
+      <p class="section-eyebrow">Dew Diamond Series · Professional Contouring Solution</p>
+      <h2>D.D. Cut — The Next Evolution in Scientific Contouring</h2>
+      <p class="prod-intro">D.D. CUT is a professional-grade contouring solution that refines facial silhouettes while providing intensive barrier recovery. Natural lytic enzymes target localized puffiness and sagging, while high-concentration Centella stabilizes the skin canvas for immediate aesthetic refinement and zero downtime. Bridging advanced Korean dermatological science with safe clinical operations.</p>
+
+      <div class="pd-block">
+        <h3>Core Technology — Proprietary Protein Blending Ratio</h3>
+        <p>The secret to D.D. CUT's zero-downtime efficacy lies not just in the ingredients, but in the exact scientific proportions. Each component is calibrated to work in precise synergy.</p>
+        <div class="pd-stat-row" style="margin-top:28px;">
+          <div class="pd-stat"><div class="ps-num">0.5%</div><div class="ps-lbl">Bromelain — The Lytic Agent</div></div>
+          <div class="pd-stat"><div class="ps-num">1.0%</div><div class="ps-lbl">Lecithin — The Transporter</div></div>
+          <div class="pd-stat"><div class="ps-num">3.346%</div><div class="ps-lbl">Centella Asiatica — The Stabilizer</div></div>
+          <div class="pd-stat"><div class="ps-num">0</div><div class="ps-lbl">Downtime</div></div>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h3>Key Active Ingredients</h3>
+        <div class="pd-ingredients">
+          <div class="pd-ing">
+            <div class="pd-ing-icon">BRM</div>
+            <div class="pd-ing-text">
+              <h4>Bromelain (0.5%) — The Lytic Powerhouse</h4>
+              <p>A powerful natural protease enzyme extracted from pineapple stems. <strong>Protein Lysis:</strong> Breaks down complex peptide bonds to smooth skin texture. <strong>Edema Reduction:</strong> Rapidly relieves localized swelling and puffiness for a sharper V-line. <strong>Anti-Inflammatory:</strong> Inhibits pro-inflammatory cytokines to prevent post-treatment stress.</p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">LEC</div>
+            <div class="pd-ing-text">
+              <h4>Lecithin (1.0%) — The Transporter</h4>
+              <p>A premium amphiphilic surfactant that attracts both water and fatty substances. <strong>Emulsification:</strong> Facilitates the movement and breakdown of triglycerides and waste. <strong>Cellular Detergent:</strong> Acts on fat cell walls to safely dismantle unnecessary accumulation. <strong>Absorption Booster:</strong> Drastically enhances deep dermal penetration of the ampoule.</p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">CTL</div>
+            <div class="pd-ing-text">
+              <h4>Centella Asiatica (3.346%) — Intensive Calm</h4>
+              <p>Uniquely formulated with a massive dosage of high-purity Centella Asiatica Extract. <strong>Immediate Soothing:</strong> Neutralizes irritation instantly, ensuring zero downtime. <strong>Barrier Repair:</strong> Rebuilds the foundational skin structure and improves elasticity. <strong>Collagen Synthesis:</strong> Supports the underlying dermal matrix for a taut, youthful complexion.</p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">PEP</div>
+            <div class="pd-ing-text">
+              <h4>Multi-Peptide Matrix + Botanical Calming Blend</h4>
+              <p><strong>sh-Polypeptide-11 &amp; 3:</strong> Induces cellular growth and core elasticity. <strong>sh-Oligopeptide-1:</strong> Key factor in damaged skin repair. <strong>Acetyl Hexapeptide-8:</strong> Smooths fine lines. <strong>Scutellaria Baicalensis:</strong> Potent antioxidant. <strong>Salvia Miltiorrhiza:</strong> Promotes micro-circulation. <strong>Chamomilla Recutita:</strong> Deep soothing for sensitive skin.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h3>Triple Action Mechanism</h3>
+        <div class="pd-effects">
+          <div class="pd-effect">
+            <h4>① LYSIS — Bromelain</h4>
+            <p>Targets and melts unnecessary proteins while rapidly reducing localized swelling and puffiness for immediate facial contouring.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>② TRANSPORT — Lecithin</h4>
+            <p>Acts as a powerful emulsifier, breaking down waste structures and enhancing deep dermal delivery of all active ingredients.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>③ STABILIZE — Centella &amp; Peptides</h4>
+            <p>Immediately rebuilds the barrier, ensuring zero irritation and leaving a serene, taut, and refined finish.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Sculpted Contour</h4>
+            <p>Refines facial silhouettes including jawline, cheeks, and submental region for a sharper V-line definition.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Seamless Calm</h4>
+            <p>High-concentration Centella stabilizes the skin canvas for immediate aesthetic refinement with no downtime whatsoever.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>100% Legal Compliance</h4>
+            <p>Topical cosmetic classification — clinics can offer profound contouring results without unauthorized injection liabilities.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h3>Professional Clinic Protocol</h3>
+        <ul class="pd-protocol-list">
+          <li data-n="1"><span><strong>Preparation</strong> — Cleanse the face thoroughly. Distribute the D.D. CUT ampoule evenly onto the target areas (jawline, cheeks, submental region).</span></li>
+          <li data-n="2"><span><strong>Device Integration (Synergy)</strong> — Combine with LDM (Ultrasound) or Electroporation (EP) devices. The micro-massage enhances lymphatic drainage while maximizing deep dermal absorption of proteins.</span></li>
+          <li data-n="3"><span><strong>Seal &amp; Finish</strong> — Finish with a cooling modeling mask or RED LED therapy to lock in active ingredients and accelerate the Centella calming effect.</span></li>
+        </ul>
+      </div>
+
+      <div class="pd-block">
+        <h3>Precision Manufacturing</h3>
+        <p>Produced under strict <strong>ISO 22716 (Cosmetic GMP)</strong> standards by Janytree Inc., South Korea's premier Dermo-Cell cosmetics facility using pharmaceutical-grade quality control. <strong>80°C Phase A&amp;B:</strong> Water &amp; Sodium Chloride blending. <strong>50°C Phase C:</strong> Precise melting of Lecithin, Bromelain, Centella, and Peptides. <strong>30°C Phase D:</strong> Final cooling and stabilization. Quality Control: Micro-filtration, filling, and final packing.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="brochure-section">
+    <p class="eyebrow">Product Brochure</p>
+    <h3>D.D. Cut — Official Brochure</h3>
+    <a class="brochure-card" href="ddcut_brochure.pdf" target="_blank" rel="noopener">
+      <div class="brochure-icon"><div class="brochure-icon-fold"></div></div>
+      <div class="brochure-meta">
+        <strong>DD Cut Product Brochure</strong>
+        <span>PDF Document · Midam Lab Asia</span>
+      </div>
+      <span class="brochure-dl">View PDF →</span>
+    </a>
+  </div>
+  <footer style="background:#111;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(196,149,122,.1)">
+    <div class="logo-wrap" onclick="showPage('home')" style="cursor:pointer;"><div class="logo-icon"><svg viewBox="0 0 80 95" fill="none" width="28" height="28"><path d="M40 6C18 6 6 20 6 40L6 60C6 78 40 92 40 92C40 92 74 78 74 60L74 40C74 20 62 6 40 6Z" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linejoin="round"/><path d="M40 74C28 68 14 54 16 38C18 26 30 24 36 38C38 46 39 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74C52 68 66 54 64 38C62 26 50 24 44 38C42 46 41 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74L40 62" stroke="#C4957A" stroke-width="3" stroke-linecap="round"/><path d="M40 62C36 50 28 44 30 30C32 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 62C44 50 52 44 50 30C48 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div><div class="logo-text" style="color:#C4957A;">MIDAMLABASIA</div></div>
+    <p style="font-family:Arial;font-size:11px;color:rgba(255,255,255,.2);">© 2026 Midam Lab Asia · All Rights Reserved</p>
+  </footer>
+</div><!-- /page-ddcut -->
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: D.D. BEAM
+══════════════════════════════════════════ -->
+<div class="page" id="page-ddbeam">
+  <div class="prod-banner">
+    <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img4.jpg" alt="D.D. Beam">
+    <div class="prod-banner-overlay">
+      <div class="prod-banner-text">
+        <span class="prod-tag">Dew Diamond Series</span>
+        <h1>D.D. <em>Beam</em></h1>
+        <p>Ultimate Antioxidant Skin Booster — 30 proven safe ingredients for radiant, luminous skin renewal and deep antioxidant protection.</p>
+      </div>
+    </div>
+  </div>
+  <!-- DD BEAM CONTENT -->
+  <div class="info-strip">
+    <div class="info-cell"><h4>Classification</h4><p>Dew Diamond Skin Booster — pharmaceutical manufacturing-grade quality, made in Korea.</p></div>
+    <div class="info-cell"><h4>Formula</h4><p>Non-cross-linked Hyaluronic Acid · 4 Peptides · 8 Vitamins &amp; Antioxidants · 11 Amino Acids</p></div>
+    <div class="info-cell"><h4>Distributed by</h4><p>Midam Lab Asia — strong antioxidant chain with optimal combination of premium actives.</p></div>
+  </div>
+
+  <div class="prod-detail">
+    <div class="prod-detail-inner">
+      <p class="section-eyebrow">Dew Diamond Series · Skin Booster Solution</p>
+      <h2>D.D. Beam — Dew Diamond Skin Booster</h2>
+      <p class="prod-intro">D.D. Beam is a Skin Booster Solution with a strong antioxidant chain made up of the optimal combination of non-cross-linked Hyaluronic Acid, 4 Peptides, 8 Vitamins and Antioxidants, and 11 Amino Acids. A perfect solution for skin, made with pharmaceutical manufacturing-grade quality, made by Due Diligence, and made in Korea.</p>
+
+      <div class="pd-block">
+        <h3>Key Peptide Components</h3>
+        <div class="pd-ingredients">
+          <div class="pd-ing">
+            <div class="pd-ing-icon">HA</div>
+            <div class="pd-ing-text">
+              <h4>Sodium Hyaluronate — Humectant</h4>
+              <p>The salt form of hyaluronic acid, a powerful humectant that attracts moisture to the skin. Helps plump the skin, reduce the appearance of fine lines, and supports skin barrier function, leaving the skin soft and smooth. <em>Benefits: Moisturizing · Soothing · Protection</em></p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">EGF</div>
+            <div class="pd-ing-text">
+              <h4>Oligopeptide-1 (EGF) — Skin-Conditioning Peptide</h4>
+              <p>Also known as Epidermal Growth Factor (EGF), promotes skin regeneration by stimulating the production of new skin cells. Accelerates the healing of wounds, improves skin texture, and helps maintain a youthful appearance by boosting collagen and elastin production. <em>Benefits: Regeneration · Healing · Elasticity</em></p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">OP2</div>
+            <div class="pd-ing-text">
+              <h4>Oligopeptide-2 — Skin-Conditioning Peptide</h4>
+              <p>A short chain of amino acids that stimulates collagen production and enhances skin regeneration. Has anti-aging properties by improving skin elasticity and firmness, while supporting the skin's natural repair mechanisms. <em>Benefits: Regeneration · Elasticity · Healing</em></p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">OP4</div>
+            <div class="pd-ing-text">
+              <h4>Oligopeptide-4 — Skin-Conditioning Peptide</h4>
+              <p>A peptide that enhances skin renewal and supports the synthesis of collagen and elastin. Known for its ability to improve skin texture, firmness, and elasticity, while reducing the appearance of fine lines and wrinkles. <em>Benefits: Regeneration · Moisturizing · Elasticity</em></p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">PT1</div>
+            <div class="pd-ing-text">
+              <h4>Palmitoyl Tripeptide-1 — Skin-Conditioning Peptide</h4>
+              <p>A peptide that stimulates the production of collagen and other extracellular matrix components, improving skin's firmness and elasticity. Helps reduce the appearance of fine lines and wrinkles, enhancing the skin's overall texture and tone. <em>Benefits: Elasticity · Tone · Regeneration</em></p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">GSH</div>
+            <div class="pd-ing-text">
+              <h4>Glutathione — Reducing Agent / Antioxidant</h4>
+              <p>A potent antioxidant that protects the skin from oxidative stress and free radicals. Known for its skin-brightening effects, as it inhibits melanin production, helping to even out skin tone and reduce hyperpigmentation. Also supports skin detoxification and enhances skin radiance. <em>Benefits: Antioxidant · Protection · Tone</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h3>Antioxidant Complex</h3>
+        <div class="pd-effects">
+          <div class="pd-effect">
+            <h4>Madecassoside</h4>
+            <p>Bioactive compound from Centella Asiatica with strong anti-inflammatory and antioxidant properties. Effective in soothing and healing irritated or sensitive skin. Aids in collagen synthesis and skin regeneration, enhancing skin texture and reducing the appearance of scars.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Madecassic Acid</h4>
+            <p>Another compound from Centella Asiatica, known for its potent anti-inflammatory and wound-healing properties. Promotes collagen synthesis and improves skin elasticity, helping to reduce the appearance of fine lines and wrinkles while soothing inflamed skin.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Sodium DNA (PDRN)</h4>
+            <p>A derivative of deoxyribonucleic acid, known for its ability to promote cellular regeneration and repair. Helps maintain the integrity of the skin barrier, enhances skin hydration, and supports collagen production, improving skin elasticity and reducing signs of aging.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Ascorbic Acid (Vitamin C)</h4>
+            <p>A potent antioxidant that helps brighten the skin and even out skin tone by inhibiting melanin production. Stimulates collagen synthesis, improving skin elasticity and reducing the appearance of fine lines and wrinkles.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Dexpanthenol (B5)</h4>
+            <p>A derivative of Vitamin B5 with excellent moisturizing and soothing properties. Helps maintain the skin's natural moisture balance, enhances the skin's barrier function, and accelerates the healing of damaged skin.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Biotin (B7) + Thiamine HCl (B1)</h4>
+            <p>B7 is essential for maintaining healthy skin, hair, and nails — improving hydration, elasticity, and overall appearance. B1 protects the skin from oxidative stress and supports overall skin health by promoting circulation and reducing inflammation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h3>11 Amino Acid Complex</h3>
+        <div class="pd-stat-row">
+          <div class="pd-stat"><div class="ps-num">Valine</div><div class="ps-lbl">Skin Repair &amp; Hydration</div></div>
+          <div class="pd-stat"><div class="ps-num">Threonine</div><div class="ps-lbl">Collagen &amp; Elastin Formation</div></div>
+          <div class="pd-stat"><div class="ps-num">Isoleucine</div><div class="ps-lbl">Moisture Barrier</div></div>
+          <div class="pd-stat"><div class="ps-num">Tryptophan</div><div class="ps-lbl">Barrier Function</div></div>
+        </div>
+        <div class="pd-stat-row" style="margin-top:10px;">
+          <div class="pd-stat"><div class="ps-num">Glutamic</div><div class="ps-lbl">Moisture Balance</div></div>
+          <div class="pd-stat"><div class="ps-num">Tyrosine</div><div class="ps-lbl">Pigmentation &amp; Healing</div></div>
+          <div class="pd-stat"><div class="ps-num">Cysteine</div><div class="ps-lbl">Antioxidant &amp; Elasticity</div></div>
+          <div class="pd-stat"><div class="ps-num">Lysine</div><div class="ps-lbl">Collagen Synthesis</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brochure-section">
+    <p class="eyebrow">Product Brochure</p>
+    <h3>D.D. Beam — Official Brochure</h3>
+    <a class="brochure-card" href="ddbeam_brochure.pdf" target="_blank" rel="noopener">
+      <div class="brochure-icon"><div class="brochure-icon-fold"></div></div>
+      <div class="brochure-meta">
+        <strong>DD Beam Product Brochure</strong>
+        <span>PDF Document · Midam Lab Asia</span>
+      </div>
+      <span class="brochure-dl">View PDF →</span>
+    </a>
+  </div>
+  <footer style="background:#111;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(196,149,122,.1)">
+    <div class="logo-wrap" onclick="showPage('home')" style="cursor:pointer;"><div class="logo-icon"><svg viewBox="0 0 80 95" fill="none" width="28" height="28"><path d="M40 6C18 6 6 20 6 40L6 60C6 78 40 92 40 92C40 92 74 78 74 60L74 40C74 20 62 6 40 6Z" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linejoin="round"/><path d="M40 74C28 68 14 54 16 38C18 26 30 24 36 38C38 46 39 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74C52 68 66 54 64 38C62 26 50 24 44 38C42 46 41 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74L40 62" stroke="#C4957A" stroke-width="3" stroke-linecap="round"/><path d="M40 62C36 50 28 44 30 30C32 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 62C44 50 52 44 50 30C48 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div><div class="logo-text" style="color:#C4957A;">MIDAMLABASIA</div></div>
+    <p style="font-family:Arial;font-size:11px;color:rgba(255,255,255,.2);">© 2026 Midam Lab Asia · All Rights Reserved</p>
+  </footer>
+</div><!-- /page-ddbeam -->
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: VIVI
+══════════════════════════════════════════ -->
+<div class="page" id="page-vivi">
+  <div class="prod-banner">
+    <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img5.jpg" alt="ViVi">
+    <div class="prod-banner-overlay">
+      <div class="prod-banner-text">
+        <span class="prod-tag">All-in-One Skin Remodeling</span>
+        <h1><em>ViVi</em> Ampoule</h1>
+        <p>Next-Gen Professional Skin Remodeling powered by MPPT™ — BHA + PHA + PLLA + HA for visible transformation with zero downtime.</p>
+      </div>
+    </div>
+  </div>
+  <!-- VIVI CONTENT -->
+  <div class="info-strip">
+    <div class="info-cell"><h4>Technology</h4><p>MPPT™ (Multi-Phase Precision Treatment) — 4-Step: Open · Refine · Signal · Renew</p></div>
+    <div class="info-cell"><h4>Key Ingredients</h4><p>BHA (Beta Hydroxy Acid) · PHA (Polyhydroxy Acid) · PLLA (Poly-L-Lactic Acid) · HA (Hyaluronic Acid)</p></div>
+    <div class="info-cell"><h4>Results</h4><p>90% of users experienced transformative skin texture results in just 2 weeks. Zero downtime.</p></div>
+  </div>
+
+  <div class="prod-detail">
+    <div class="prod-detail-inner">
+      <p class="section-eyebrow">All-in-One Skin Remodeling · MPPT™ Technology</p>
+      <h2>ViVi — Next-Gen All-in-One Skin Remodeling</h2>
+      <p class="prod-intro">ViVi offers a premium ampoule solution that seamlessly combines gentle peeling with effective collagen stimulation, ensuring that clients experience the best skin transformations without downtime or discomfort. Designed specifically for professional skincare clinics, ViVi targets the need for results-driven treatments that provide visible benefits — all while ensuring a gentle and non-invasive experience.</p>
+
+      <div class="pd-block">
+        <h3>MPPT™ Technology — 4-Step Mechanism</h3>
+        <div class="pd-steps">
+          <div class="pd-step">
+            <div class="pd-step-num">1</div>
+            <h4>OPEN — BHA (Pathway Activation)</h4>
+            <p>Beta Hydroxy Acid clarifies pores and opens absorption pathways for high-performance results. Its lipophilic nature allows deep penetration into lipid-rich pores to dissolve sebum.</p>
+          </div>
+          <div class="pd-step">
+            <div class="pd-step-num">2</div>
+            <h4>REFINE — PHA (Hydra-Resurfacing)</h4>
+            <p>Polyhydroxy Acid smooths skin texture while activating deep hydration for a luminous glow. With 8 hydroxyl groups, it acts as a "moisture magnet" with high efficacy and minimal irritation.</p>
+          </div>
+          <div class="pd-step">
+            <div class="pd-step-num">3</div>
+            <h4>SIGNAL — PLLA (Volume Stimulation)</h4>
+            <p>PLLA and peptides send signals to boost natural collagen, restoring youthful density and firmness. Biodegradable microparticles trigger sustained neocollagenesis for long-term structural volume.</p>
+          </div>
+          <div class="pd-step">
+            <div class="pd-step-num">4</div>
+            <h4>RENEW — HA (Total Rejuvenation)</h4>
+            <p>Continuous renewal cycles result in balanced, healthy, and visibly rejuvenated skin. High-molecular-weight HA binds and retains water up to 1,000 times its own weight.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h3>Key Active Ingredients</h3>
+        <div class="pd-ingredients">
+          <div class="pd-ing">
+            <div class="pd-ing-icon">PLLA</div>
+            <div class="pd-ing-text">
+              <h4>PLLA — Structural Volumizing &amp; Dermal Plumping</h4>
+              <p>A biodegradable polymer composed of repeating L-lactic acid units. As these particles slowly biodegrade within the skin, they trigger sustained neocollagenesis, inducing natural collagen production for long-term structural volume.</p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">BHA</div>
+            <div class="pd-ing-text">
+              <h4>BHA — Precision Exfoliation &amp; Path Opening</h4>
+              <p>An aromatic compound with adjacent hydroxyl and carboxyl groups on a benzene ring. Its lipophilic (oil-soluble) nature allows it to penetrate deeply into lipid-rich pores to dissolve sebum and clear pathways for deeper ingredient absorption.</p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">PHA</div>
+            <div class="pd-ing-text">
+              <h4>PHA — Intensive Hydration &amp; Radiance Activation</h4>
+              <p>A complex acid formed by the combination of gluconic acid and galactose. With 8 hydroxyl groups, it acts as a "moisture magnet." Its large molecular size ensures gradual skin absorption, providing high efficacy with minimal irritation.</p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">HA</div>
+            <div class="pd-ing-text">
+              <h4>HA — Structural Volumizing &amp; Dermal Plumping</h4>
+              <p>A high-molecular-weight polysaccharide consisting of alternating D-glucuronic acid and N-acetylglucosamine. Its long-chain structure has the unique ability to bind and retain water molecules up to 1,000 times its own weight.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h3>Comprehensive Skin Renewal Benefits</h3>
+        <div class="pd-effects">
+          <div class="pd-effect">
+            <h4>Refined Texture</h4>
+            <p>Achieving unparalleled smoothness and a silk-like finish for a sophisticated skin texture.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Luminous Brightening</h4>
+            <p>A profound radiance boost that unveils a naturally vibrant and translucent complexion.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Deep Hydration</h4>
+            <p>Infusing long-lasting, multi-layer moisture to restore suppleness and youthful plumpness.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Balanced Skin</h4>
+            <p>Harmonizing oil production to cultivate a serene, clear, and perfectly stabilized complexion.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Collagen Bio-Stimulation</h4>
+            <p>PLLA utilizes controlled renewal to harmonize the exfoliation process, ensuring a gentle yet high-performance renewal cycle that eliminates unnecessary downtime.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Zero Downtime</h4>
+            <p>Unlike conventional peeling treatments, ViVi provides a zero-downtime solution, allowing clients to resume their daily lifestyle immediately after treatment.</p>
+          </div>
+        </div>
+        <div class="pd-stat-row" style="margin-top:28px;">
+          <div class="pd-stat"><div class="ps-num">90%</div><div class="ps-lbl">Visible Transformation in 2 Weeks</div></div>
+          <div class="pd-stat"><div class="ps-num">Wk 1</div><div class="ps-lbl">Prepare &amp; Reboot</div></div>
+          <div class="pd-stat"><div class="ps-num">Wk 2</div><div class="ps-lbl">Glow &amp; Hydrate</div></div>
+          <div class="pd-stat"><div class="ps-num">Wk 3–4</div><div class="ps-lbl">Firm, Densify &amp; Reveal</div></div>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h3>How to Use — The ViVi Protocol</h3>
+        <ul class="pd-protocol-list">
+          <li data-n="1"><span><strong>Post-Procedure Care (Immediate Recovery)</strong> — Distribute evenly onto treated skin after laser or MTS to maximize healing synergy. Provides an instant soothing effect and deep-tissue hydration without excessive downtime.</span></li>
+          <li data-n="2"><span><strong>Daily Skincare (Long-term Vitality)</strong> — Use daily after cleansing to preserve the skin's moisture barrier. Regular application fosters proactive collagen support, maintaining a resilient and stabilized glow all day long.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="brochure-section">
+    <p class="eyebrow">Product Brochure</p>
+    <h3>ViVi Ampoule — Official Brochure</h3>
+    <a class="brochure-card" href="vivi_brochure.pdf" target="_blank" rel="noopener">
+      <div class="brochure-icon"><div class="brochure-icon-fold"></div></div>
+      <div class="brochure-meta">
+        <strong>ViVi Ampoule Product Brochure</strong>
+        <span>PDF Document · Midam Lab Asia</span>
+      </div>
+      <span class="brochure-dl">View PDF →</span>
+    </a>
+  </div>
+  <footer style="background:#111;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(196,149,122,.1)">
+    <div class="logo-wrap" onclick="showPage('home')" style="cursor:pointer;"><div class="logo-icon"><svg viewBox="0 0 80 95" fill="none" width="28" height="28"><path d="M40 6C18 6 6 20 6 40L6 60C6 78 40 92 40 92C40 92 74 78 74 60L74 40C74 20 62 6 40 6Z" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linejoin="round"/><path d="M40 74C28 68 14 54 16 38C18 26 30 24 36 38C38 46 39 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74C52 68 66 54 64 38C62 26 50 24 44 38C42 46 41 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74L40 62" stroke="#C4957A" stroke-width="3" stroke-linecap="round"/><path d="M40 62C36 50 28 44 30 30C32 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 62C44 50 52 44 50 30C48 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div><div class="logo-text" style="color:#C4957A;">MIDAMLABASIA</div></div>
+    <p style="font-family:Arial;font-size:11px;color:rgba(255,255,255,.2);">© 2026 Midam Lab Asia · All Rights Reserved</p>
+  </footer>
+</div><!-- /page-vivi -->
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: HIGH VIVI
+══════════════════════════════════════════ -->
+<div class="page" id="page-highvivi">
+  <div class="prod-banner">
+    <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img6.jpg" alt="High ViVi">
+    <div class="prod-banner-overlay">
+      <div class="prod-banner-text">
+        <span class="prod-tag">Premium · Advanced Protocol</span>
+        <h1>High <em>ViVi</em></h1>
+        <p>Next-level professional skin remodeling for advanced clinical protocols — maximum potency, superior and lasting results.</p>
+      </div>
+    </div>
+  </div>
+  <!-- HIGH VIVI CONTENT -->
+  <div class="info-strip">
+    <div class="info-cell"><h4>Classification</h4><p>Premium-grade advanced skin remodeling — high-potency evolution of ViVi for intensive clinical protocols.</p></div>
+    <div class="info-cell"><h4>Key Technology</h4><p>Enhanced MPPT™ · High-Concentration PLLA · Amplified BHA+PHA Dual-Acid · Peptide Booster Complex</p></div>
+    <div class="info-cell"><h4>Results</h4><p>6 Mo+ Collagen Effect · Fewer Sessions Required · Maximum Remodeling Intensity</p></div>
+  </div>
+
+  <div class="prod-detail">
+    <div class="prod-detail-inner">
+      <p class="section-eyebrow">Premium · Advanced Protocol · Maximum Potency</p>
+      <h2>High ViVi — Intensive Skin Remodeling</h2>
+      <p class="prod-intro">High ViVi is the premium, high-potency evolution of the ViVi Ampoule — engineered for advanced clinical practitioners who demand superior, lasting outcomes. With an amplified PLLA concentration and an enhanced multi-acid resurfacing complex, High ViVi delivers an intensive skin remodeling experience that produces dramatically visible transformation in fewer sessions, with collagen bio-stimulation effects that extend well beyond six months.</p>
+
+      <div class="pd-block">
+        <h3>Advanced Mechanism — Enhanced MPPT™</h3>
+        <p>High ViVi operates on the same foundational MPPT™ four-phase mechanism as ViVi, but with a significantly elevated active ingredient concentration profile. The increased PLLA load triggers a more robust and sustained fibroblast activation cascade, generating a denser neocollagenesis response that structurally remodels the dermis over time. The amplified BHA + PHA dual-acid complex achieves deeper epidermal resurfacing in fewer passes. An added Peptide Booster complex further amplifies cellular signaling for elastin and collagen production, addressing skin laxity and loss of contour at a structural level.</p>
+        <div class="pd-stat-row" style="margin-top:28px;">
+          <div class="pd-stat"><div class="ps-num">High</div><div class="ps-lbl">PLLA Concentration</div></div>
+          <div class="pd-stat"><div class="ps-num">6 Mo+</div><div class="ps-lbl">Collagen Effect</div></div>
+          <div class="pd-stat"><div class="ps-num">Fewer</div><div class="ps-lbl">Sessions Required</div></div>
+          <div class="pd-stat"><div class="ps-num">Max</div><div class="ps-lbl">Remodeling Intensity</div></div>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h3>Key Active Ingredients</h3>
+        <div class="pd-ingredients">
+          <div class="pd-ing">
+            <div class="pd-ing-icon">PLLA+</div>
+            <div class="pd-ing-text">
+              <h4>High-Concentration PLLA</h4>
+              <p>Elevated Poly-L-Lactic Acid loading triggers a significantly stronger fibroblast activation response. Drives intensive neocollagenesis and dermal matrix remodeling lasting 6–12 months.</p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">BHA+</div>
+            <div class="pd-ing-text">
+              <h4>Enhanced BHA Complex</h4>
+              <p>Amplified Salicylic Acid formulation achieves deeper follicular penetration and more thorough keratolytic action — delivering superior pore refinement, sebum control, and pathway optimization.</p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">PHA+</div>
+            <div class="pd-ing-text">
+              <h4>Enhanced PHA Complex</h4>
+              <p>Concentrated Gluconolactone and Lactobionic Acid blend accelerates surface cellular turnover while providing potent antioxidant protection and intensive humectant hydration throughout the treatment.</p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">Pep</div>
+            <div class="pd-ing-text">
+              <h4>Peptide Booster Complex</h4>
+              <p>Proprietary matrix of signal peptides (Argireline, Matrixyl, Leuphasyl) amplifies collagen and elastin gene expression in fibroblasts, accelerating structural skin remodeling and improving skin laxity.</p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">NIA</div>
+            <div class="pd-ing-text">
+              <h4>Niacinamide Complex</h4>
+              <p>Reinforces the epidermal barrier, reduces post-treatment redness, inhibits melanin transfer from melanocytes to keratinocytes, and enhances overall brightening efficacy alongside the acid complex.</p>
+            </div>
+          </div>
+          <div class="pd-ing">
+            <div class="pd-ing-icon">HA</div>
+            <div class="pd-ing-text">
+              <h4>Multi-Weight Hyaluronic Acid</h4>
+              <p>Dual-weight HA (high + low molecular weight) provides both immediate surface plumping and deeper dermal volumizing for comprehensive, multi-level hydration and comfort throughout the intensive treatment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h3>Clinical Effects &amp; Results</h3>
+        <div class="pd-effects">
+          <div class="pd-effect">
+            <h4>Intensive Collagen Remodeling</h4>
+            <p>High-dose PLLA and Peptide Boosters drive sustained neocollagenesis for 6–12 months. Skin measurably thickens and lifts with progressive improvement across the full treatment period.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Superior Resurfacing</h4>
+            <p>Amplified dual-acid complex achieves deeper, more comprehensive epidermal renewal — visibly erasing texture irregularities, fine lines, acne scarring, and sun-damaged surface cells.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Maximum Brightening</h4>
+            <p>Enhanced PHA, Niacinamide, and Glutathione analogs deliver aggressive melanin suppression and radiance restoration for a visibly brighter, more even complexion.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Structural Lifting</h4>
+            <p>Elastin-stimulating peptides combined with dense PLLA bio-stimulation improve skin laxity and contour definition — addressing sagging, jowling, and loss of facial architecture.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Acne Scar Improvement</h4>
+            <p>The intensive resurfacing and deep collagen remodeling combination makes High ViVi particularly effective for atrophic acne scars, rolling scars, and post-inflammatory hyperpigmentation.</p>
+          </div>
+          <div class="pd-effect">
+            <h4>Faster Visible Results</h4>
+            <p>Higher active concentrations achieve in fewer sessions what standard ViVi delivers across a longer course — ideal for clients requiring accelerated visible improvement.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-block">
+        <h3>Treatment Protocol</h3>
+        <ul class="pd-protocol-list">
+          <li data-n="1"><span><strong>Advanced Consultation</strong> — Mandatory detailed skin assessment for all first-time High ViVi clients. Review sensitivity threshold, previous peel history, retinoid use, and any active inflammatory conditions. Discontinue all retinoids and active exfoliants 7 days prior.</span></li>
+          <li data-n="2"><span><strong>Pre-Treatment Preparation</strong> — Double-cleanse and degrease skin thoroughly. Apply pre-treatment barrier primer to stabilize pH at 5.0–5.5. Topical anesthetic (30 min) recommended for sensitive skin types due to higher acid concentration.</span></li>
+          <li data-n="3"><span><strong>High ViVi Application</strong> — Apply in controlled phases per the Enhanced MPPT™ protocol. Practitioner monitors skin response at each phase. Controlled flushing and mild tingling are expected. Adjust contact time per client tolerance.</span></li>
+          <li data-n="4"><span><strong>Post-Treatment Management</strong> — Neutralize as directed. Apply medical-grade recovery mask with Centella Asiatica and HA for 20 minutes. Prescribe home care: gentle cleanser, HA serum, and SPF 50+ strict sun avoidance for 5 days.</span></li>
+          <li data-n="5"><span><strong>Course &amp; Interval</strong> — Recommended course: 3–4 sessions at 3–4 week intervals (longer spacing than ViVi due to higher potency). Maximum results typically observed 3–6 months post-final session. Annual maintenance recommended.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="brochure-section">
+    <p class="eyebrow">Product Brochure</p>
+    <h3>High ViVi — Official Brochure</h3>
+    <a class="brochure-card" href="highvivi_brochure.pdf" target="_blank" rel="noopener">
+      <div class="brochure-icon"><div class="brochure-icon-fold"></div></div>
+      <div class="brochure-meta">
+        <strong>High ViVi Product Brochure</strong>
+        <span>PDF Document · Knamedicos</span>
+      </div>
+      <span class="brochure-dl">View PDF →</span>
+    </a>
+  </div>
+  <footer style="background:#111;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(196,149,122,.1)">
+    <div class="logo-wrap" onclick="showPage('home')" style="cursor:pointer;"><div class="logo-icon"><svg viewBox="0 0 80 95" fill="none" width="28" height="28"><path d="M40 6C18 6 6 20 6 40L6 60C6 78 40 92 40 92C40 92 74 78 74 60L74 40C74 20 62 6 40 6Z" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linejoin="round"/><path d="M40 74C28 68 14 54 16 38C18 26 30 24 36 38C38 46 39 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74C52 68 66 54 64 38C62 26 50 24 44 38C42 46 41 58 40 66" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 74L40 62" stroke="#C4957A" stroke-width="3" stroke-linecap="round"/><path d="M40 62C36 50 28 44 30 30C32 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M40 62C44 50 52 44 50 30C48 20 40 26 40 40" stroke="#C4957A" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div><div class="logo-text" style="color:#C4957A;">MIDAMLABASIA</div></div>
+    <p style="font-family:Arial;font-size:11px;color:rgba(255,255,255,.2);">© 2026 Midam Lab Asia · All Rights Reserved</p>
+  </footer>
+</div><!-- /page-highvivi -->
+
+
+<script>
+  /* ── PAGE NAVIGATION ── */
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    const navEl = document.getElementById('nav-' + id);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  /* ── HERO SLIDER ── */
+  let current = 0;
+  const total  = 3;
+  function updateSlider() {
+    document.getElementById('slides').style.transform = `translateX(-${current * 100}%)`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+  function moveSlide(dir) { current = (current + dir + total) % total; updateSlider(); }
+  function goSlide(n)     { current = n; updateSlider(); }
+  setInterval(() => moveSlide(1), 5000);
+</script>
+</body>
+</html>
