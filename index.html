@@ -386,6 +386,130 @@
   }
   .footer-links a:hover { color:var(--rose-lt); }
   footer p { font-family:'Arial',sans-serif; font-size:11px; color:rgba(255,255,255,.2); }
+
+  /* ══ HAMBURGER ══ */
+  .hamburger {
+    display:none; flex-direction:column; gap:5px; cursor:pointer;
+    background:none; border:none; padding:8px;
+  }
+  .hamburger span { display:block; width:24px; height:2px; background:var(--dark); transition:all .3s; }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+  /* ══ MOBILE NAV PANEL ══ */
+  .mobile-nav {
+    display:none; position:fixed; top:72px; left:0; right:0; bottom:0;
+    background:rgba(255,255,255,0.98); z-index:199; flex-direction:column;
+    padding:32px 32px; overflow-y:auto;
+  }
+  .mobile-nav.open { display:flex; }
+  .mobile-nav a {
+    font-family:'Arial',sans-serif; font-size:14px; letter-spacing:2px;
+    text-transform:uppercase; color:var(--dark); text-decoration:none;
+    padding:18px 0; border-bottom:1px solid rgba(196,149,122,.15); cursor:pointer;
+  }
+  .mobile-nav a:hover { color:var(--rose); }
+  .mobile-nav .mobile-cta {
+    margin-top:24px; background:var(--rose); color:#fff !important;
+    padding:14px 24px; text-align:center; border:none;
+  }
+
+  /* ══ RESPONSIVE — 768px ══ */
+  @media (max-width: 768px) {
+    nav { padding:0 20px; }
+    .nav-links, .nav-cta { display:none; }
+    .hamburger { display:flex; }
+    .logo-text { font-size:12px; letter-spacing:2px; }
+
+    /* Hero */
+    .slide-overlay { padding:0 24px; }
+    .slide-text { max-width:100%; }
+    .slide-text h1 { font-size:36px; }
+    .slide-text p { font-size:14px; }
+    .slide-btn { padding:11px 20px; font-size:10px; display:block; width:fit-content; margin-bottom:10px; }
+    .slide-btn.outline { margin-left:0; }
+    .slider-arrow { width:36px; height:36px; font-size:16px; }
+    .slider-prev { left:8px; }
+    .slider-next { right:8px; }
+
+    /* Stats */
+    .stats-bar { display:grid; grid-template-columns:1fr 1fr; padding:32px 20px; gap:24px; }
+
+    /* Brand strip */
+    .brand-strip { flex-direction:column; padding:48px 24px; gap:32px; }
+    .brand-strip-text h2 { font-size:26px; }
+
+    /* Port / company hero */
+    .port-hero { height:280px; }
+    .port-hero-overlay { padding:0 24px; }
+    .port-hero-overlay h1 { font-size:32px; }
+    .port-hero-overlay p { font-size:14px; margin-top:10px; }
+    #page-company .port-hero { height:320px; }
+    #page-company .port-hero-overlay h1 { font-size:34px; }
+    #page-company .port-hero-overlay p { font-size:14px; }
+
+    /* Port intro & grid */
+    .port-intro { padding:40px 24px; }
+    .port-grid { grid-template-columns:1fr; padding:0 0 40px; }
+
+    /* Info strip */
+    .info-strip { flex-direction:column; }
+    .info-cell { padding:32px 24px; border-right:none; border-bottom:1px solid rgba(196,149,122,.2); }
+    .info-cell:last-child { border-bottom:none; }
+
+    /* Gallery */
+    .prod-gallery { padding:32px 16px; }
+    .gallery-grid { grid-template-columns:repeat(2,1fr); gap:6px; }
+    .gallery-grid.g3 { grid-template-columns:repeat(2,1fr); }
+    .g-item.wide { grid-column:span 1; aspect-ratio:1; }
+
+    /* Product banner */
+    .prod-banner { height:300px; }
+    .prod-banner-overlay { padding:0 24px; }
+    .prod-banner-text h1 { font-size:34px; }
+    .prod-banner-text p { font-size:13px; }
+
+    /* Product detail */
+    .prod-detail { padding:40px 20px; }
+    .pd-steps { grid-template-columns:repeat(2,1fr); }
+    .pd-ingredients { grid-template-columns:1fr; }
+    .pd-effects { grid-template-columns:1fr; }
+    .pd-stat-row { flex-direction:column; }
+    .pd-stat { border-right:none; border-bottom:1px solid var(--rose-lt); }
+    .pd-stat:last-child { border-bottom:none; }
+
+    /* Company page inline-style overrides */
+    .co-mission { padding:40px 24px !important; flex-direction:column !important; gap:24px !important; }
+    .co-about { padding:40px 24px !important; }
+    .co-partnership { padding:40px 24px !important; }
+    .co-partnership > div { grid-template-columns:1fr !important; gap:40px !important; }
+    .co-values { padding:40px 24px !important; }
+    .co-values > div > div { grid-template-columns:1fr !important; }
+
+    .contact-section { grid-template-columns:1fr; }
+    .contact-left { padding:48px 24px; }
+    .contact-left h2 { font-size:28px; }
+    .contact-right { padding:32px 24px; }
+
+    /* Brochure */
+    .brochure-section { padding:32px 24px; }
+    .brochure-card { flex-wrap:wrap; }
+
+    /* Footer */
+    footer { flex-direction:column; gap:16px; text-align:center; padding:24px 20px; }
+    .footer-links { flex-wrap:wrap; justify-content:center; }
+  }
+
+  /* ══ RESPONSIVE — 480px ══ */
+  @media (max-width: 480px) {
+    .slide-text h1 { font-size:26px; }
+    .stats-bar { grid-template-columns:1fr; }
+    .pd-steps { grid-template-columns:1fr; }
+    .gallery-grid { grid-template-columns:1fr; }
+    .gallery-grid.g3 { grid-template-columns:1fr; }
+    .g-item.wide { grid-column:span 1; aspect-ratio:1; }
+  }
 </style>
 </head>
 <body>
@@ -416,7 +540,20 @@
   </ul>
 
   <a class="nav-cta" onclick="showPage('portfolio'); setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100)">Contact Us</a>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a onclick="showPage('company');toggleMobileNav()">Company</a>
+  <a onclick="showPage('portfolio');toggleMobileNav()">Portfolio</a>
+  <a onclick="showPage('ddcut');toggleMobileNav()">D.D. Cut</a>
+  <a onclick="showPage('ddbeam');toggleMobileNav()">D.D. Beam</a>
+  <a onclick="showPage('vivi');toggleMobileNav()">ViVi</a>
+  <a onclick="showPage('highvivi');toggleMobileNav()">High ViVi</a>
+  <a class="mobile-cta" onclick="showPage('portfolio');setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100);toggleMobileNav()">Contact Us</a>
+</div>
 
 <!-- ══════════════════════════════════════════
      PAGE: HOME
@@ -519,7 +656,7 @@
   </div>
 
   <!-- Mission Statement -->
-  <div style="background:var(--rose-bg);padding:72px 96px;display:flex;gap:80px;align-items:flex-start;">
+  <div class="co-mission" style="background:var(--rose-bg);padding:72px 96px;display:flex;gap:80px;align-items:flex-start;">
     <div style="flex-shrink:0;">
       <svg viewBox="0 0 80 95" fill="none" width="64" height="76">
         <path d="M40 6C18 6 6 20 6 40L6 60C6 78 40 92 40 92C40 92 74 78 74 60L74 40C74 20 62 6 40 6Z" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linejoin="round"/>
@@ -538,7 +675,7 @@
   </div>
 
   <!-- About Midam Lab Asia -->
-  <div style="padding:80px 96px;background:#fff;border-bottom:1px solid rgba(196,149,122,.12);">
+  <div class="co-about" style="padding:80px 96px;background:#fff;border-bottom:1px solid rgba(196,149,122,.12);">
     <div style="max-width:1000px;margin:0 auto;">
       <p class="eyebrow">Who We Are</p>
       <h2 style="font-size:30px;font-weight:400;color:var(--dark);margin-bottom:28px;">Midam Lab Asia</h2>
@@ -548,7 +685,7 @@
   </div>
 
   <!-- Partnership Block -->
-  <div style="background:var(--dark);padding:80px 96px;">
+  <div class="co-partnership" style="background:var(--dark);padding:80px 96px;">
     <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;">
       <div>
         <p class="eyebrow" style="color:var(--rose-lt);">Strategic Partnership</p>
@@ -566,7 +703,7 @@
   </div>
 
   <!-- Values -->
-  <div style="padding:80px 96px;background:var(--rose-bg);">
+  <div class="co-values" style="padding:80px 96px;background:var(--rose-bg);">
     <div style="max-width:1000px;margin:0 auto;">
       <p class="eyebrow" style="text-align:center;">Our Values</p>
       <h2 style="font-size:28px;font-weight:400;color:var(--dark);text-align:center;margin-bottom:48px;">Purity · Precision · Partnership</h2>
@@ -1298,6 +1435,14 @@
   function moveSlide(dir) { current = (current + dir + total) % total; updateSlider(); }
   function goSlide(n)     { current = n; updateSlider(); }
   setInterval(() => moveSlide(1), 5000);
+
+  /* ── MOBILE NAV ── */
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobile-nav');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
 </script>
 </body>
 </html>
