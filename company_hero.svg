@@ -1,0 +1,269 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 560" width="1920" height="560" font-family="Georgia,'Times New Roman',serif">
+  <defs>
+    <filter id="wc" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.025" numOctaves="4" seed="5" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="22" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="blob">
+      <feGaussianBlur stdDeviation="55"/>
+    </filter>
+    <filter id="softink">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+    <filter id="verysoft">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+
+    <!-- Backgrounds & washes -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#FFFAF6"/>
+      <stop offset="50%"  stop-color="#FFF5F0"/>
+      <stop offset="100%" stop-color="#FDF0F5"/>
+    </linearGradient>
+    <radialGradient id="w1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F9A8C9" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#F9A8C9" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="w2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E8427C" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#E8427C" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="w3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c0306a" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#c0306a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="w4" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fce4ec" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#fce4ec" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Tool gradients -->
+    <linearGradient id="barrel1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#2a0a18"/>
+      <stop offset="35%"  stop-color="#5a1830"/>
+      <stop offset="65%"  stop-color="#4a1228"/>
+      <stop offset="100%" stop-color="#2a0a18"/>
+    </linearGradient>
+    <linearGradient id="barrel2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#1a3a28"/>
+      <stop offset="40%"  stop-color="#2d6040"/>
+      <stop offset="100%" stop-color="#1a3a28"/>
+    </linearGradient>
+    <linearGradient id="barrel3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#3a2810"/>
+      <stop offset="40%"  stop-color="#7a5020"/>
+      <stop offset="100%" stop-color="#3a2810"/>
+    </linearGradient>
+    <linearGradient id="nib" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#d4b060"/>
+      <stop offset="50%"  stop-color="#f0d890"/>
+      <stop offset="100%" stop-color="#b08840"/>
+    </linearGradient>
+    <linearGradient id="bristle1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#E8427C" stop-opacity="0.9"/>
+      <stop offset="60%"  stop-color="#c0306a"/>
+      <stop offset="100%" stop-color="#7a1040"/>
+    </linearGradient>
+    <linearGradient id="bristle2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#5090d0" stop-opacity="0.9"/>
+      <stop offset="60%"  stop-color="#3060a0"/>
+      <stop offset="100%" stop-color="#1a3060"/>
+    </linearGradient>
+    <linearGradient id="bristle3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#e8a030" stop-opacity="0.9"/>
+      <stop offset="60%"  stop-color="#c07010"/>
+      <stop offset="100%" stop-color="#804010"/>
+    </linearGradient>
+    <linearGradient id="bamboo" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#b89050"/>
+      <stop offset="50%"  stop-color="#d8b870"/>
+      <stop offset="100%" stop-color="#b89050"/>
+    </linearGradient>
+    <linearGradient id="pencil" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#d4882a"/>
+      <stop offset="30%"  stop-color="#e8a840"/>
+      <stop offset="60%"  stop-color="#d4882a"/>
+      <stop offset="100%" stop-color="#c07018"/>
+    </linearGradient>
+    <linearGradient id="pencilTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#e0d0c0"/>
+      <stop offset="100%" stop-color="#c0b0a0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ░░░ BACKGROUND ░░░ -->
+  <rect width="1920" height="560" fill="url(#bg)"/>
+
+  <!-- ░░░ WATERCOLOR WASHES ░░░ -->
+  <ellipse cx="380"  cy="200" rx="420" ry="300" fill="url(#w4)" filter="url(#blob)"/>
+  <ellipse cx="1100" cy="320" rx="500" ry="350" fill="url(#w1)" filter="url(#blob)"/>
+  <ellipse cx="1650" cy="180" rx="380" ry="260" fill="url(#w2)" filter="url(#blob)"/>
+  <ellipse cx="800"  cy="480" rx="350" ry="200" fill="url(#w3)" filter="url(#blob)"/>
+  <ellipse cx="200"  cy="450" rx="260" ry="180" fill="url(#w2)" filter="url(#blob)" opacity="0.6"/>
+  <ellipse cx="1800" cy="480" rx="280" ry="200" fill="url(#w1)" filter="url(#blob)" opacity="0.7"/>
+
+  <!-- ░░░ INK STROKES (background calligraphy lines) ░░░ -->
+  <g filter="url(#softink)" opacity="0.09">
+    <path d="M 0 300 Q 400 260 800 310 Q 1200 360 1600 300 Q 1800 270 1920 285" stroke="#2D0A1F" stroke-width="4" fill="none"/>
+    <path d="M 0 320 Q 350 285 700 330 Q 1050 375 1400 320" stroke="#2D0A1F" stroke-width="2" fill="none"/>
+    <path d="M 500 520 Q 900 490 1300 515 Q 1600 535 1920 510" stroke="#E8427C" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+       TOOLS GROUP — centered cluster
+       ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+
+  <!-- ── BRUSH 1: Wide watercolor brush (left, angled down-right) ── -->
+  <g transform="translate(620,40) rotate(35)">
+    <rect x="-11" y="0"   width="22" height="260" rx="8" fill="url(#barrel1)"/>
+    <!-- ring details -->
+    <rect x="-11" y="258" width="22" height="26" rx="3" fill="#b09050"/>
+    <line x1="-11" y1="263" x2="11" y2="263" stroke="#d0b860" stroke-width="1.5"/>
+    <line x1="-11" y1="279" x2="11" y2="279" stroke="#d0b860" stroke-width="1.5"/>
+    <!-- bristles -->
+    <path d="M -9 284 Q -12 320 0 348 Q 12 320 9 284 Z" fill="url(#bristle1)" filter="url(#wc)"/>
+    <ellipse cx="0" cy="345" rx="5" ry="7" fill="#7a1040" opacity="0.8"/>
+    <!-- paint drip -->
+    <path d="M 1 352 Q 3 372 0 390" stroke="#E8427C" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <circle cx="0.5" cy="393" r="5" fill="#E8427C" opacity="0.4"/>
+    <circle cx="2"   cy="405" r="2.5" fill="#E8427C" opacity="0.25"/>
+  </g>
+
+  <!-- ── BRUSH 2: Round watercolor brush (rightish, angled) ── -->
+  <g transform="translate(1260,30) rotate(-28)">
+    <rect x="-10" y="0"   width="20" height="240" rx="7" fill="url(#barrel2)"/>
+    <rect x="-10" y="238" width="20" height="22" rx="3" fill="#808080"/>
+    <line x1="-10" y1="243" x2="10" y2="243" stroke="#aaa" stroke-width="1"/>
+    <line x1="-10" y1="255" x2="10" y2="255" stroke="#aaa" stroke-width="1"/>
+    <!-- bristles – round pointed -->
+    <path d="M -8 260 Q -10 295 0 330 Q 10 295 8 260 Z" fill="url(#bristle2)" filter="url(#wc)"/>
+    <ellipse cx="0" cy="328" rx="4" ry="6" fill="#1a3060" opacity="0.8"/>
+    <path d="M 0 334 Q -2 350 1 368" stroke="#3060a0" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+    <circle cx="0.5" cy="371" r="4" fill="#3060a0" opacity="0.35"/>
+  </g>
+
+  <!-- ── BRUSH 3: Flat wash brush (far right, nearly vertical) ── -->
+  <g transform="translate(1550,60) rotate(15)">
+    <rect x="-9" y="0"   width="18" height="220" rx="6" fill="url(#barrel3)"/>
+    <rect x="-10" y="218" width="20" height="20" rx="3" fill="#b09050"/>
+    <line x1="-10" y1="223" x2="10" y2="223" stroke="#d4b860" stroke-width="1.2"/>
+    <!-- flat bristles -->
+    <rect x="-14" y="238" width="28" height="60" rx="2" fill="url(#bristle3)" filter="url(#wc)" opacity="0.9"/>
+    <path d="M -5 298 Q -4 316 0 330" stroke="#c07010" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+  </g>
+
+  <!-- ── FOUNTAIN PEN (center-left, angled) ── -->
+  <g transform="translate(860,20) rotate(28)">
+    <!-- Cap -->
+    <rect x="-10" y="0" width="20" height="80" rx="10" fill="#1a0810"/>
+    <rect x="-10" y="72" width="20" height="8"  rx="2" fill="#c8a060"/>
+    <!-- Barrel -->
+    <rect x="-10" y="78" width="20" height="260" rx="8" fill="url(#barrel1)"/>
+    <!-- Gold ring -->
+    <rect x="-10" y="80" width="20" height="6" rx="2" fill="#d4b860"/>
+    <!-- Clip -->
+    <rect x="8" y="4" width="3" height="72" rx="1.5" fill="#c8a060" opacity="0.8"/>
+    <!-- Grip -->
+    <rect x="-10" y="328" width="20" height="30" rx="4" fill="#0f0408"/>
+    <!-- Nib -->
+    <path d="M -9 356 L 0 418 L 9 356 Z" fill="url(#nib)"/>
+    <line x1="0" y1="358" x2="0" y2="414" stroke="#8a4020" stroke-width="0.8"/>
+    <!-- ink drop -->
+    <ellipse cx="0" cy="421" rx="3.5" ry="6" fill="#2D0A1F" opacity="0.85"/>
+    <path d="M 0 427 Q 1.5 445 -0.5 462" stroke="#2D0A1F" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.45"/>
+    <circle cx="0" cy="465" r="3" fill="#2D0A1F" opacity="0.3"/>
+  </g>
+
+  <!-- ── CALLIGRAPHY BRUSH (bamboo, thin — center-right) ── -->
+  <g transform="translate(1050,15) rotate(-22)">
+    <!-- bamboo handle with nodes -->
+    <rect x="-6" y="0" width="12" height="280" rx="5" fill="url(#bamboo)"/>
+    <rect x="-6" y="55"  width="12" height="5" rx="2" fill="#907030" opacity="0.7"/>
+    <rect x="-6" y="110" width="12" height="5" rx="2" fill="#907030" opacity="0.7"/>
+    <rect x="-6" y="165" width="12" height="5" rx="2" fill="#907030" opacity="0.7"/>
+    <rect x="-6" y="220" width="12" height="5" rx="2" fill="#907030" opacity="0.7"/>
+    <!-- ferrule -->
+    <rect x="-7" y="278" width="14" height="18" rx="3" fill="#909090"/>
+    <!-- fine bristles -->
+    <path d="M -5 296 Q -6 335 0 368 Q 6 335 5 296 Z" fill="#2D0A1F" opacity="0.88" filter="url(#wc)"/>
+    <!-- ink strokes from tip -->
+    <path d="M 0 368 Q 4 392 -3 418 Q -8 445 2 470" stroke="#2D0A1F" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.35"/>
+    <path d="M 0 368 Q -5 395 3 425" stroke="#2D0A1F" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.2"/>
+  </g>
+
+  <!-- ── PENCIL (far left, angled) ── -->
+  <g transform="translate(390,25) rotate(40)">
+    <!-- body -->
+    <rect x="-8" y="0" width="16" height="300" fill="url(#pencil)"/>
+    <!-- flat top with eraser -->
+    <rect x="-8" y="0" width="16" height="12" fill="#e0d0c0"/>
+    <rect x="-8" y="10" width="16" height="8"  fill="#d0907a" opacity="0.9"/>
+    <!-- metal band -->
+    <rect x="-8" y="17" width="16" height="10" fill="#c0c0c0"/>
+    <!-- wood tip -->
+    <path d="M -8 300 L 0 340 L 8 300 Z" fill="#d4a870"/>
+    <!-- graphite tip -->
+    <path d="M -3 310 L 0 338 L 3 310 Z" fill="#404040"/>
+    <path d="M 0 338 Q 0.5 352 0 365" stroke="#303030" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+    <!-- wood grain lines -->
+    <line x1="-8" y1="60"  x2="8" y2="60"  stroke="#c07018" stroke-width="0.5" opacity="0.4"/>
+    <line x1="-8" y1="120" x2="8" y2="120" stroke="#c07018" stroke-width="0.5" opacity="0.4"/>
+    <line x1="-8" y1="180" x2="8" y2="180" stroke="#c07018" stroke-width="0.5" opacity="0.4"/>
+    <line x1="-8" y1="240" x2="8" y2="240" stroke="#c07018" stroke-width="0.5" opacity="0.4"/>
+  </g>
+
+  <!-- ── DIP PEN (right area, angled) ── -->
+  <g transform="translate(1750,30) rotate(-35)">
+    <!-- wooden handle -->
+    <rect x="-7" y="0" width="14" height="250" rx="6" fill="#8B4020"/>
+    <rect x="-7" y="0" width="14" height="6" rx="3" fill="#a06030"/>
+    <!-- metal ferrule -->
+    <rect x="-8" y="244" width="16" height="18" rx="3" fill="#888"/>
+    <!-- nib (flat dip pen nib) -->
+    <path d="M -7 262 L -2 320 L 0 328 L 2 320 L 7 262 Z" fill="url(#nib)"/>
+    <line x1="0" y1="264" x2="0" y2="325" stroke="#a08040" stroke-width="0.7" opacity="0.5"/>
+    <!-- ink drop -->
+    <ellipse cx="0" cy="331" rx="3" ry="5" fill="#2D0A1F" opacity="0.8"/>
+    <path d="M 0 336 Q 1 350 -0.5 365" stroke="#2D0A1F" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.4"/>
+  </g>
+
+  <!-- ░░░ WATERCOLOR PAINT SPLATTERS ░░░ -->
+  <g filter="url(#wc)" opacity="0.7">
+    <!-- Rose cluster -->
+    <circle cx="740"  cy="430" r="28" fill="#E8427C" opacity="0.28"/>
+    <circle cx="768"  cy="412" r="14" fill="#E8427C" opacity="0.22"/>
+    <circle cx="718"  cy="450" r="9"  fill="#c0306a" opacity="0.32"/>
+    <circle cx="782"  cy="440" r="5"  fill="#E8427C" opacity="0.38"/>
+    <circle cx="726"  cy="470" r="4"  fill="#E8427C" opacity="0.2"/>
+    <!-- Blue cluster -->
+    <circle cx="1380" cy="200" r="22" fill="#4080c0" opacity="0.22"/>
+    <circle cx="1400" cy="185" r="11" fill="#3060a0" opacity="0.18"/>
+    <circle cx="1362" cy="218" r="7"  fill="#5090d0" opacity="0.28"/>
+    <!-- Gold cluster -->
+    <circle cx="500"  cy="380" r="20" fill="#e0a030" opacity="0.25"/>
+    <circle cx="520"  cy="365" r="10" fill="#c07010" opacity="0.2"/>
+    <!-- Dark ink dots -->
+    <circle cx="950"  cy="470" r="8"  fill="#2D0A1F" opacity="0.18"/>
+    <circle cx="965"  cy="460" r="4"  fill="#2D0A1F" opacity="0.14"/>
+    <circle cx="940"  cy="482" r="3"  fill="#2D0A1F" opacity="0.2"/>
+  </g>
+
+  <!-- ░░░ FLOATING PETALS ░░░ -->
+  <g filter="url(#wc)" opacity="0.5">
+    <ellipse cx="280"  cy="120" rx="22" ry="11" fill="#E8427C" transform="rotate(-30,280,120)"/>
+    <ellipse cx="310"  cy="105" rx="17" ry="9"  fill="#F9A8C9" transform="rotate(15,310,105)"/>
+    <ellipse cx="260"  cy="140" rx="14" ry="7"  fill="#c0306a" transform="rotate(25,260,140)"/>
+    <ellipse cx="1450" cy="380" rx="20" ry="10" fill="#E8427C" transform="rotate(-20,1450,380)"/>
+    <ellipse cx="1475" cy="398" rx="15" ry="8"  fill="#F9A8C9" transform="rotate(30,1475,398)"/>
+    <ellipse cx="160"  cy="480" rx="18" ry="9"  fill="#c0306a" transform="rotate(45,160,480)"/>
+    <ellipse cx="190"  cy="462" rx="13" ry="7"  fill="#F9A8C9" transform="rotate(-12,190,462)"/>
+    <ellipse cx="1700" cy="150" rx="16" ry="8"  fill="#E8427C" transform="rotate(20,1700,150)"/>
+    <ellipse cx="1725" cy="135" rx="11" ry="6"  fill="#F9A8C9" transform="rotate(-25,1725,135)"/>
+    <ellipse cx="900"  cy="520" rx="15" ry="8"  fill="#E8427C" transform="rotate(10,900,520)"/>
+    <ellipse cx="920"  cy="505" rx="10" ry="5"  fill="#F9A8C9" transform="rotate(-18,920,505)"/>
+  </g>
+
+  <!-- ░░░ SUBTLE HORIZONTAL RULE ░░░ -->
+  <line x1="560" y1="296" x2="1360" y2="296" stroke="#E8427C" stroke-width="0.7" opacity="0.25"/>
+
+</svg>
