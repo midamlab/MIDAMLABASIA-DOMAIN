@@ -510,6 +510,56 @@
     .gallery-grid.g3 { grid-template-columns:1fr; }
     .g-item.wide { grid-column:span 1; aspect-ratio:1; }
   }
+
+  /* ══ PRODUCT OVERVIEW SPLIT ══ */
+  .prod-overview { display:flex; background:#fff; min-height:420px; }
+  .po-img { flex:1; overflow:hidden; }
+  .po-img img { width:100%; height:100%; object-fit:cover; display:block; }
+  .po-text { flex:1; padding:56px 60px; display:flex; flex-direction:column; justify-content:center; }
+  .po-text h2 { font-size:32px; font-weight:700; color:var(--dark); margin-bottom:12px; }
+  .po-text .po-desc { font-size:15px; color:var(--gray); line-height:1.8; margin-bottom:24px; max-width:480px; }
+  .po-points { list-style:none; padding:0; margin:0; }
+  .po-points li { font-size:14px; color:var(--gray); padding:9px 0; border-bottom:1px solid rgba(196,149,122,.14); display:flex; align-items:center; gap:10px; }
+  .po-points li::before { content:'—'; color:var(--rose); flex-shrink:0; }
+  .po-points li:last-child { border-bottom:none; }
+
+  /* ══ INGREDIENT GRID ══ */
+  .ing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(196,149,122,.15); }
+  .ing-tag { background:#fff; padding:24px 22px; }
+  .it-icon { font-family:Arial,sans-serif; font-size:10px; letter-spacing:2px; font-weight:700; color:var(--rose); margin-bottom:6px; text-transform:uppercase; }
+  .ing-tag h5 { font-size:14px; font-weight:600; color:var(--dark); margin:0 0 5px; }
+  .ing-tag p { font-size:13px; color:var(--gray); line-height:1.55; margin:0; }
+
+  /* ══ SIMPLE 3-STEP ══ */
+  .simple-steps { display:grid; grid-template-columns:repeat(3,1fr); }
+  .simple-step { padding:36px 40px; border-right:1px solid rgba(196,149,122,.15); }
+  .simple-step:last-child { border-right:none; }
+  .ss-num { width:32px; height:32px; border-radius:50%; background:var(--rose); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; margin-bottom:14px; }
+  .simple-step h5 { font-size:13px; letter-spacing:2px; text-transform:uppercase; font-family:Arial,sans-serif; color:var(--dark); margin-bottom:8px; }
+  .simple-step p { font-size:14px; color:var(--gray); line-height:1.65; margin:0; }
+
+  /* ══ MPPT 4-STEP ══ */
+  .mppt-grid { display:grid; grid-template-columns:repeat(4,1fr); background:var(--rose-bg); }
+  .mppt-step { padding:36px 28px; text-align:center; border-right:1px solid rgba(196,149,122,.2); }
+  .mppt-step:last-child { border-right:none; }
+  .mppt-num { font-size:30px; font-weight:700; color:var(--rose); font-style:italic; margin-bottom:6px; }
+  .mppt-step h5 { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; font-family:Arial,sans-serif; color:var(--dark); margin:0 0 10px; }
+  .mppt-step p { font-size:13px; color:var(--gray); line-height:1.6; margin:0; }
+
+  @media (max-width:768px) {
+    .prod-overview { flex-direction:column; }
+    .po-img { min-height:240px; }
+    .po-text { padding:36px 24px; }
+    .ing-grid { grid-template-columns:1fr 1fr; }
+    .simple-steps { grid-template-columns:1fr; }
+    .simple-step { border-right:none; border-bottom:1px solid rgba(196,149,122,.15); }
+    .mppt-grid { grid-template-columns:repeat(2,1fr); }
+    .mppt-step { border-right:none; border-bottom:1px solid rgba(196,149,122,.2); }
+  }
+  @media (max-width:480px) {
+    .ing-grid { grid-template-columns:1fr; }
+    .mppt-grid { grid-template-columns:1fr; }
+  }
 </style>
 </head>
 <body>
@@ -842,99 +892,68 @@
     <div class="info-cell"><h4>Regulatory</h4><p>KFDA/MFDS (Korea) · TFDA Thailand Registered (10-2-6900003393) · GS1 Global GTIN · ISO 22716 GMP</p></div>
   </div>
 
-  <div class="prod-detail">
-    <div class="prod-detail-inner">
-      <p class="section-eyebrow">Dew Diamond Series · Professional Contouring Solution</p>
-      <h2>D.D. Cut — The Next Evolution in Scientific Contouring</h2>
-      <p class="prod-intro">Professional-grade contouring solution — natural lytic enzymes reduce puffiness and sagging while high-concentration Centella provides barrier recovery and zero downtime.</p>
+  <!-- Product Overview -->
+  <div class="prod-overview">
+    <div class="po-img">
+      <img src="http://www.knamedicos.com/default/img/hblock/design/slider02/img/img1.jpg" alt="D.D. Cut">
+    </div>
+    <div class="po-text" style="background:var(--rose-bg);">
+      <p class="section-eyebrow">Dew Diamond Series · Contouring Solution</p>
+      <h2>D.D. Cut</h2>
+      <p class="po-desc">Natural lytic enzymes target fat and puffiness. High-concentration Centella provides barrier recovery — topical, device-compatible, zero downtime.</p>
+      <ul class="po-points">
+        <li>Bromelain 0.5% — Lysis &amp; V-line contouring</li>
+        <li>Lecithin 1.0% — Penetration &amp; emulsification</li>
+        <li>Centella Asiatica 3.346% — Barrier repair &amp; calm</li>
+        <li>KFDA · TFDA Thailand · ISO 22716 GMP</li>
+      </ul>
+    </div>
+  </div>
 
-      <div class="pd-block">
-        <h3>Core Technology — Proprietary Protein Blending Ratio</h3>
-        <p>Each component calibrated in precise scientific proportions for synergistic zero-downtime efficacy.</p>
-        <div class="pd-stat-row" style="margin-top:28px;">
-          <div class="pd-stat"><div class="ps-num">0.5%</div><div class="ps-lbl">Bromelain — The Lytic Agent</div></div>
-          <div class="pd-stat"><div class="ps-num">1.0%</div><div class="ps-lbl">Lecithin — The Transporter</div></div>
-          <div class="pd-stat"><div class="ps-num">3.346%</div><div class="ps-lbl">Centella Asiatica — The Stabilizer</div></div>
-          <div class="pd-stat"><div class="ps-num">0</div><div class="ps-lbl">Downtime</div></div>
+  <!-- Triple Action -->
+  <div style="background:#fff;padding:56px 80px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="eyebrow" style="text-align:center;margin-bottom:32px;">Triple Action Mechanism</p>
+      <div class="simple-steps">
+        <div class="simple-step">
+          <div class="ss-num">1</div>
+          <h5>LYSIS</h5>
+          <p>Bromelain breaks down proteins and reduces puffiness for a sharper V-line.</p>
+        </div>
+        <div class="simple-step">
+          <div class="ss-num">2</div>
+          <h5>TRANSPORT</h5>
+          <p>Lecithin emulsifies fat and drives deep dermal delivery of all actives.</p>
+        </div>
+        <div class="simple-step">
+          <div class="ss-num">3</div>
+          <h5>STABILIZE</h5>
+          <p>Centella &amp; Peptides rebuild the barrier — serene, taut finish, zero irritation.</p>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="pd-block">
-        <h3>Key Active Ingredients</h3>
-        <div class="pd-ingredients">
-          <div class="pd-ing">
-            <div class="pd-ing-icon">BRM</div>
-            <div class="pd-ing-text">
-              <h4>Bromelain (0.5%) — The Lytic Powerhouse</h4>
-              <p>Natural protease from pineapple stems. Breaks down peptide bonds, reduces localized puffiness for V-line definition, and inhibits inflammatory cytokines.</p>
-            </div>
-          </div>
-          <div class="pd-ing">
-            <div class="pd-ing-icon">LEC</div>
-            <div class="pd-ing-text">
-              <h4>Lecithin (1.0%) — The Transporter</h4>
-              <p>Amphiphilic surfactant that emulsifies triglycerides, acts on fat cell walls, and enhances deep dermal penetration of all active ingredients.</p>
-            </div>
-          </div>
-          <div class="pd-ing">
-            <div class="pd-ing-icon">CTL</div>
-            <div class="pd-ing-text">
-              <h4>Centella Asiatica (3.346%) — Intensive Calm</h4>
-              <p>High-purity Centella extract that neutralizes irritation instantly, rebuilds the skin barrier, and supports collagen synthesis for a taut, youthful complexion.</p>
-            </div>
-          </div>
-          <div class="pd-ing">
-            <div class="pd-ing-icon">PEP</div>
-            <div class="pd-ing-text">
-              <h4>Multi-Peptide Matrix + Botanical Calming Blend</h4>
-              <p>Signal peptides for elasticity and repair · Acetyl Hexapeptide-8 for fine lines · Scutellaria Baicalensis antioxidant · Chamomilla Recutita for deep soothing.</p>
-            </div>
-          </div>
+  <!-- Protocol -->
+  <div style="background:var(--dark);padding:48px 80px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="eyebrow" style="color:var(--rose-lt);text-align:center;margin-bottom:28px;">Clinic Protocol</p>
+      <div class="simple-steps">
+        <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
+          <div class="ss-num">1</div>
+          <h5 style="color:#fff;">Cleanse &amp; Apply</h5>
+          <p style="color:rgba(255,255,255,.5);">Apply D.D. Cut evenly to jawline, cheeks, and submental region.</p>
         </div>
-      </div>
-
-      <div class="pd-block">
-        <h3>Triple Action Mechanism</h3>
-        <div class="pd-effects">
-          <div class="pd-effect">
-            <h4>① LYSIS — Bromelain</h4>
-            <p>Targets and melts unnecessary proteins while rapidly reducing localized swelling and puffiness for immediate facial contouring.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>② TRANSPORT — Lecithin</h4>
-            <p>Acts as a powerful emulsifier, breaking down waste structures and enhancing deep dermal delivery of all active ingredients.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>③ STABILIZE — Centella &amp; Peptides</h4>
-            <p>Immediately rebuilds the barrier, ensuring zero irritation and leaving a serene, taut, and refined finish.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Sculpted Contour</h4>
-            <p>Refines facial silhouettes including jawline, cheeks, and submental region for a sharper V-line definition.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Seamless Calm</h4>
-            <p>High-concentration Centella stabilizes the skin canvas for immediate aesthetic refinement with no downtime whatsoever.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>100% Legal Compliance</h4>
-            <p>Topical cosmetic classification — clinics can offer profound contouring results without unauthorized injection liabilities.</p>
-          </div>
+        <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
+          <div class="ss-num">2</div>
+          <h5 style="color:#fff;">Device Synergy</h5>
+          <p style="color:rgba(255,255,255,.5);">LDM (Ultrasound) or Electroporation for enhanced deep absorption.</p>
         </div>
-      </div>
-
-      <div class="pd-block">
-        <h3>Professional Clinic Protocol</h3>
-        <ul class="pd-protocol-list">
-          <li data-n="1"><span><strong>Preparation</strong> — Cleanse the face thoroughly. Distribute the D.D. CUT ampoule evenly onto the target areas (jawline, cheeks, submental region).</span></li>
-          <li data-n="2"><span><strong>Device Integration (Synergy)</strong> — Combine with LDM (Ultrasound) or Electroporation (EP) devices. The micro-massage enhances lymphatic drainage while maximizing deep dermal absorption of proteins.</span></li>
-          <li data-n="3"><span><strong>Seal &amp; Finish</strong> — Finish with a cooling modeling mask or RED LED therapy to lock in active ingredients and accelerate the Centella calming effect.</span></li>
-        </ul>
-      </div>
-
-      <div class="pd-block">
-        <h3>Precision Manufacturing</h3>
-        <p>Produced under <strong>ISO 22716 (Cosmetic GMP)</strong> standards by Janytree Inc., South Korea — pharmaceutical-grade quality control across all production phases.</p>
+        <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
+          <div class="ss-num">3</div>
+          <h5 style="color:#fff;">Seal &amp; Finish</h5>
+          <p style="color:rgba(255,255,255,.5);">Cooling mask or RED LED to lock actives and soothe skin.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -979,105 +998,37 @@
     <div class="info-cell"><h4>Distributed by</h4><p>Midam Lab Asia — strong antioxidant chain with optimal combination of premium actives.</p></div>
   </div>
 
-  <div class="prod-detail">
-    <div class="prod-detail-inner">
-      <p class="section-eyebrow">Dew Diamond Series · Skin Booster Solution</p>
-      <h2>D.D. Beam — Dew Diamond Skin Booster</h2>
-      <p class="prod-intro">Skin Booster Solution combining non-cross-linked Hyaluronic Acid, 4 Peptides, 8 Vitamins &amp; Antioxidants, and 11 Amino Acids — pharmaceutical-grade quality, made in Korea.</p>
+  <!-- Product Overview -->
+  <div class="prod-overview">
+    <div class="po-text" style="background:var(--dark);order:0;">
+      <p class="section-eyebrow" style="color:var(--rose-lt);">Dew Diamond Series · Skin Booster</p>
+      <h2 style="color:#fff;">D.D. Beam</h2>
+      <p class="po-desc" style="color:rgba(255,255,255,.6);">30 active ingredients — optimal antioxidant chain for radiance, hydration, and cellular renewal. Pharmaceutical-grade, made in Korea.</p>
+      <ul class="po-points">
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">Non-cross-linked Hyaluronic Acid</li>
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">4 Peptides · EGF · OP-2 · OP-4 · Palmitoyl</li>
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">8 Vitamins &amp; Antioxidants incl. Glutathione</li>
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">11 Amino Acids for repair &amp; barrier support</li>
+      </ul>
+    </div>
+    <div class="po-img">
+      <img src="http://www.knamedicos.com/default/img/hblock/design/slider02/img/img2.jpg" alt="D.D. Beam">
+    </div>
+  </div>
 
-      <div class="pd-block">
-        <h3>Key Peptide Components</h3>
-        <div class="pd-ingredients">
-          <div class="pd-ing">
-            <div class="pd-ing-icon">HA</div>
-            <div class="pd-ing-text">
-              <h4>Sodium Hyaluronate — Humectant</h4>
-              <p>Powerful humectant that plumps skin, reduces fine lines, and supports barrier function for soft, smooth results.</p>
-            </div>
-          </div>
-          <div class="pd-ing">
-            <div class="pd-ing-icon">EGF</div>
-            <div class="pd-ing-text">
-              <h4>Oligopeptide-1 (EGF) — Skin-Conditioning Peptide</h4>
-              <p>Epidermal Growth Factor — stimulates new skin cells, accelerates healing, and boosts collagen and elastin production.</p>
-            </div>
-          </div>
-          <div class="pd-ing">
-            <div class="pd-ing-icon">OP2</div>
-            <div class="pd-ing-text">
-              <h4>Oligopeptide-2 — Skin-Conditioning Peptide</h4>
-              <p>Stimulates collagen production and enhances skin regeneration, improving elasticity and firmness.</p>
-            </div>
-          </div>
-          <div class="pd-ing">
-            <div class="pd-ing-icon">OP4</div>
-            <div class="pd-ing-text">
-              <h4>Oligopeptide-4 — Skin-Conditioning Peptide</h4>
-              <p>Enhances skin renewal and collagen/elastin synthesis — improves texture, firmness, and reduces fine lines.</p>
-            </div>
-          </div>
-          <div class="pd-ing">
-            <div class="pd-ing-icon">PT1</div>
-            <div class="pd-ing-text">
-              <h4>Palmitoyl Tripeptide-1 — Skin-Conditioning Peptide</h4>
-              <p>Stimulates collagen and extracellular matrix production — improves firmness, reduces fine lines, and enhances tone.</p>
-            </div>
-          </div>
-          <div class="pd-ing">
-            <div class="pd-ing-icon">GSH</div>
-            <div class="pd-ing-text">
-              <h4>Glutathione — Reducing Agent / Antioxidant</h4>
-              <p>Potent antioxidant that inhibits melanin production, reduces hyperpigmentation, and enhances skin radiance.</p>
-            </div>
-          </div>
-        </div>
+  <!-- Key Actives Grid -->
+  <div style="background:#fff;padding:56px 80px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="eyebrow" style="text-align:center;margin-bottom:32px;">Key Actives</p>
+      <div class="ing-grid">
+        <div class="ing-tag"><div class="it-icon">HA</div><h5>Sodium Hyaluronate</h5><p>Plumps skin, reduces fine lines, supports barrier.</p></div>
+        <div class="ing-tag"><div class="it-icon">EGF</div><h5>Oligopeptide-1 (EGF)</h5><p>Stimulates cells, boosts collagen &amp; elastin.</p></div>
+        <div class="ing-tag"><div class="it-icon">GSH</div><h5>Glutathione</h5><p>Inhibits melanin, brightens, potent antioxidant.</p></div>
+        <div class="ing-tag"><div class="it-icon">PDRN</div><h5>Sodium DNA (PDRN)</h5><p>Cellular regeneration &amp; barrier repair.</p></div>
+        <div class="ing-tag"><div class="it-icon">Vit C</div><h5>Ascorbic Acid</h5><p>Brightens skin, inhibits melanin, boosts collagen.</p></div>
+        <div class="ing-tag"><div class="it-icon">B5·B7</div><h5>Vitamins B5 + B7</h5><p>Moisture balance, healing &amp; skin vitality.</p></div>
       </div>
-
-      <div class="pd-block">
-        <h3>Antioxidant Complex</h3>
-        <div class="pd-effects">
-          <div class="pd-effect">
-            <h4>Madecassoside</h4>
-            <p>Centella Asiatica bioactive — anti-inflammatory, soothes irritated skin, aids collagen synthesis and scar reduction.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Madecassic Acid</h4>
-            <p>Promotes collagen synthesis, improves elasticity, and soothes inflammation — reduces fine lines and wrinkles.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Sodium DNA (PDRN)</h4>
-            <p>Promotes cellular regeneration, maintains skin barrier integrity, enhances hydration and collagen production.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Ascorbic Acid (Vitamin C)</h4>
-            <p>Brightens skin, inhibits melanin, and stimulates collagen synthesis for improved elasticity.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Dexpanthenol (B5)</h4>
-            <p>Maintains moisture balance, enhances barrier function, and accelerates healing of damaged skin.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Biotin (B7) + Thiamine HCl (B1)</h4>
-            <p>B7 improves hydration and elasticity. B1 protects against oxidative stress and supports circulation.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="pd-block">
-        <h3>11 Amino Acid Complex</h3>
-        <div class="pd-stat-row">
-          <div class="pd-stat"><div class="ps-num">Valine</div><div class="ps-lbl">Skin Repair &amp; Hydration</div></div>
-          <div class="pd-stat"><div class="ps-num">Threonine</div><div class="ps-lbl">Collagen &amp; Elastin Formation</div></div>
-          <div class="pd-stat"><div class="ps-num">Isoleucine</div><div class="ps-lbl">Moisture Barrier</div></div>
-          <div class="pd-stat"><div class="ps-num">Tryptophan</div><div class="ps-lbl">Barrier Function</div></div>
-        </div>
-        <div class="pd-stat-row" style="margin-top:10px;">
-          <div class="pd-stat"><div class="ps-num">Glutamic</div><div class="ps-lbl">Moisture Balance</div></div>
-          <div class="pd-stat"><div class="ps-num">Tyrosine</div><div class="ps-lbl">Pigmentation &amp; Healing</div></div>
-          <div class="pd-stat"><div class="ps-num">Cysteine</div><div class="ps-lbl">Antioxidant &amp; Elasticity</div></div>
-          <div class="pd-stat"><div class="ps-num">Lysine</div><div class="ps-lbl">Collagen Synthesis</div></div>
-        </div>
-      </div>
+      <p style="font-size:13px;color:var(--gray);text-align:center;margin-top:24px;">+ 11 Amino Acids — Valine · Threonine · Isoleucine · Tryptophan · Glutamic · Tyrosine · Cysteine · Lysine · and more</p>
     </div>
   </div>
 
@@ -1121,114 +1072,79 @@
     <div class="info-cell"><h4>Results</h4><p>90% of users experienced transformative skin texture results in just 2 weeks. Zero downtime.</p></div>
   </div>
 
-  <div class="prod-detail">
-    <div class="prod-detail-inner">
-      <p class="section-eyebrow">All-in-One Skin Remodeling · MPPT™ Technology</p>
-      <h2>ViVi — Next-Gen All-in-One Skin Remodeling</h2>
-      <p class="prod-intro">Premium ampoule combining gentle peeling with collagen stimulation — visible skin transformation with zero downtime, designed for professional clinics.</p>
+  <!-- Product Overview -->
+  <div class="prod-overview">
+    <div class="po-img">
+      <img src="http://www.knamedicos.com/default/img/hblock/design/slider02/img/img3.jpg" alt="ViVi">
+    </div>
+    <div class="po-text" style="background:var(--rose-bg);">
+      <p class="section-eyebrow">All-in-One Skin Remodeling · MPPT™</p>
+      <h2>ViVi Ampoule</h2>
+      <p class="po-desc">BHA + PHA + PLLA + HA in one treatment — peeling, collagen stimulation, and deep hydration with zero downtime.</p>
+      <ul class="po-points">
+        <li>BHA — Opens pores, dissolves sebum</li>
+        <li>PHA — Hydra-resurfacing, minimal irritation</li>
+        <li>PLLA — Neocollagenesis, structural volume</li>
+        <li>HA — 1,000× moisture retention</li>
+        <li>90% visible results in 2 weeks · Zero downtime</li>
+      </ul>
+    </div>
+  </div>
 
-      <div class="pd-block">
-        <h3>MPPT™ Technology — 4-Step Mechanism</h3>
-        <div class="pd-steps">
-          <div class="pd-step">
-            <div class="pd-step-num">1</div>
-            <h4>OPEN — BHA (Pathway Activation)</h4>
-            <p>Clarifies pores and opens absorption pathways — lipophilic nature penetrates deep to dissolve sebum.</p>
-          </div>
-          <div class="pd-step">
-            <div class="pd-step-num">2</div>
-            <h4>REFINE — PHA (Hydra-Resurfacing)</h4>
-            <p>Smooths texture and activates deep hydration — 8 hydroxyl groups act as a moisture magnet with minimal irritation.</p>
-          </div>
-          <div class="pd-step">
-            <div class="pd-step-num">3</div>
-            <h4>SIGNAL — PLLA (Volume Stimulation)</h4>
-            <p>Biodegradable PLLA microparticles trigger sustained neocollagenesis — restoring youthful density and firmness.</p>
-          </div>
-          <div class="pd-step">
-            <div class="pd-step-num">4</div>
-            <h4>RENEW — HA (Total Rejuvenation)</h4>
-            <p>High-molecular-weight HA binds water up to 1,000× its weight for continuous deep rejuvenation.</p>
-          </div>
-        </div>
+  <!-- MPPT 4 Steps -->
+  <div style="background:#fff;padding:56px 80px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="eyebrow" style="text-align:center;margin-bottom:0;">MPPT™ 4-Step Technology</p>
+    </div>
+  </div>
+  <div class="mppt-grid">
+    <div class="mppt-step">
+      <div class="mppt-num">1</div>
+      <h5>OPEN</h5>
+      <p>BHA clears pores and opens absorption pathways.</p>
+    </div>
+    <div class="mppt-step">
+      <div class="mppt-num">2</div>
+      <h5>REFINE</h5>
+      <p>PHA resurfaces skin and delivers deep moisture.</p>
+    </div>
+    <div class="mppt-step">
+      <div class="mppt-num">3</div>
+      <h5>SIGNAL</h5>
+      <p>PLLA triggers neocollagenesis for volume and firmness.</p>
+    </div>
+    <div class="mppt-step">
+      <div class="mppt-num">4</div>
+      <h5>RENEW</h5>
+      <p>HA locks in hydration for lasting rejuvenation.</p>
+    </div>
+  </div>
+
+  <!-- Stats + Protocol -->
+  <div style="background:var(--dark);padding:48px 80px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="pd-stat-row">
+        <div class="pd-stat"><div class="ps-num">90%</div><div class="ps-lbl">Results in 2 Weeks</div></div>
+        <div class="pd-stat"><div class="ps-num">Wk 1</div><div class="ps-lbl">Prepare &amp; Reboot</div></div>
+        <div class="pd-stat"><div class="ps-num">Wk 2</div><div class="ps-lbl">Glow &amp; Hydrate</div></div>
+        <div class="pd-stat"><div class="ps-num">Wk 3–4</div><div class="ps-lbl">Firm &amp; Reveal</div></div>
       </div>
-
-      <div class="pd-block">
-        <h3>Key Active Ingredients</h3>
-        <div class="pd-ingredients">
-          <div class="pd-ing">
-            <div class="pd-ing-icon">PLLA</div>
-            <div class="pd-ing-text">
-              <h4>PLLA — Structural Volumizing &amp; Dermal Plumping</h4>
-              <p>Biodegradable polymer that slowly degrades in skin, triggering sustained neocollagenesis for long-term structural volume.</p>
-            </div>
-          </div>
-          <div class="pd-ing">
-            <div class="pd-ing-icon">BHA</div>
-            <div class="pd-ing-text">
-              <h4>BHA — Precision Exfoliation &amp; Path Opening</h4>
-              <p>Oil-soluble acid that penetrates deeply into pores to dissolve sebum and clear pathways for ingredient absorption.</p>
-            </div>
-          </div>
-          <div class="pd-ing">
-            <div class="pd-ing-icon">PHA</div>
-            <div class="pd-ing-text">
-              <h4>PHA — Intensive Hydration &amp; Radiance Activation</h4>
-              <p>8 hydroxyl groups act as a moisture magnet — large molecular size ensures gradual absorption with minimal irritation.</p>
-            </div>
-          </div>
-          <div class="pd-ing">
-            <div class="pd-ing-icon">HA</div>
-            <div class="pd-ing-text">
-              <h4>HA — Structural Volumizing &amp; Dermal Plumping</h4>
-              <p>Long-chain polysaccharide that binds and retains water up to 1,000× its weight for deep volumizing hydration.</p>
-            </div>
-          </div>
+      <div class="simple-steps" style="margin-top:40px;">
+        <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
+          <div class="ss-num">1</div>
+          <h5 style="color:#fff;">Post-Procedure</h5>
+          <p style="color:rgba(255,255,255,.5);">Apply after laser or MTS for instant soothing and hydration.</p>
         </div>
-      </div>
-
-      <div class="pd-block">
-        <h3>Comprehensive Skin Renewal Benefits</h3>
-        <div class="pd-effects">
-          <div class="pd-effect">
-            <h4>Refined Texture</h4>
-            <p>Achieving unparalleled smoothness and a silk-like finish for a sophisticated skin texture.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Luminous Brightening</h4>
-            <p>A profound radiance boost that unveils a naturally vibrant and translucent complexion.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Deep Hydration</h4>
-            <p>Infusing long-lasting, multi-layer moisture to restore suppleness and youthful plumpness.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Balanced Skin</h4>
-            <p>Harmonizing oil production to cultivate a serene, clear, and perfectly stabilized complexion.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Collagen Bio-Stimulation</h4>
-            <p>PLLA triggers sustained collagen bio-stimulation for long-term structural improvement.</p>
-          </div>
-          <div class="pd-effect">
-            <h4>Zero Downtime</h4>
-            <p>Clients resume daily activities immediately — no recovery period required.</p>
-          </div>
+        <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
+          <div class="ss-num">2</div>
+          <h5 style="color:#fff;">Daily Skincare</h5>
+          <p style="color:rgba(255,255,255,.5);">Use after cleansing to maintain moisture barrier and collagen.</p>
         </div>
-        <div class="pd-stat-row" style="margin-top:28px;">
-          <div class="pd-stat"><div class="ps-num">90%</div><div class="ps-lbl">Visible Transformation in 2 Weeks</div></div>
-          <div class="pd-stat"><div class="ps-num">Wk 1</div><div class="ps-lbl">Prepare &amp; Reboot</div></div>
-          <div class="pd-stat"><div class="ps-num">Wk 2</div><div class="ps-lbl">Glow &amp; Hydrate</div></div>
-          <div class="pd-stat"><div class="ps-num">Wk 3–4</div><div class="ps-lbl">Firm, Densify &amp; Reveal</div></div>
+        <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
+          <div class="ss-num">0</div>
+          <h5 style="color:#fff;">Downtime</h5>
+          <p style="color:rgba(255,255,255,.5);">Resume daily activities immediately after every treatment.</p>
         </div>
-      </div>
-
-      <div class="pd-block">
-        <h3>How to Use — The ViVi Protocol</h3>
-        <ul class="pd-protocol-list">
-          <li data-n="1"><span><strong>Post-Procedure Care</strong> — Apply after laser or MTS for instant soothing and deep hydration.</span></li>
-          <li data-n="2"><span><strong>Daily Skincare</strong> — Use after cleansing to preserve moisture barrier and support ongoing collagen renewal.</span></li>
-        </ul>
       </div>
     </div>
   </div>
