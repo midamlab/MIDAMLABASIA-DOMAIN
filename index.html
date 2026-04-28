@@ -197,9 +197,31 @@
   .prod-banner-overlay {
     position:absolute; inset:0;
     background:transparent;
-    display:flex; align-items:center; padding:0 96px;
+    display:none;
+    align-items:center; padding:0 96px;
   }
   .prod-banner-text { max-width:500px; text-shadow:0 1px 10px rgba(0,0,0,.5); }
+
+  /* ══ BANNER HEADLINE (below image) ══ */
+  .prod-banner-head {
+    padding:52px 96px 44px;
+    background:#fff;
+    border-bottom:1px solid rgba(196,149,122,.15);
+  }
+  .prod-banner-head .prod-tag { margin-bottom:18px; }
+  .prod-banner-head h1 {
+    font-size:54px; font-weight:400; color:var(--dark);
+    margin-bottom:18px; line-height:1.1;
+  }
+  .prod-banner-head h1 em { font-style:italic; color:var(--rose); }
+  .prod-banner-head p {
+    font-size:18px; color:var(--gray); line-height:1.8; max-width:740px;
+  }
+  @media (max-width:768px) {
+    .prod-banner-head { padding:32px 20px 28px; }
+    .prod-banner-head h1 { font-size:32px; }
+    .prod-banner-head p { font-size:15px; }
+  }
   .prod-tag {
     font-family:'Arial',sans-serif; font-size:10px; letter-spacing:3px;
     text-transform:uppercase; color:var(--rose); background:rgba(196,149,122,.15);
@@ -979,6 +1001,11 @@
       </div>
     </div>
   </div>
+  <div class="prod-banner-head">
+    <span class="prod-tag">Dew Diamond Series</span>
+    <h1>D.D. <em>Cut</em></h1>
+    <p data-i18n="ddc-banner-p">Precision lipolysis for fat reduction and skin elasticity — zero downtime.</p>
+  </div>
   <!-- DD CUT CONTENT -->
   <div class="info-strip">
     <div class="info-cell"><h4 data-i18n="ddc-info1-h4">Classification</h4><p data-i18n="ddc-info1-p">Professional-Grade Contouring Ampoule Solution — topical, device-compatible, zero downtime.</p></div>
@@ -1085,6 +1112,11 @@
       </div>
     </div>
   </div>
+  <div class="prod-banner-head">
+    <span class="prod-tag">Dew Diamond Series</span>
+    <h1>D.D. <em>Beam</em></h1>
+    <p data-i18n="ddb-banner-p">30 active ingredients — HA, Peptides, Vitamins &amp; Amino Acids for radiant, luminous skin.</p>
+  </div>
   <!-- DD BEAM CONTENT -->
   <div class="info-strip">
     <div class="info-cell"><h4 data-i18n="ddb-info1-h4">Classification</h4><p data-i18n="ddb-info1-p">Dew Diamond Skin Booster — pharmaceutical manufacturing-grade quality, made in Korea.</p></div>
@@ -1158,6 +1190,11 @@
         <p data-i18n="vv-banner-p">Next-Gen Professional Skin Remodeling powered by MPPT™ — BHA + PHA + PLLA + HA for visible transformation with zero downtime.</p>
       </div>
     </div>
+  </div>
+  <div class="prod-banner-head">
+    <span class="prod-tag">All-in-One Skin Remodeling</span>
+    <h1><em>ViVi</em> Ampoule</h1>
+    <p data-i18n="vv-banner-p">Next-Gen Professional Skin Remodeling powered by MPPT™ — BHA + PHA + PLLA + HA for visible transformation with zero downtime.</p>
   </div>
   <!-- VIVI CONTENT -->
   <div class="info-strip">
@@ -1275,6 +1312,11 @@
         <p data-i18n="hv-banner-p">Advanced clinical skin remodeling — maximum potency, fewer sessions, lasting results.</p>
       </div>
     </div>
+  </div>
+  <div class="prod-banner-head">
+    <span class="prod-tag">Premium · Advanced Protocol</span>
+    <h1>High <em>ViVi</em></h1>
+    <p data-i18n="hv-banner-p">Advanced clinical skin remodeling — maximum potency, fewer sessions, lasting results.</p>
   </div>
   <!-- HIGH VIVI COMING SOON -->
   <div class="hv-coming-soon">
