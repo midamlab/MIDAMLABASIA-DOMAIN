@@ -50,6 +50,17 @@
   }
   .nav-cta:hover { background:var(--rose-dk); }
 
+  /* ══ LANG SWITCHER ══ */
+  .lang-switcher { display:flex; align-items:center; gap:2px; margin-left:14px; }
+  .lang-btn {
+    background:none; border:none; cursor:pointer; color:var(--gray);
+    padding:5px 8px; font-family:'Arial',sans-serif; font-size:11px;
+    letter-spacing:1.5px; text-transform:uppercase; transition:color .2s;
+  }
+  .lang-btn:hover { color:var(--rose); }
+  .lang-btn.active { color:var(--rose); border-bottom:2px solid var(--rose); font-weight:700; }
+  .lang-sep { color:rgba(196,149,122,.3); font-size:10px; user-select:none; }
+
   /* ══ PAGES ══ */
   .page { display:none; min-height:100vh; padding-top:72px; }
   .page.active { display:block; }
@@ -608,28 +619,35 @@
   </div>
 
   <ul class="nav-links">
-    <li><a id="nav-company"  onclick="showPage('company')">About Us</a></li>
-    <li><a id="nav-portfolio" onclick="showPage('portfolio')">Portfolio</a></li>
+    <li><a id="nav-company"  onclick="showPage('company')" data-i18n="nav-about">About Us</a></li>
+    <li><a id="nav-portfolio" onclick="showPage('portfolio')" data-i18n="nav-portfolio">Portfolio</a></li>
     <li><a id="nav-ddcut"     onclick="showPage('ddcut')">D.D. Cut</a></li>
     <li><a id="nav-ddbeam"   onclick="showPage('ddbeam')">D.D. Beam</a></li>
     <li><a id="nav-vivi"     onclick="showPage('vivi')">ViVi</a></li>
     <li><a id="nav-highvivi" onclick="showPage('highvivi')">High ViVi</a></li>
   </ul>
 
-  <a class="nav-cta" onclick="showPage('portfolio'); setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100)">Contact Us</a>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a class="nav-cta" data-i18n="nav-contact" onclick="showPage('portfolio'); setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100)">Contact Us</a>
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" id="btn-th" onclick="setLang('th')">TH</button>
+    </div>
+  </div>
   <button class="hamburger" id="hamburger" onclick="toggleMobileNav()">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <div class="mobile-nav" id="mobile-nav">
-  <a onclick="showPage('company');toggleMobileNav()">About Us</a>
-  <a onclick="showPage('portfolio');toggleMobileNav()">Portfolio</a>
+  <a onclick="showPage('company');toggleMobileNav()" data-i18n="nav-about">About Us</a>
+  <a onclick="showPage('portfolio');toggleMobileNav()" data-i18n="nav-portfolio">Portfolio</a>
   <a onclick="showPage('ddcut');toggleMobileNav()">D.D. Cut</a>
   <a onclick="showPage('ddbeam');toggleMobileNav()">D.D. Beam</a>
   <a onclick="showPage('vivi');toggleMobileNav()">ViVi</a>
   <a onclick="showPage('highvivi');toggleMobileNav()">High ViVi</a>
-  <a class="mobile-cta" onclick="showPage('portfolio');setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100);toggleMobileNav()">Contact Us</a>
+  <a class="mobile-cta" onclick="showPage('portfolio');setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100);toggleMobileNav()" data-i18n="nav-contact">Contact Us</a>
 </div>
 
 <!-- ══════════════════════════════════════════
@@ -647,11 +665,11 @@
         </picture>
         <div class="slide-overlay">
           <div class="slide-text">
-            <p class="slide-eyebrow">Dew Diamond Series · Lipolysis</p>
+            <p class="slide-eyebrow" data-i18n="s1-eye">Dew Diamond Series · Lipolysis</p>
             <h1>D.D. <em>Cut</em></h1>
-            <p>Precision lipolysis for fat reduction and skin elasticity.</p>
-            <span class="slide-btn" onclick="showPage('ddcut')">Explore D.D. Cut</span>
-            <span class="slide-btn outline" onclick="showPage('portfolio')">View All</span>
+            <p data-i18n="s1-p">Precision lipolysis for fat reduction and skin elasticity.</p>
+            <span class="slide-btn" onclick="showPage('ddcut')" data-i18n="s1-btn">Explore D.D. Cut</span>
+            <span class="slide-btn outline" onclick="showPage('portfolio')" data-i18n="view-all">View All</span>
           </div>
         </div>
       </div>
@@ -659,11 +677,11 @@
         <img src="http://www.knamedicos.com/default/img/hblock/design/slider02/img/img2.jpg" alt="D.D. Beam">
         <div class="slide-overlay">
           <div class="slide-text">
-            <p class="slide-eyebrow">Dew Diamond Series · Antioxidant</p>
+            <p class="slide-eyebrow" data-i18n="s2-eye">Dew Diamond Series · Antioxidant</p>
             <h1>D.D. <em>Beam</em></h1>
-            <p>30 active ingredients for radiant skin renewal and deep antioxidant protection.</p>
-            <span class="slide-btn" onclick="showPage('ddbeam')">Explore D.D. Beam</span>
-            <span class="slide-btn outline" onclick="showPage('portfolio')">View All</span>
+            <p data-i18n="s2-p">30 active ingredients for radiant skin renewal and deep antioxidant protection.</p>
+            <span class="slide-btn" onclick="showPage('ddbeam')" data-i18n="s2-btn">Explore D.D. Beam</span>
+            <span class="slide-btn outline" onclick="showPage('portfolio')" data-i18n="view-all">View All</span>
           </div>
         </div>
       </div>
@@ -671,11 +689,11 @@
         <img src="http://www.knamedicos.com/default/img/hblock/design/slider02/img/img3.jpg" alt="ViVi">
         <div class="slide-overlay">
           <div class="slide-text">
-            <p class="slide-eyebrow">All-in-One Skin Remodeling</p>
+            <p class="slide-eyebrow" data-i18n="s3-eye">All-in-One Skin Remodeling</p>
             <h1><em>ViVi</em> Ampoule</h1>
-            <p>BHA + PHA + PLLA + HA powered by MPPT™. Visible results in 2 weeks.</p>
-            <span class="slide-btn" onclick="showPage('vivi')">Explore ViVi</span>
-            <span class="slide-btn outline" onclick="showPage('portfolio')">View All</span>
+            <p data-i18n="s3-p">BHA + PHA + PLLA + HA powered by MPPT™. Visible results in 2 weeks.</p>
+            <span class="slide-btn" onclick="showPage('vivi')" data-i18n="s3-btn">Explore ViVi</span>
+            <span class="slide-btn outline" onclick="showPage('portfolio')" data-i18n="view-all">View All</span>
           </div>
         </div>
       </div>
@@ -691,10 +709,10 @@
 
   <!-- Stats -->
   <div class="stats-bar">
-    <div class="stat-item"><span class="stat-num">5</span><span class="stat-lbl">Premium Product Lines</span></div>
-    <div class="stat-item"><span class="stat-num">90%</span><span class="stat-lbl">Client Satisfaction Rate</span></div>
-    <div class="stat-item"><span class="stat-num">30+</span><span class="stat-lbl">Active Ingredients</span></div>
-    <div class="stat-item"><span class="stat-num">0</span><span class="stat-lbl">Downtime Required</span></div>
+    <div class="stat-item"><span class="stat-num">5</span><span class="stat-lbl" data-i18n="stat-1">Premium Product Lines</span></div>
+    <div class="stat-item"><span class="stat-num">90%</span><span class="stat-lbl" data-i18n="stat-2">Client Satisfaction Rate</span></div>
+    <div class="stat-item"><span class="stat-num">30+</span><span class="stat-lbl" data-i18n="stat-3">Active Ingredients</span></div>
+    <div class="stat-item"><span class="stat-num">0</span><span class="stat-lbl" data-i18n="stat-4">Downtime Required</span></div>
   </div>
 
   <!-- Brand Strip -->
@@ -709,9 +727,9 @@
       </svg>
     </div>
     <div class="brand-strip-text">
-      <p class="eyebrow">We curate the science. You define the beauty.</p>
-      <h2>Leading the Global Aesthetic Revolution<br>with Bio-Precision Solutions.</h2>
-      <p style="margin-top:16px;">Partnering with clinics and professionals across Southeast Asia to deliver transformative results.</p>
+      <p class="eyebrow" data-i18n="bs-eye">We curate the science. You define the beauty.</p>
+      <h2 data-i18n-html="bs-h2">Leading the Global Aesthetic Revolution<br>with Bio-Precision Solutions.</h2>
+      <p style="margin-top:16px;" data-i18n="bs-p">Partnering with clinics and professionals across Southeast Asia to deliver transformative results.</p>
     </div>
   </div>
 
@@ -727,9 +745,9 @@
     <img src="about_hero.jpg" alt="About Us">
     <div class="port-hero-overlay">
       <div>
-        <p class="eyebrow" style="color:var(--rose-lt);">About Us</p>
+        <p class="eyebrow" style="color:var(--rose-lt);" data-i18n="co-hero-eye">About Us</p>
         <h1><em>Midam Lab Asia</em></h1>
-        <p>Creating stories of beauty — with purity, precision, and purpose.</p>
+        <p data-i18n="co-hero-p">Creating stories of beauty — with purity, precision, and purpose.</p>
       </div>
     </div>
   </div>
@@ -746,18 +764,18 @@
       </svg>
     </div>
     <div>
-      <p class="eyebrow">Our Mission</p>
-      <h2 style="font-size:32px;font-weight:400;color:var(--dark);margin-bottom:20px;line-height:1.3;">We create stories of beauty —<br><em style="font-style:italic;color:var(--rose);">for those who define it.</em></h2>
-      <p style="font-size:16px;color:var(--gray);line-height:1.9;max-width:680px;">Supplying exceptional aesthetic solutions crafted from the highest-purity ingredients — empowering clinics across Southeast Asia to deliver transformative results.</p>
+      <p class="eyebrow" data-i18n="co-mission-eye">Our Mission</p>
+      <h2 style="font-size:32px;font-weight:400;color:var(--dark);margin-bottom:20px;line-height:1.3;" data-i18n-html="co-mission-h2">We create stories of beauty —<br><em style="font-style:italic;color:var(--rose);">for those who define it.</em></h2>
+      <p style="font-size:16px;color:var(--gray);line-height:1.9;max-width:680px;" data-i18n="co-mission-p">Supplying exceptional aesthetic solutions crafted from the highest-purity ingredients — empowering clinics across Southeast Asia to deliver transformative results.</p>
     </div>
   </div>
 
   <!-- About Midam Lab Asia -->
   <div class="co-about" style="padding:80px 96px;background:#fff;border-bottom:1px solid rgba(196,149,122,.12);">
     <div style="max-width:1000px;margin:0 auto;">
-      <p class="eyebrow">Who We Are</p>
+      <p class="eyebrow" data-i18n="co-whowe-eye">Who We Are</p>
       <h2 style="font-size:30px;font-weight:400;color:var(--dark);margin-bottom:28px;">Midam Lab Asia</h2>
-      <p style="font-size:16px;color:var(--gray);line-height:1.9;margin-bottom:20px;">Midam Lab Asia is the regional distribution partner of K-Na Cosmedicos (Korea), bridging world-class Korean formulation science with Southeast Asia's growing aesthetic markets. <strong style="color:var(--dark);">Midam</strong> — meaning "to tell a story" — reflects our belief that every treatment is a chapter in the ongoing story of beauty.</p>
+      <p style="font-size:16px;color:var(--gray);line-height:1.9;margin-bottom:20px;" data-i18n-html="co-about-p">Midam Lab Asia is the regional distribution partner of K-Na Cosmedicos (Korea), bridging world-class Korean formulation science with Southeast Asia's growing aesthetic markets. <strong style="color:var(--dark);">Midam</strong> — meaning "to tell a story" — reflects our belief that every treatment is a chapter in the ongoing story of beauty.</p>
     </div>
   </div>
 
@@ -765,14 +783,14 @@
   <div class="co-partnership" style="background:var(--dark);padding:80px 96px;">
     <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;">
       <div>
-        <p class="eyebrow" style="color:var(--rose-lt);">Strategic Partnership</p>
-        <h2 style="font-size:28px;font-weight:400;color:#fff;margin-bottom:20px;line-height:1.35;">Long-term Partner of<br>K-Na Cosmedicos</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.9;">Midam Lab Asia holds exclusive access to K-Na Cosmedicos' full portfolio — including the D.D. Series, ViVi, and High ViVi — bringing Korea's most trusted professional solutions to Southeast Asian clinics.</p>
+        <p class="eyebrow" style="color:var(--rose-lt);" data-i18n="co-partner1-eye">Strategic Partnership</p>
+        <h2 style="font-size:28px;font-weight:400;color:#fff;margin-bottom:20px;line-height:1.35;" data-i18n-html="co-partner1-h2">Long-term Partner of<br>K-Na Cosmedicos</h2>
+        <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.9;" data-i18n="co-partner1-p">Midam Lab Asia holds exclusive access to K-Na Cosmedicos' full portfolio — including the D.D. Series, ViVi, and High ViVi — bringing Korea's most trusted professional solutions to Southeast Asian clinics.</p>
       </div>
       <div>
-        <p class="eyebrow" style="color:var(--rose-lt);">Southeast Asia · Thailand Market</p>
-        <h2 style="font-size:28px;font-weight:400;color:#fff;margin-bottom:20px;line-height:1.35;">Leading the Expansion<br>into Thailand</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.9;">Midam Lab Asia leads the brand's expansion into Thailand — collaborating with local clinic partners and KOLs to build long-term brand leadership in Southeast Asia's most beauty-forward market.</p>
+        <p class="eyebrow" style="color:var(--rose-lt);" data-i18n="co-partner2-eye">Southeast Asia · Thailand Market</p>
+        <h2 style="font-size:28px;font-weight:400;color:#fff;margin-bottom:20px;line-height:1.35;" data-i18n-html="co-partner2-h2">Leading the Expansion<br>into Thailand</h2>
+        <p style="font-size:15px;color:rgba(255,255,255,.6);line-height:1.9;" data-i18n="co-partner2-p">Midam Lab Asia leads the brand's expansion into Thailand — collaborating with local clinic partners and KOLs to build long-term brand leadership in Southeast Asia's most beauty-forward market.</p>
       </div>
     </div>
   </div>
@@ -780,20 +798,20 @@
   <!-- Values -->
   <div class="co-values" style="padding:80px 96px;background:var(--rose-bg);">
     <div style="max-width:1000px;margin:0 auto;">
-      <p class="eyebrow" style="text-align:center;">Our Values</p>
-      <h2 style="font-size:28px;font-weight:400;color:var(--dark);text-align:center;margin-bottom:48px;">Purity · Precision · Partnership</h2>
+      <p class="eyebrow" style="text-align:center;" data-i18n="co-values-eye">Our Values</p>
+      <h2 style="font-size:28px;font-weight:400;color:var(--dark);text-align:center;margin-bottom:48px;" data-i18n="co-values-h2">Purity · Precision · Partnership</h2>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
         <div style="background:#fff;padding:36px 28px;border-top:3px solid var(--rose);">
-          <h4 style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:14px;">Purity</h4>
-          <p style="font-size:15px;color:var(--gray);line-height:1.8;">Only the highest-purity raw materials, selected with rigorous scientific criteria.</p>
+          <h4 style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:14px;" data-i18n="co-purity-h4">Purity</h4>
+          <p style="font-size:15px;color:var(--gray);line-height:1.8;" data-i18n="co-purity-p">Only the highest-purity raw materials, selected with rigorous scientific criteria.</p>
         </div>
         <div style="background:#fff;padding:36px 28px;border-top:3px solid var(--rose);">
-          <h4 style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:14px;">Precision</h4>
-          <p style="font-size:15px;color:var(--gray);line-height:1.8;">Meticulous R&amp;D and clinical validation — products engineered to perform, every time.</p>
+          <h4 style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:14px;" data-i18n="co-precision-h4">Precision</h4>
+          <p style="font-size:15px;color:var(--gray);line-height:1.8;" data-i18n="co-precision-p">Meticulous R&amp;D and clinical validation — products engineered to perform, every time.</p>
         </div>
         <div style="background:#fff;padding:36px 28px;border-top:3px solid var(--rose);">
-          <h4 style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:14px;">Partnership</h4>
-          <p style="font-size:15px;color:var(--gray);line-height:1.8;">Growing with clinic partners across Southeast Asia through collaboration, trust, and shared ambition.</p>
+          <h4 style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:14px;" data-i18n="co-partnership-h4">Partnership</h4>
+          <p style="font-size:15px;color:var(--gray);line-height:1.8;" data-i18n="co-partnership-p">Growing with clinic partners across Southeast Asia through collaboration, trust, and shared ambition.</p>
         </div>
       </div>
     </div>
@@ -816,17 +834,17 @@
     <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img2.jpg" alt="Portfolio">
     <div class="port-hero-overlay">
       <div>
-        <p class="eyebrow" style="color:var(--rose-lt);">Our Products</p>
+        <p class="eyebrow" style="color:var(--rose-lt);" data-i18n="pf-hero-eye">Our Products</p>
         <h1><em>Portfolio</em></h1>
-        <p>Bio-Precision Aesthetic Solutions for Professional Clinics Worldwide</p>
+        <p data-i18n="pf-hero-p">Bio-Precision Aesthetic Solutions for Professional Clinics Worldwide</p>
       </div>
     </div>
   </div>
 
   <div class="port-intro">
     <p class="eyebrow">Midam Lab Asia</p>
-    <h3>We curate the science. You define the beauty.</h3>
-    <p>
+    <h3 data-i18n="pf-intro-h3">We curate the science. You define the beauty.</h3>
+    <p data-i18n="pf-intro-p">
       Premium bio-precision aesthetic solutions engineered for professional clinics — the D.D. Series, ViVi, and High ViVi for non-invasive skin remodeling with clinical precision.
     </p>
   </div>
@@ -835,37 +853,37 @@
     <div class="port-card">
       <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img3.jpg" alt="D.D. Cut">
       <div class="port-card-info">
-        <p class="p-tag">Dew Diamond · Lipolysis</p>
+        <p class="p-tag" data-i18n="pf-cut-tag">Dew Diamond · Lipolysis</p>
         <h3>D.D. Cut</h3>
-        <p>High-concentration lipolysis for fat reduction and skin elasticity</p>
-        <button onclick="showPage('ddcut')">View Product →</button>
+        <p data-i18n="pf-cut-p">High-concentration lipolysis for fat reduction and skin elasticity</p>
+        <button onclick="showPage('ddcut')" data-i18n="pf-cut-btn">View Product →</button>
       </div>
     </div>
     <div class="port-card">
       <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img4.jpg" alt="D.D. Beam">
       <div class="port-card-info">
-        <p class="p-tag">Dew Diamond · Antioxidant</p>
+        <p class="p-tag" data-i18n="pf-beam-tag">Dew Diamond · Antioxidant</p>
         <h3>D.D. Beam</h3>
-        <p>Ultimate antioxidant booster with 30 proven safe ingredients</p>
-        <button onclick="showPage('ddbeam')">View Product →</button>
+        <p data-i18n="pf-beam-p">Ultimate antioxidant booster with 30 proven safe ingredients</p>
+        <button onclick="showPage('ddbeam')" data-i18n="pf-beam-btn">View Product →</button>
       </div>
     </div>
     <div class="port-card">
       <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img5.jpg" alt="ViVi">
       <div class="port-card-info">
-        <p class="p-tag">All-in-One · Skin Remodeling</p>
+        <p class="p-tag" data-i18n="pf-vivi-tag">All-in-One · Skin Remodeling</p>
         <h3>ViVi Ampoule</h3>
-        <p>BHA + PHA + PLLA + HA — MPPT™ technology for visible results</p>
-        <button onclick="showPage('vivi')">View Product →</button>
+        <p data-i18n="pf-vivi-p">BHA + PHA + PLLA + HA — MPPT™ technology for visible results</p>
+        <button onclick="showPage('vivi')" data-i18n="pf-vivi-btn">View Product →</button>
       </div>
     </div>
     <div class="port-card">
       <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img6.jpg" alt="High ViVi">
       <div class="port-card-info">
-        <p class="p-tag">Premium · Advanced Protocol</p>
+        <p class="p-tag" data-i18n="pf-hvivi-tag">Premium · Advanced Protocol</p>
         <h3>High ViVi</h3>
-        <p>Advanced skin remodeling for intensive clinical protocols</p>
-        <button onclick="showPage('highvivi')">View Product →</button>
+        <p data-i18n="pf-hvivi-p">Advanced skin remodeling for intensive clinical protocols</p>
+        <button onclick="showPage('highvivi')" data-i18n="pf-hvivi-btn">View Product →</button>
       </div>
     </div>
   </div>
@@ -873,18 +891,18 @@
   <div id="contact-anchor"></div>
   <div class="contact-section">
     <div class="contact-left">
-      <p class="eyebrow">Get In Touch</p>
-      <h2>Partner With<br>Midam Lab Asia</h2>
-      <p>Whether you're a clinic, distributor, or content creator — let's grow together across Southeast Asia.</p>
-      <div class="c-item"><p class="c-label">Website</p><p class="c-val">www.midamlabasia.com</p></div>
-      <div class="c-item"><p class="c-label">Email</p><p class="c-val"><a href="mailto:cmo@midamlabasia.com">cmo@midamlabasia.com</a></p></div>
+      <p class="eyebrow" data-i18n="ct-eye">Get In Touch</p>
+      <h2 data-i18n-html="ct-h2">Partner With<br>Midam Lab Asia</h2>
+      <p data-i18n="ct-p">Whether you're a clinic, distributor, or content creator — let's grow together across Southeast Asia.</p>
+      <div class="c-item"><p class="c-label" data-i18n="ct-web-lbl">Website</p><p class="c-val">www.midamlabasia.com</p></div>
+      <div class="c-item"><p class="c-label" data-i18n="ct-email-lbl">Email</p><p class="c-val"><a href="mailto:cmo@midamlabasia.com">cmo@midamlabasia.com</a></p></div>
     </div>
     <div class="contact-right">
       <form onsubmit="return false;">
-        <div class="f-group"><input type="text" placeholder="Name"></div>
-        <div class="f-group"><input type="email" placeholder="Email Address"></div>
-        <div class="f-group"><textarea rows="5" placeholder="Tell us about your interest..."></textarea></div>
-        <button class="f-submit">Send Inquiry</button>
+        <div class="f-group"><input type="text" placeholder="Name" data-i18n-ph="ct-name-ph"></div>
+        <div class="f-group"><input type="email" placeholder="Email Address" data-i18n-ph="ct-email-ph"></div>
+        <div class="f-group"><textarea rows="5" placeholder="Tell us about your interest..." data-i18n-ph="ct-msg-ph"></textarea></div>
+        <button class="f-submit" data-i18n="ct-btn">Send Inquiry</button>
       </form>
     </div>
   </div>
@@ -915,15 +933,15 @@
       <div class="prod-banner-text">
         <span class="prod-tag">Dew Diamond Series</span>
         <h1>D.D. <em>Cut</em></h1>
-        <p>Precision lipolysis for fat reduction and skin elasticity — zero downtime.</p>
+        <p data-i18n="ddc-banner-p">Precision lipolysis for fat reduction and skin elasticity — zero downtime.</p>
       </div>
     </div>
   </div>
   <!-- DD CUT CONTENT -->
   <div class="info-strip">
-    <div class="info-cell"><h4>Classification</h4><p>Professional-Grade Contouring Ampoule Solution — topical, device-compatible, zero downtime.</p></div>
-    <div class="info-cell"><h4>Core Technology</h4><p>Proprietary Protein Blending Ratio — Bromelain 0.5% · Lecithin 1.0% · Centella Asiatica 3.346%</p></div>
-    <div class="info-cell"><h4>Regulatory</h4><p>KFDA/MFDS (Korea) · TFDA Thailand Registered (10-2-6900003393) · GS1 Global GTIN · ISO 22716 GMP</p></div>
+    <div class="info-cell"><h4 data-i18n="ddc-info1-h4">Classification</h4><p data-i18n="ddc-info1-p">Professional-Grade Contouring Ampoule Solution — topical, device-compatible, zero downtime.</p></div>
+    <div class="info-cell"><h4 data-i18n="ddc-info2-h4">Core Technology</h4><p data-i18n="ddc-info2-p">Proprietary Protein Blending Ratio — Bromelain 0.5% · Lecithin 1.0% · Centella Asiatica 3.346%</p></div>
+    <div class="info-cell"><h4 data-i18n="ddc-info3-h4">Regulatory</h4><p data-i18n="ddc-info3-p">KFDA/MFDS (Korea) · TFDA Thailand Registered (10-2-6900003393) · GS1 Global GTIN · ISO 22716 GMP</p></div>
   </div>
 
   <!-- Product Overview -->
@@ -932,14 +950,14 @@
       <img src="http://www.knamedicos.com/default/img/hblock/design/slider02/img/img1.jpg" alt="D.D. Cut">
     </div>
     <div class="po-text" style="background:var(--rose-bg);">
-      <p class="section-eyebrow">Dew Diamond Series · Contouring Solution</p>
+      <p class="section-eyebrow" data-i18n="ddc-po-eye">Dew Diamond Series · Contouring Solution</p>
       <h2>D.D. Cut</h2>
-      <p class="po-desc">Natural lytic enzymes target fat and puffiness. High-concentration Centella provides barrier recovery — topical, device-compatible, zero downtime.</p>
+      <p class="po-desc" data-i18n="ddc-po-desc">Natural lytic enzymes target fat and puffiness. High-concentration Centella provides barrier recovery — topical, device-compatible, zero downtime.</p>
       <ul class="po-points">
-        <li>Bromelain 0.5% — Lysis &amp; V-line contouring</li>
-        <li>Lecithin 1.0% — Penetration &amp; emulsification</li>
-        <li>Centella Asiatica 3.346% — Barrier repair &amp; calm</li>
-        <li>KFDA · TFDA Thailand · ISO 22716 GMP</li>
+        <li data-i18n="ddc-po-li1">Bromelain 0.5% — Lysis &amp; V-line contouring</li>
+        <li data-i18n="ddc-po-li2">Lecithin 1.0% — Penetration &amp; emulsification</li>
+        <li data-i18n="ddc-po-li3">Centella Asiatica 3.346% — Barrier repair &amp; calm</li>
+        <li data-i18n="ddc-po-li4">KFDA · TFDA Thailand · ISO 22716 GMP</li>
       </ul>
     </div>
   </div>
@@ -947,22 +965,22 @@
   <!-- Triple Action -->
   <div style="background:#fff;padding:56px 80px;">
     <div style="max-width:1100px;margin:0 auto;">
-      <p class="eyebrow" style="text-align:center;margin-bottom:32px;">Triple Action Mechanism</p>
+      <p class="eyebrow" style="text-align:center;margin-bottom:32px;" data-i18n="ddc-triple-eye">Triple Action Mechanism</p>
       <div class="simple-steps">
         <div class="simple-step">
           <div class="ss-num">1</div>
-          <h5>LYSIS</h5>
-          <p>Bromelain breaks down proteins and reduces puffiness for a sharper V-line.</p>
+          <h5 data-i18n="ddc-step1-h5">LYSIS</h5>
+          <p data-i18n="ddc-step1-p">Bromelain breaks down proteins and reduces puffiness for a sharper V-line.</p>
         </div>
         <div class="simple-step">
           <div class="ss-num">2</div>
-          <h5>TRANSPORT</h5>
-          <p>Lecithin emulsifies fat and drives deep dermal delivery of all actives.</p>
+          <h5 data-i18n="ddc-step2-h5">TRANSPORT</h5>
+          <p data-i18n="ddc-step2-p">Lecithin emulsifies fat and drives deep dermal delivery of all actives.</p>
         </div>
         <div class="simple-step">
           <div class="ss-num">3</div>
-          <h5>STABILIZE</h5>
-          <p>Centella &amp; Peptides rebuild the barrier — serene, taut finish, zero irritation.</p>
+          <h5 data-i18n="ddc-step3-h5">STABILIZE</h5>
+          <p data-i18n="ddc-step3-p">Centella &amp; Peptides rebuild the barrier — serene, taut finish, zero irritation.</p>
         </div>
       </div>
     </div>
@@ -971,37 +989,37 @@
   <!-- Protocol -->
   <div style="background:var(--dark);padding:48px 80px;">
     <div style="max-width:1100px;margin:0 auto;">
-      <p class="eyebrow" style="color:var(--rose-lt);text-align:center;margin-bottom:28px;">Clinic Protocol</p>
+      <p class="eyebrow" style="color:var(--rose-lt);text-align:center;margin-bottom:28px;" data-i18n="ddc-proto-eye">Clinic Protocol</p>
       <div class="simple-steps">
         <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
           <div class="ss-num">1</div>
-          <h5 style="color:#fff;">Cleanse &amp; Apply</h5>
-          <p style="color:rgba(255,255,255,.5);">Apply D.D. Cut evenly to jawline, cheeks, and submental region.</p>
+          <h5 style="color:#fff;" data-i18n="ddc-proto1-h5">Cleanse &amp; Apply</h5>
+          <p style="color:rgba(255,255,255,.5);" data-i18n="ddc-proto1-p">Apply D.D. Cut evenly to jawline, cheeks, and submental region.</p>
         </div>
         <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
           <div class="ss-num">2</div>
-          <h5 style="color:#fff;">Device Synergy</h5>
-          <p style="color:rgba(255,255,255,.5);">LDM (Ultrasound) or Electroporation for enhanced deep absorption.</p>
+          <h5 style="color:#fff;" data-i18n="ddc-proto2-h5">Device Synergy</h5>
+          <p style="color:rgba(255,255,255,.5);" data-i18n="ddc-proto2-p">LDM (Ultrasound) or Electroporation for enhanced deep absorption.</p>
         </div>
         <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
           <div class="ss-num">3</div>
-          <h5 style="color:#fff;">Seal &amp; Finish</h5>
-          <p style="color:rgba(255,255,255,.5);">Cooling mask or RED LED to lock actives and soothe skin.</p>
+          <h5 style="color:#fff;" data-i18n="ddc-proto3-h5">Seal &amp; Finish</h5>
+          <p style="color:rgba(255,255,255,.5);" data-i18n="ddc-proto3-p">Cooling mask or RED LED to lock actives and soothe skin.</p>
         </div>
       </div>
     </div>
   </div>
 
   <div class="brochure-section">
-    <p class="eyebrow">Product Brochure</p>
-    <h3>D.D. Cut — Official Brochure</h3>
+    <p class="eyebrow" data-i18n="bro-eye">Product Brochure</p>
+    <h3 data-i18n="ddc-bro-h3">D.D. Cut — Official Brochure</h3>
     <a class="brochure-card" href="ddcut_brochure.pdf" target="_blank" rel="noopener">
       <div class="brochure-icon"><div class="brochure-icon-fold"></div></div>
       <div class="brochure-meta">
-        <strong>DD Cut Product Brochure</strong>
-        <span>PDF Document · Midam Lab Asia</span>
+        <strong data-i18n="ddc-bro-strong">DD Cut Product Brochure</strong>
+        <span data-i18n="bro-meta">PDF Document · Midam Lab Asia</span>
       </div>
-      <span class="brochure-dl">View PDF →</span>
+      <span class="brochure-dl" data-i18n="bro-dl">View PDF →</span>
     </a>
   </div>
   <footer style="background:#111;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(196,149,122,.1)">
@@ -1021,28 +1039,28 @@
       <div class="prod-banner-text">
         <span class="prod-tag">Dew Diamond Series</span>
         <h1>D.D. <em>Beam</em></h1>
-        <p>30 active ingredients — HA, Peptides, Vitamins &amp; Amino Acids for radiant, luminous skin.</p>
+        <p data-i18n="ddb-banner-p">30 active ingredients — HA, Peptides, Vitamins &amp; Amino Acids for radiant, luminous skin.</p>
       </div>
     </div>
   </div>
   <!-- DD BEAM CONTENT -->
   <div class="info-strip">
-    <div class="info-cell"><h4>Classification</h4><p>Dew Diamond Skin Booster — pharmaceutical manufacturing-grade quality, made in Korea.</p></div>
-    <div class="info-cell"><h4>Formula</h4><p>Non-cross-linked Hyaluronic Acid · 4 Peptides · 8 Vitamins &amp; Antioxidants · 11 Amino Acids</p></div>
-    <div class="info-cell"><h4>Distributed by</h4><p>Midam Lab Asia — strong antioxidant chain with optimal combination of premium actives.</p></div>
+    <div class="info-cell"><h4 data-i18n="ddb-info1-h4">Classification</h4><p data-i18n="ddb-info1-p">Dew Diamond Skin Booster — pharmaceutical manufacturing-grade quality, made in Korea.</p></div>
+    <div class="info-cell"><h4 data-i18n="ddb-info2-h4">Formula</h4><p data-i18n="ddb-info2-p">Non-cross-linked Hyaluronic Acid · 4 Peptides · 8 Vitamins &amp; Antioxidants · 11 Amino Acids</p></div>
+    <div class="info-cell"><h4 data-i18n="ddb-info3-h4">Distributed by</h4><p data-i18n="ddb-info3-p">Midam Lab Asia — strong antioxidant chain with optimal combination of premium actives.</p></div>
   </div>
 
   <!-- Product Overview -->
   <div class="prod-overview">
     <div class="po-text" style="background:var(--dark);order:0;">
-      <p class="section-eyebrow" style="color:var(--rose-lt);">Dew Diamond Series · Skin Booster</p>
+      <p class="section-eyebrow" style="color:var(--rose-lt);" data-i18n="ddb-po-eye">Dew Diamond Series · Skin Booster</p>
       <h2 style="color:#fff;">D.D. Beam</h2>
-      <p class="po-desc" style="color:rgba(255,255,255,.6);">30 active ingredients — optimal antioxidant chain for radiance, hydration, and cellular renewal. Pharmaceutical-grade, made in Korea.</p>
+      <p class="po-desc" style="color:rgba(255,255,255,.6);" data-i18n="ddb-po-desc">30 active ingredients — optimal antioxidant chain for radiance, hydration, and cellular renewal. Pharmaceutical-grade, made in Korea.</p>
       <ul class="po-points">
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">Non-cross-linked Hyaluronic Acid</li>
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">4 Peptides · EGF · OP-2 · OP-4 · Palmitoyl</li>
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">8 Vitamins &amp; Antioxidants incl. Glutathione</li>
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">11 Amino Acids for repair &amp; barrier support</li>
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="ddb-po-li1">Non-cross-linked Hyaluronic Acid</li>
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="ddb-po-li2">4 Peptides · EGF · OP-2 · OP-4 · Palmitoyl</li>
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="ddb-po-li3">8 Vitamins &amp; Antioxidants incl. Glutathione</li>
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="ddb-po-li4">11 Amino Acids for repair &amp; barrier support</li>
       </ul>
     </div>
     <div class="po-img">
@@ -1053,29 +1071,29 @@
   <!-- Key Actives Grid -->
   <div style="background:#fff;padding:56px 80px;">
     <div style="max-width:1100px;margin:0 auto;">
-      <p class="eyebrow" style="text-align:center;margin-bottom:32px;">Key Actives</p>
+      <p class="eyebrow" style="text-align:center;margin-bottom:32px;" data-i18n="ddb-ing-eye">Key Actives</p>
       <div class="ing-grid">
-        <div class="ing-tag"><div class="it-icon">HA</div><h5>Sodium Hyaluronate</h5><p>Plumps skin, reduces fine lines, supports barrier.</p></div>
-        <div class="ing-tag"><div class="it-icon">EGF</div><h5>Oligopeptide-1 (EGF)</h5><p>Stimulates cells, boosts collagen &amp; elastin.</p></div>
-        <div class="ing-tag"><div class="it-icon">GSH</div><h5>Glutathione</h5><p>Inhibits melanin, brightens, potent antioxidant.</p></div>
-        <div class="ing-tag"><div class="it-icon">PDRN</div><h5>Sodium DNA (PDRN)</h5><p>Cellular regeneration &amp; barrier repair.</p></div>
-        <div class="ing-tag"><div class="it-icon">Vit C</div><h5>Ascorbic Acid</h5><p>Brightens skin, inhibits melanin, boosts collagen.</p></div>
-        <div class="ing-tag"><div class="it-icon">B5·B7</div><h5>Vitamins B5 + B7</h5><p>Moisture balance, healing &amp; skin vitality.</p></div>
+        <div class="ing-tag"><div class="it-icon">HA</div><h5 data-i18n="ddb-ing1-h5">Sodium Hyaluronate</h5><p data-i18n="ddb-ing1-p">Plumps skin, reduces fine lines, supports barrier.</p></div>
+        <div class="ing-tag"><div class="it-icon">EGF</div><h5 data-i18n="ddb-ing2-h5">Oligopeptide-1 (EGF)</h5><p data-i18n="ddb-ing2-p">Stimulates cells, boosts collagen &amp; elastin.</p></div>
+        <div class="ing-tag"><div class="it-icon">GSH</div><h5 data-i18n="ddb-ing3-h5">Glutathione</h5><p data-i18n="ddb-ing3-p">Inhibits melanin, brightens, potent antioxidant.</p></div>
+        <div class="ing-tag"><div class="it-icon">PDRN</div><h5 data-i18n="ddb-ing4-h5">Sodium DNA (PDRN)</h5><p data-i18n="ddb-ing4-p">Cellular regeneration &amp; barrier repair.</p></div>
+        <div class="ing-tag"><div class="it-icon">Vit C</div><h5 data-i18n="ddb-ing5-h5">Ascorbic Acid</h5><p data-i18n="ddb-ing5-p">Brightens skin, inhibits melanin, boosts collagen.</p></div>
+        <div class="ing-tag"><div class="it-icon">B5·B7</div><h5 data-i18n="ddb-ing6-h5">Vitamins B5 + B7</h5><p data-i18n="ddb-ing6-p">Moisture balance, healing &amp; skin vitality.</p></div>
       </div>
-      <p style="font-size:13px;color:var(--gray);text-align:center;margin-top:24px;">+ 11 Amino Acids — Valine · Threonine · Isoleucine · Tryptophan · Glutamic · Tyrosine · Cysteine · Lysine · and more</p>
+      <p style="font-size:13px;color:var(--gray);text-align:center;margin-top:24px;" data-i18n="ddb-ing-note">+ 11 Amino Acids — Valine · Threonine · Isoleucine · Tryptophan · Glutamic · Tyrosine · Cysteine · Lysine · and more</p>
     </div>
   </div>
 
   <div class="brochure-section">
-    <p class="eyebrow">Product Brochure</p>
-    <h3>D.D. Beam — Official Brochure</h3>
+    <p class="eyebrow" data-i18n="bro-eye">Product Brochure</p>
+    <h3 data-i18n="ddb-bro-h3">D.D. Beam — Official Brochure</h3>
     <a class="brochure-card" href="ddbeam_brochure.pdf" target="_blank" rel="noopener">
       <div class="brochure-icon"><div class="brochure-icon-fold"></div></div>
       <div class="brochure-meta">
-        <strong>DD Beam Product Brochure</strong>
-        <span>PDF Document · Midam Lab Asia</span>
+        <strong data-i18n="ddb-bro-strong">DD Beam Product Brochure</strong>
+        <span data-i18n="bro-meta">PDF Document · Midam Lab Asia</span>
       </div>
-      <span class="brochure-dl">View PDF →</span>
+      <span class="brochure-dl" data-i18n="bro-dl">View PDF →</span>
     </a>
   </div>
   <footer style="background:#111;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(196,149,122,.1)">
@@ -1095,15 +1113,15 @@
       <div class="prod-banner-text">
         <span class="prod-tag">All-in-One Skin Remodeling</span>
         <h1><em>ViVi</em> Ampoule</h1>
-        <p>Next-Gen Professional Skin Remodeling powered by MPPT™ — BHA + PHA + PLLA + HA for visible transformation with zero downtime.</p>
+        <p data-i18n="vv-banner-p">Next-Gen Professional Skin Remodeling powered by MPPT™ — BHA + PHA + PLLA + HA for visible transformation with zero downtime.</p>
       </div>
     </div>
   </div>
   <!-- VIVI CONTENT -->
   <div class="info-strip">
-    <div class="info-cell"><h4>Technology</h4><p>MPPT™ (Multi-Phase Precision Treatment) — 4-Step: Open · Refine · Signal · Renew</p></div>
-    <div class="info-cell"><h4>Key Ingredients</h4><p>BHA (Beta Hydroxy Acid) · PHA (Polyhydroxy Acid) · PLLA (Poly-L-Lactic Acid) · HA (Hyaluronic Acid)</p></div>
-    <div class="info-cell"><h4>Results</h4><p>90% of users experienced transformative skin texture results in just 2 weeks. Zero downtime.</p></div>
+    <div class="info-cell"><h4 data-i18n="vv-info1-h4">Technology</h4><p data-i18n="vv-info1-p">MPPT™ (Multi-Phase Precision Treatment) — 4-Step: Open · Refine · Signal · Renew</p></div>
+    <div class="info-cell"><h4 data-i18n="vv-info2-h4">Key Ingredients</h4><p data-i18n="vv-info2-p">BHA (Beta Hydroxy Acid) · PHA (Polyhydroxy Acid) · PLLA (Poly-L-Lactic Acid) · HA (Hyaluronic Acid)</p></div>
+    <div class="info-cell"><h4 data-i18n="vv-info3-h4">Results</h4><p data-i18n="vv-info3-p">90% of users experienced transformative skin texture results in just 2 weeks. Zero downtime.</p></div>
   </div>
 
   <!-- Product Overview -->
@@ -1112,15 +1130,15 @@
       <img src="http://www.knamedicos.com/default/img/hblock/design/slider02/img/img3.jpg" alt="ViVi">
     </div>
     <div class="po-text" style="background:var(--rose-bg);">
-      <p class="section-eyebrow">All-in-One Skin Remodeling · MPPT™</p>
+      <p class="section-eyebrow" data-i18n="vv-po-eye">All-in-One Skin Remodeling · MPPT™</p>
       <h2>ViVi Ampoule</h2>
-      <p class="po-desc">BHA + PHA + PLLA + HA in one treatment — peeling, collagen stimulation, and deep hydration with zero downtime.</p>
+      <p class="po-desc" data-i18n="vv-po-desc">BHA + PHA + PLLA + HA in one treatment — peeling, collagen stimulation, and deep hydration with zero downtime.</p>
       <ul class="po-points">
-        <li>BHA — Opens pores, dissolves sebum</li>
-        <li>PHA — Hydra-resurfacing, minimal irritation</li>
-        <li>PLLA — Neocollagenesis, structural volume</li>
-        <li>HA — 1,000× moisture retention</li>
-        <li>90% visible results in 2 weeks · Zero downtime</li>
+        <li data-i18n="vv-po-li1">BHA — Opens pores, dissolves sebum</li>
+        <li data-i18n="vv-po-li2">PHA — Hydra-resurfacing, minimal irritation</li>
+        <li data-i18n="vv-po-li3">PLLA — Neocollagenesis, structural volume</li>
+        <li data-i18n="vv-po-li4">HA — 1,000× moisture retention</li>
+        <li data-i18n="vv-po-li5">90% visible results in 2 weeks · Zero downtime</li>
       </ul>
     </div>
   </div>
@@ -1128,29 +1146,29 @@
   <!-- MPPT 4 Steps -->
   <div style="background:#fff;padding:56px 80px;">
     <div style="max-width:1100px;margin:0 auto;">
-      <p class="eyebrow" style="text-align:center;margin-bottom:0;">MPPT™ 4-Step Technology</p>
+      <p class="eyebrow" style="text-align:center;margin-bottom:0;" data-i18n="vv-mppt-eye">MPPT™ 4-Step Technology</p>
     </div>
   </div>
   <div class="mppt-grid">
     <div class="mppt-step">
       <div class="mppt-num">1</div>
-      <h5>OPEN</h5>
-      <p>BHA clears pores and opens absorption pathways.</p>
+      <h5 data-i18n="vv-mppt1-h5">OPEN</h5>
+      <p data-i18n="vv-mppt1-p">BHA clears pores and opens absorption pathways.</p>
     </div>
     <div class="mppt-step">
       <div class="mppt-num">2</div>
-      <h5>REFINE</h5>
-      <p>PHA resurfaces skin and delivers deep moisture.</p>
+      <h5 data-i18n="vv-mppt2-h5">REFINE</h5>
+      <p data-i18n="vv-mppt2-p">PHA resurfaces skin and delivers deep moisture.</p>
     </div>
     <div class="mppt-step">
       <div class="mppt-num">3</div>
-      <h5>SIGNAL</h5>
-      <p>PLLA triggers neocollagenesis for volume and firmness.</p>
+      <h5 data-i18n="vv-mppt3-h5">SIGNAL</h5>
+      <p data-i18n="vv-mppt3-p">PLLA triggers neocollagenesis for volume and firmness.</p>
     </div>
     <div class="mppt-step">
       <div class="mppt-num">4</div>
-      <h5>RENEW</h5>
-      <p>HA locks in hydration for lasting rejuvenation.</p>
+      <h5 data-i18n="vv-mppt4-h5">RENEW</h5>
+      <p data-i18n="vv-mppt4-p">HA locks in hydration for lasting rejuvenation.</p>
     </div>
   </div>
 
@@ -1158,41 +1176,41 @@
   <div style="background:var(--dark);padding:48px 80px;">
     <div style="max-width:1100px;margin:0 auto;">
       <div class="pd-stat-row">
-        <div class="pd-stat"><div class="ps-num">90%</div><div class="ps-lbl">Results in 2 Weeks</div></div>
-        <div class="pd-stat"><div class="ps-num">Wk 1</div><div class="ps-lbl">Prepare &amp; Reboot</div></div>
-        <div class="pd-stat"><div class="ps-num">Wk 2</div><div class="ps-lbl">Glow &amp; Hydrate</div></div>
-        <div class="pd-stat"><div class="ps-num">Wk 3–4</div><div class="ps-lbl">Firm &amp; Reveal</div></div>
+        <div class="pd-stat"><div class="ps-num">90%</div><div class="ps-lbl" data-i18n="vv-stat1-lbl">Results in 2 Weeks</div></div>
+        <div class="pd-stat"><div class="ps-num">Wk 1</div><div class="ps-lbl" data-i18n="vv-stat2-lbl">Prepare &amp; Reboot</div></div>
+        <div class="pd-stat"><div class="ps-num">Wk 2</div><div class="ps-lbl" data-i18n="vv-stat3-lbl">Glow &amp; Hydrate</div></div>
+        <div class="pd-stat"><div class="ps-num">Wk 3–4</div><div class="ps-lbl" data-i18n="vv-stat4-lbl">Firm &amp; Reveal</div></div>
       </div>
       <div class="simple-steps" style="margin-top:40px;">
         <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
           <div class="ss-num">1</div>
-          <h5 style="color:#fff;">Post-Procedure</h5>
-          <p style="color:rgba(255,255,255,.5);">Apply after laser or MTS for instant soothing and hydration.</p>
+          <h5 style="color:#fff;" data-i18n="vv-proto1-h5">Post-Procedure</h5>
+          <p style="color:rgba(255,255,255,.5);" data-i18n="vv-proto1-p">Apply after laser or MTS for instant soothing and hydration.</p>
         </div>
         <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
           <div class="ss-num">2</div>
-          <h5 style="color:#fff;">Daily Skincare</h5>
-          <p style="color:rgba(255,255,255,.5);">Use after cleansing to maintain moisture barrier and collagen.</p>
+          <h5 style="color:#fff;" data-i18n="vv-proto2-h5">Daily Skincare</h5>
+          <p style="color:rgba(255,255,255,.5);" data-i18n="vv-proto2-p">Use after cleansing to maintain moisture barrier and collagen.</p>
         </div>
         <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);">
           <div class="ss-num">0</div>
-          <h5 style="color:#fff;">Downtime</h5>
-          <p style="color:rgba(255,255,255,.5);">Resume daily activities immediately after every treatment.</p>
+          <h5 style="color:#fff;" data-i18n="vv-proto3-h5">Downtime</h5>
+          <p style="color:rgba(255,255,255,.5);" data-i18n="vv-proto3-p">Resume daily activities immediately after every treatment.</p>
         </div>
       </div>
     </div>
   </div>
 
   <div class="brochure-section">
-    <p class="eyebrow">Product Brochure</p>
-    <h3>ViVi Ampoule — Official Brochure</h3>
+    <p class="eyebrow" data-i18n="bro-eye">Product Brochure</p>
+    <h3 data-i18n="vv-bro-h3">ViVi Ampoule — Official Brochure</h3>
     <a class="brochure-card" href="vivi_brochure.pdf" target="_blank" rel="noopener">
       <div class="brochure-icon"><div class="brochure-icon-fold"></div></div>
       <div class="brochure-meta">
-        <strong>ViVi Ampoule Product Brochure</strong>
-        <span>PDF Document · Midam Lab Asia</span>
+        <strong data-i18n="vv-bro-strong">ViVi Ampoule Product Brochure</strong>
+        <span data-i18n="bro-meta">PDF Document · Midam Lab Asia</span>
       </div>
-      <span class="brochure-dl">View PDF →</span>
+      <span class="brochure-dl" data-i18n="bro-dl">View PDF →</span>
     </a>
   </div>
   <footer style="background:#111;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(196,149,122,.1)">
@@ -1212,28 +1230,28 @@
       <div class="prod-banner-text">
         <span class="prod-tag">Premium · Advanced Protocol</span>
         <h1>High <em>ViVi</em></h1>
-        <p>Advanced clinical skin remodeling — maximum potency, fewer sessions, lasting results.</p>
+        <p data-i18n="hv-banner-p">Advanced clinical skin remodeling — maximum potency, fewer sessions, lasting results.</p>
       </div>
     </div>
   </div>
   <!-- HIGH VIVI CONTENT -->
   <div class="info-strip">
-    <div class="info-cell"><h4>Classification</h4><p>Premium-grade advanced skin remodeling — high-potency evolution of ViVi for intensive clinical protocols.</p></div>
-    <div class="info-cell"><h4>Key Technology</h4><p>Enhanced MPPT™ · High-Concentration PLLA · Amplified BHA+PHA Dual-Acid · Peptide Booster Complex</p></div>
-    <div class="info-cell"><h4>Results</h4><p>6 Mo+ Collagen Effect · Fewer Sessions Required · Maximum Remodeling Intensity</p></div>
+    <div class="info-cell"><h4 data-i18n="hv-info1-h4">Classification</h4><p data-i18n="hv-info1-p">Premium-grade advanced skin remodeling — high-potency evolution of ViVi for intensive clinical protocols.</p></div>
+    <div class="info-cell"><h4 data-i18n="hv-info2-h4">Key Technology</h4><p data-i18n="hv-info2-p">Enhanced MPPT™ · High-Concentration PLLA · Amplified BHA+PHA Dual-Acid · Peptide Booster Complex</p></div>
+    <div class="info-cell"><h4 data-i18n="hv-info3-h4">Results</h4><p data-i18n="hv-info3-p">6 Mo+ Collagen Effect · Fewer Sessions Required · Maximum Remodeling Intensity</p></div>
   </div>
 
   <!-- Product Overview -->
   <div class="prod-overview">
     <div class="po-text" style="background:var(--dark);">
-      <p class="section-eyebrow" style="color:var(--rose-lt);">Premium · Advanced Protocol</p>
+      <p class="section-eyebrow" style="color:var(--rose-lt);" data-i18n="hv-po-eye">Premium · Advanced Protocol</p>
       <h2 style="color:#fff;">High ViVi</h2>
-      <p class="po-desc" style="color:rgba(255,255,255,.6);">High-potency evolution of ViVi — amplified PLLA, enhanced BHA+PHA, and Peptide Booster for intensive remodeling in fewer sessions.</p>
+      <p class="po-desc" style="color:rgba(255,255,255,.6);" data-i18n="hv-po-desc">High-potency evolution of ViVi — amplified PLLA, enhanced BHA+PHA, and Peptide Booster for intensive remodeling in fewer sessions.</p>
       <ul class="po-points">
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">High-Concentration PLLA — 6–12 month collagen effect</li>
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">Enhanced BHA+PHA — deeper resurfacing</li>
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">Peptide Booster — Argireline · Matrixyl · Leuphasyl</li>
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);">Fewer sessions · Maximum remodeling intensity</li>
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="hv-po-li1">High-Concentration PLLA — 6–12 month collagen effect</li>
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="hv-po-li2">Enhanced BHA+PHA — deeper resurfacing</li>
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="hv-po-li3">Peptide Booster — Argireline · Matrixyl · Leuphasyl</li>
+        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="hv-po-li4">Fewer sessions · Maximum remodeling intensity</li>
       </ul>
     </div>
     <div class="po-img">
@@ -1244,14 +1262,14 @@
   <!-- Key Actives -->
   <div style="background:#fff;padding:56px 80px;">
     <div style="max-width:1100px;margin:0 auto;">
-      <p class="eyebrow" style="text-align:center;margin-bottom:32px;">Key Actives</p>
+      <p class="eyebrow" style="text-align:center;margin-bottom:32px;" data-i18n="hv-ing-eye">Key Actives</p>
       <div class="ing-grid">
-        <div class="ing-tag"><div class="it-icon">PLLA+</div><h5>High-Conc. PLLA</h5><p>Intense neocollagenesis lasting 6–12 months.</p></div>
-        <div class="ing-tag"><div class="it-icon">BHA+</div><h5>Enhanced BHA</h5><p>Deeper pore penetration, sebum control.</p></div>
-        <div class="ing-tag"><div class="it-icon">PHA+</div><h5>Enhanced PHA</h5><p>Cellular turnover with antioxidant protection.</p></div>
-        <div class="ing-tag"><div class="it-icon">Pep</div><h5>Peptide Booster</h5><p>Amplifies collagen &amp; elastin expression.</p></div>
-        <div class="ing-tag"><div class="it-icon">NIA</div><h5>Niacinamide</h5><p>Barrier repair, brightening, redness control.</p></div>
-        <div class="ing-tag"><div class="it-icon">HA</div><h5>Multi-Weight HA</h5><p>Surface plumping + deep dermal hydration.</p></div>
+        <div class="ing-tag"><div class="it-icon">PLLA+</div><h5 data-i18n="hv-ing1-h5">High-Conc. PLLA</h5><p data-i18n="hv-ing1-p">Intense neocollagenesis lasting 6–12 months.</p></div>
+        <div class="ing-tag"><div class="it-icon">BHA+</div><h5 data-i18n="hv-ing2-h5">Enhanced BHA</h5><p data-i18n="hv-ing2-p">Deeper pore penetration, sebum control.</p></div>
+        <div class="ing-tag"><div class="it-icon">PHA+</div><h5 data-i18n="hv-ing3-h5">Enhanced PHA</h5><p data-i18n="hv-ing3-p">Cellular turnover with antioxidant protection.</p></div>
+        <div class="ing-tag"><div class="it-icon">Pep</div><h5 data-i18n="hv-ing4-h5">Peptide Booster</h5><p data-i18n="hv-ing4-p">Amplifies collagen &amp; elastin expression.</p></div>
+        <div class="ing-tag"><div class="it-icon">NIA</div><h5 data-i18n="hv-ing5-h5">Niacinamide</h5><p data-i18n="hv-ing5-p">Barrier repair, brightening, redness control.</p></div>
+        <div class="ing-tag"><div class="it-icon">HA</div><h5 data-i18n="hv-ing6-h5">Multi-Weight HA</h5><p data-i18n="hv-ing6-p">Surface plumping + deep dermal hydration.</p></div>
       </div>
     </div>
   </div>
@@ -1260,52 +1278,52 @@
   <div style="background:var(--dark);padding:48px 80px;">
     <div style="max-width:1100px;margin:0 auto;">
       <div class="pd-stat-row">
-        <div class="pd-stat"><div class="ps-num">High</div><div class="ps-lbl">PLLA Concentration</div></div>
-        <div class="pd-stat"><div class="ps-num">6 Mo+</div><div class="ps-lbl">Collagen Effect</div></div>
-        <div class="pd-stat"><div class="ps-num">Fewer</div><div class="ps-lbl">Sessions Required</div></div>
-        <div class="pd-stat"><div class="ps-num">Max</div><div class="ps-lbl">Remodeling Intensity</div></div>
+        <div class="pd-stat"><div class="ps-num">High</div><div class="ps-lbl" data-i18n="hv-stat1-lbl">PLLA Concentration</div></div>
+        <div class="pd-stat"><div class="ps-num">6 Mo+</div><div class="ps-lbl" data-i18n="hv-stat2-lbl">Collagen Effect</div></div>
+        <div class="pd-stat"><div class="ps-num">Fewer</div><div class="ps-lbl" data-i18n="hv-stat3-lbl">Sessions Required</div></div>
+        <div class="pd-stat"><div class="ps-num">Max</div><div class="ps-lbl" data-i18n="hv-stat4-lbl">Remodeling Intensity</div></div>
       </div>
-      <p class="eyebrow" style="color:var(--rose-lt);text-align:center;margin:40px 0 28px;">Treatment Protocol</p>
+      <p class="eyebrow" style="color:var(--rose-lt);text-align:center;margin:40px 0 28px;" data-i18n="hv-proto-eye">Treatment Protocol</p>
       <div class="simple-steps" style="grid-template-columns:repeat(5,1fr);">
         <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);padding:24px 20px;">
           <div class="ss-num">1</div>
-          <h5 style="color:#fff;">Consultation</h5>
-          <p style="color:rgba(255,255,255,.5);">Skin assessment. Stop retinoids 7 days prior.</p>
+          <h5 style="color:#fff;" data-i18n="hv-proto1-h5">Consultation</h5>
+          <p style="color:rgba(255,255,255,.5);" data-i18n="hv-proto1-p">Skin assessment. Stop retinoids 7 days prior.</p>
         </div>
         <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);padding:24px 20px;">
           <div class="ss-num">2</div>
-          <h5 style="color:#fff;">Pre-Treatment</h5>
-          <p style="color:rgba(255,255,255,.5);">Cleanse, stabilize pH 5.0–5.5. Anesthetic optional.</p>
+          <h5 style="color:#fff;" data-i18n="hv-proto2-h5">Pre-Treatment</h5>
+          <p style="color:rgba(255,255,255,.5);" data-i18n="hv-proto2-p">Cleanse, stabilize pH 5.0–5.5. Anesthetic optional.</p>
         </div>
         <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);padding:24px 20px;">
           <div class="ss-num">3</div>
-          <h5 style="color:#fff;">Application</h5>
-          <p style="color:rgba(255,255,255,.5);">Apply per Enhanced MPPT™ protocol.</p>
+          <h5 style="color:#fff;" data-i18n="hv-proto3-h5">Application</h5>
+          <p style="color:rgba(255,255,255,.5);" data-i18n="hv-proto3-p">Apply per Enhanced MPPT™ protocol.</p>
         </div>
         <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);padding:24px 20px;">
           <div class="ss-num">4</div>
-          <h5 style="color:#fff;">Post-Treatment</h5>
-          <p style="color:rgba(255,255,255,.5);">Recovery mask 20 min. SPF 50+ for 5 days.</p>
+          <h5 style="color:#fff;" data-i18n="hv-proto4-h5">Post-Treatment</h5>
+          <p style="color:rgba(255,255,255,.5);" data-i18n="hv-proto4-p">Recovery mask 20 min. SPF 50+ for 5 days.</p>
         </div>
         <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);padding:24px 20px;">
           <div class="ss-num">5</div>
-          <h5 style="color:#fff;">Course</h5>
-          <p style="color:rgba(255,255,255,.5);">3–4 sessions · 3–4 week intervals.</p>
+          <h5 style="color:#fff;" data-i18n="hv-proto5-h5">Course</h5>
+          <p style="color:rgba(255,255,255,.5);" data-i18n="hv-proto5-p">3–4 sessions · 3–4 week intervals.</p>
         </div>
       </div>
     </div>
   </div>
 
   <div class="brochure-section">
-    <p class="eyebrow">Product Brochure</p>
-    <h3>High ViVi — Official Brochure</h3>
+    <p class="eyebrow" data-i18n="bro-eye">Product Brochure</p>
+    <h3 data-i18n="hv-bro-h3">High ViVi — Official Brochure</h3>
     <a class="brochure-card" href="highvivi_brochure.pdf" target="_blank" rel="noopener">
       <div class="brochure-icon"><div class="brochure-icon-fold"></div></div>
       <div class="brochure-meta">
-        <strong>High ViVi Product Brochure</strong>
-        <span>PDF Document · Knamedicos</span>
+        <strong data-i18n="hv-bro-strong">High ViVi Product Brochure</strong>
+        <span data-i18n="bro-meta">PDF Document · Midam Lab Asia</span>
       </div>
-      <span class="brochure-dl">View PDF →</span>
+      <span class="brochure-dl" data-i18n="bro-dl">View PDF →</span>
     </a>
   </div>
   <footer style="background:#111;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(196,149,122,.1)">
@@ -1336,6 +1354,202 @@
   function moveSlide(dir) { current = (current + dir + total) % total; updateSlider(); }
   function goSlide(n)     { current = n; updateSlider(); }
   setInterval(() => moveSlide(1), 5000);
+
+  /* ── LANGUAGE SWITCHER ── */
+  const translations = {
+    en: {
+      'nav-about':'About Us','nav-portfolio':'Portfolio','nav-contact':'Contact Us',
+      's1-eye':'Dew Diamond Series · Lipolysis','s1-p':'Precision lipolysis for fat reduction and skin elasticity.','s1-btn':'Explore D.D. Cut',
+      's2-eye':'Dew Diamond Series · Antioxidant','s2-p':'30 active ingredients for radiant skin renewal and deep antioxidant protection.','s2-btn':'Explore D.D. Beam',
+      's3-eye':'All-in-One Skin Remodeling','s3-p':'BHA + PHA + PLLA + HA powered by MPPT™. Visible results in 2 weeks.','s3-btn':'Explore ViVi','view-all':'View All',
+      'stat-1':'Premium Product Lines','stat-2':'Client Satisfaction Rate','stat-3':'Active Ingredients','stat-4':'Downtime Required',
+      'bs-eye':'We curate the science. You define the beauty.','bs-h2':'Leading the Global Aesthetic Revolution<br>with Bio-Precision Solutions.','bs-p':'Partnering with clinics and professionals across Southeast Asia to deliver transformative results.',
+      'co-hero-eye':'About Us','co-hero-p':'Creating stories of beauty — with purity, precision, and purpose.',
+      'co-mission-eye':'Our Mission','co-mission-h2':'We create stories of beauty —<br><em style="font-style:italic;color:var(--rose);">for those who define it.</em>','co-mission-p':'Supplying exceptional aesthetic solutions crafted from the highest-purity ingredients — empowering clinics across Southeast Asia to deliver transformative results.',
+      'co-whowe-eye':'Who We Are','co-about-p':'Midam Lab Asia is the regional distribution partner of K-Na Cosmedicos (Korea), bridging world-class Korean formulation science with Southeast Asia\'s growing aesthetic markets. <strong style="color:var(--dark);">Midam</strong> — meaning "to tell a story" — reflects our belief that every treatment is a chapter in the ongoing story of beauty.',
+      'co-partner1-eye':'Strategic Partnership','co-partner1-h2':'Long-term Partner of<br>K-Na Cosmedicos','co-partner1-p':'Midam Lab Asia holds exclusive access to K-Na Cosmedicos\' full portfolio — including the D.D. Series, ViVi, and High ViVi — bringing Korea\'s most trusted professional solutions to Southeast Asian clinics.',
+      'co-partner2-eye':'Southeast Asia · Thailand Market','co-partner2-h2':'Leading the Expansion<br>into Thailand','co-partner2-p':'Midam Lab Asia leads the brand\'s expansion into Thailand — collaborating with local clinic partners and KOLs to build long-term brand leadership in Southeast Asia\'s most beauty-forward market.',
+      'co-values-eye':'Our Values','co-values-h2':'Purity · Precision · Partnership',
+      'co-purity-h4':'Purity','co-purity-p':'Only the highest-purity raw materials, selected with rigorous scientific criteria.',
+      'co-precision-h4':'Precision','co-precision-p':'Meticulous R&D and clinical validation — products engineered to perform, every time.',
+      'co-partnership-h4':'Partnership','co-partnership-p':'Growing with clinic partners across Southeast Asia through collaboration, trust, and shared ambition.',
+      'pf-hero-eye':'Our Products','pf-hero-p':'Bio-Precision Aesthetic Solutions for Professional Clinics Worldwide',
+      'pf-intro-h3':'We curate the science. You define the beauty.','pf-intro-p':'Premium bio-precision aesthetic solutions engineered for professional clinics — the D.D. Series, ViVi, and High ViVi for non-invasive skin remodeling with clinical precision.',
+      'pf-cut-tag':'Dew Diamond · Lipolysis','pf-cut-p':'High-concentration lipolysis for fat reduction and skin elasticity','pf-cut-btn':'View Product →',
+      'pf-beam-tag':'Dew Diamond · Antioxidant','pf-beam-p':'Ultimate antioxidant booster with 30 proven safe ingredients','pf-beam-btn':'View Product →',
+      'pf-vivi-tag':'All-in-One · Skin Remodeling','pf-vivi-p':'BHA + PHA + PLLA + HA — MPPT™ technology for visible results','pf-vivi-btn':'View Product →',
+      'pf-hvivi-tag':'Premium · Advanced Protocol','pf-hvivi-p':'Advanced skin remodeling for intensive clinical protocols','pf-hvivi-btn':'View Product →',
+      'ct-eye':'Get In Touch','ct-h2':'Partner With<br>Midam Lab Asia','ct-p':'Whether you\'re a clinic, distributor, or content creator — let\'s grow together across Southeast Asia.',
+      'ct-web-lbl':'Website','ct-email-lbl':'Email','ct-name-ph':'Name','ct-email-ph':'Email Address','ct-msg-ph':'Tell us about your interest...','ct-btn':'Send Inquiry',
+      'ddc-banner-p':'Precision lipolysis for fat reduction and skin elasticity — zero downtime.',
+      'ddc-info1-h4':'Classification','ddc-info1-p':'Professional-Grade Contouring Ampoule Solution — topical, device-compatible, zero downtime.',
+      'ddc-info2-h4':'Core Technology','ddc-info2-p':'Proprietary Protein Blending Ratio — Bromelain 0.5% · Lecithin 1.0% · Centella Asiatica 3.346%',
+      'ddc-info3-h4':'Regulatory','ddc-info3-p':'KFDA/MFDS (Korea) · TFDA Thailand Registered (10-2-6900003393) · GS1 Global GTIN · ISO 22716 GMP',
+      'ddc-po-eye':'Dew Diamond Series · Contouring Solution','ddc-po-desc':'Natural lytic enzymes target fat and puffiness. High-concentration Centella provides barrier recovery — topical, device-compatible, zero downtime.',
+      'ddc-po-li1':'Bromelain 0.5% — Lysis & V-line contouring','ddc-po-li2':'Lecithin 1.0% — Penetration & emulsification','ddc-po-li3':'Centella Asiatica 3.346% — Barrier repair & calm','ddc-po-li4':'KFDA · TFDA Thailand · ISO 22716 GMP',
+      'ddc-triple-eye':'Triple Action Mechanism','ddc-step1-h5':'LYSIS','ddc-step1-p':'Bromelain breaks down proteins and reduces puffiness for a sharper V-line.',
+      'ddc-step2-h5':'TRANSPORT','ddc-step2-p':'Lecithin emulsifies fat and drives deep dermal delivery of all actives.',
+      'ddc-step3-h5':'STABILIZE','ddc-step3-p':'Centella & Peptides rebuild the barrier — serene, taut finish, zero irritation.',
+      'ddc-proto-eye':'Clinic Protocol','ddc-proto1-h5':'Cleanse & Apply','ddc-proto1-p':'Apply D.D. Cut evenly to jawline, cheeks, and submental region.',
+      'ddc-proto2-h5':'Device Synergy','ddc-proto2-p':'LDM (Ultrasound) or Electroporation for enhanced deep absorption.',
+      'ddc-proto3-h5':'Seal & Finish','ddc-proto3-p':'Cooling mask or RED LED to lock actives and soothe skin.',
+      'bro-eye':'Product Brochure','bro-meta':'PDF Document · Midam Lab Asia','bro-dl':'View PDF →',
+      'ddc-bro-h3':'D.D. Cut — Official Brochure','ddc-bro-strong':'DD Cut Product Brochure',
+      'ddb-banner-p':'30 active ingredients — HA, Peptides, Vitamins & Amino Acids for radiant, luminous skin.',
+      'ddb-info1-h4':'Classification','ddb-info1-p':'Dew Diamond Skin Booster — pharmaceutical manufacturing-grade quality, made in Korea.',
+      'ddb-info2-h4':'Formula','ddb-info2-p':'Non-cross-linked Hyaluronic Acid · 4 Peptides · 8 Vitamins & Antioxidants · 11 Amino Acids',
+      'ddb-info3-h4':'Distributed by','ddb-info3-p':'Midam Lab Asia — strong antioxidant chain with optimal combination of premium actives.',
+      'ddb-po-eye':'Dew Diamond Series · Skin Booster','ddb-po-desc':'30 active ingredients — optimal antioxidant chain for radiance, hydration, and cellular renewal. Pharmaceutical-grade, made in Korea.',
+      'ddb-po-li1':'Non-cross-linked Hyaluronic Acid','ddb-po-li2':'4 Peptides · EGF · OP-2 · OP-4 · Palmitoyl','ddb-po-li3':'8 Vitamins & Antioxidants incl. Glutathione','ddb-po-li4':'11 Amino Acids for repair & barrier support',
+      'ddb-ing-eye':'Key Actives','ddb-ing1-h5':'Sodium Hyaluronate','ddb-ing1-p':'Plumps skin, reduces fine lines, supports barrier.',
+      'ddb-ing2-h5':'Oligopeptide-1 (EGF)','ddb-ing2-p':'Stimulates cells, boosts collagen & elastin.',
+      'ddb-ing3-h5':'Glutathione','ddb-ing3-p':'Inhibits melanin, brightens, potent antioxidant.',
+      'ddb-ing4-h5':'Sodium DNA (PDRN)','ddb-ing4-p':'Cellular regeneration & barrier repair.',
+      'ddb-ing5-h5':'Ascorbic Acid','ddb-ing5-p':'Brightens skin, inhibits melanin, boosts collagen.',
+      'ddb-ing6-h5':'Vitamins B5 + B7','ddb-ing6-p':'Moisture balance, healing & skin vitality.',
+      'ddb-ing-note':'+ 11 Amino Acids — Valine · Threonine · Isoleucine · Tryptophan · Glutamic · Tyrosine · Cysteine · Lysine · and more',
+      'ddb-bro-h3':'D.D. Beam — Official Brochure','ddb-bro-strong':'DD Beam Product Brochure',
+      'vv-banner-p':'Next-Gen Professional Skin Remodeling powered by MPPT™ — BHA + PHA + PLLA + HA for visible transformation with zero downtime.',
+      'vv-info1-h4':'Technology','vv-info1-p':'MPPT™ (Multi-Phase Precision Treatment) — 4-Step: Open · Refine · Signal · Renew',
+      'vv-info2-h4':'Key Ingredients','vv-info2-p':'BHA (Beta Hydroxy Acid) · PHA (Polyhydroxy Acid) · PLLA (Poly-L-Lactic Acid) · HA (Hyaluronic Acid)',
+      'vv-info3-h4':'Results','vv-info3-p':'90% of users experienced transformative skin texture results in just 2 weeks. Zero downtime.',
+      'vv-po-eye':'All-in-One Skin Remodeling · MPPT™','vv-po-desc':'BHA + PHA + PLLA + HA in one treatment — peeling, collagen stimulation, and deep hydration with zero downtime.',
+      'vv-po-li1':'BHA — Opens pores, dissolves sebum','vv-po-li2':'PHA — Hydra-resurfacing, minimal irritation','vv-po-li3':'PLLA — Neocollagenesis, structural volume','vv-po-li4':'HA — 1,000× moisture retention','vv-po-li5':'90% visible results in 2 weeks · Zero downtime',
+      'vv-mppt-eye':'MPPT™ 4-Step Technology','vv-mppt1-h5':'OPEN','vv-mppt1-p':'BHA clears pores and opens absorption pathways.',
+      'vv-mppt2-h5':'REFINE','vv-mppt2-p':'PHA resurfaces skin and delivers deep moisture.',
+      'vv-mppt3-h5':'SIGNAL','vv-mppt3-p':'PLLA triggers neocollagenesis for volume and firmness.',
+      'vv-mppt4-h5':'RENEW','vv-mppt4-p':'HA locks in hydration for lasting rejuvenation.',
+      'vv-stat1-lbl':'Results in 2 Weeks','vv-stat2-lbl':'Prepare & Reboot','vv-stat3-lbl':'Glow & Hydrate','vv-stat4-lbl':'Firm & Reveal',
+      'vv-proto1-h5':'Post-Procedure','vv-proto1-p':'Apply after laser or MTS for instant soothing and hydration.',
+      'vv-proto2-h5':'Daily Skincare','vv-proto2-p':'Use after cleansing to maintain moisture barrier and collagen.',
+      'vv-proto3-h5':'Downtime','vv-proto3-p':'Resume daily activities immediately after every treatment.',
+      'vv-bro-h3':'ViVi Ampoule — Official Brochure','vv-bro-strong':'ViVi Ampoule Product Brochure',
+      'hv-banner-p':'Advanced clinical skin remodeling — maximum potency, fewer sessions, lasting results.',
+      'hv-info1-h4':'Classification','hv-info1-p':'Premium-grade advanced skin remodeling — high-potency evolution of ViVi for intensive clinical protocols.',
+      'hv-info2-h4':'Key Technology','hv-info2-p':'Enhanced MPPT™ · High-Concentration PLLA · Amplified BHA+PHA Dual-Acid · Peptide Booster Complex',
+      'hv-info3-h4':'Results','hv-info3-p':'6 Mo+ Collagen Effect · Fewer Sessions Required · Maximum Remodeling Intensity',
+      'hv-po-eye':'Premium · Advanced Protocol','hv-po-desc':'High-potency evolution of ViVi — amplified PLLA, enhanced BHA+PHA, and Peptide Booster for intensive remodeling in fewer sessions.',
+      'hv-po-li1':'High-Concentration PLLA — 6–12 month collagen effect','hv-po-li2':'Enhanced BHA+PHA — deeper resurfacing','hv-po-li3':'Peptide Booster — Argireline · Matrixyl · Leuphasyl','hv-po-li4':'Fewer sessions · Maximum remodeling intensity',
+      'hv-ing-eye':'Key Actives','hv-ing1-h5':'High-Conc. PLLA','hv-ing1-p':'Intense neocollagenesis lasting 6–12 months.',
+      'hv-ing2-h5':'Enhanced BHA','hv-ing2-p':'Deeper pore penetration, sebum control.',
+      'hv-ing3-h5':'Enhanced PHA','hv-ing3-p':'Cellular turnover with antioxidant protection.',
+      'hv-ing4-h5':'Peptide Booster','hv-ing4-p':'Amplifies collagen & elastin expression.',
+      'hv-ing5-h5':'Niacinamide','hv-ing5-p':'Barrier repair, brightening, redness control.',
+      'hv-ing6-h5':'Multi-Weight HA','hv-ing6-p':'Surface plumping + deep dermal hydration.',
+      'hv-stat1-lbl':'PLLA Concentration','hv-stat2-lbl':'Collagen Effect','hv-stat3-lbl':'Sessions Required','hv-stat4-lbl':'Remodeling Intensity',
+      'hv-proto-eye':'Treatment Protocol','hv-proto1-h5':'Consultation','hv-proto1-p':'Skin assessment. Stop retinoids 7 days prior.',
+      'hv-proto2-h5':'Pre-Treatment','hv-proto2-p':'Cleanse, stabilize pH 5.0–5.5. Anesthetic optional.',
+      'hv-proto3-h5':'Application','hv-proto3-p':'Apply per Enhanced MPPT™ protocol.',
+      'hv-proto4-h5':'Post-Treatment','hv-proto4-p':'Recovery mask 20 min. SPF 50+ for 5 days.',
+      'hv-proto5-h5':'Course','hv-proto5-p':'3–4 sessions · 3–4 week intervals.',
+      'hv-bro-h3':'High ViVi — Official Brochure','hv-bro-strong':'High ViVi Product Brochure'
+    },
+    th: {
+      'nav-about':'เกี่ยวกับเรา','nav-portfolio':'ผลิตภัณฑ์','nav-contact':'ติดต่อเรา',
+      's1-eye':'Dew Diamond Series · การสลายไขมัน','s1-p':'การสลายไขมันอย่างแม่นยำ เพื่อลดไขมันและเพิ่มความยืดหยุ่นของผิว','s1-btn':'สำรวจ D.D. Cut',
+      's2-eye':'Dew Diamond Series · สารต้านอนุมูลอิสระ','s2-p':'30 ส่วนผสมออกฤทธิ์ เพื่อการฟื้นฟูผิวและปกป้องจากอนุมูลอิสระ','s2-btn':'สำรวจ D.D. Beam',
+      's3-eye':'การรีโมเดลผิวแบบครบวงจร','s3-p':'BHA + PHA + PLLA + HA ขับเคลื่อนด้วย MPPT™ เห็นผลภายใน 2 สัปดาห์','s3-btn':'สำรวจ ViVi','view-all':'ดูทั้งหมด',
+      'stat-1':'สายผลิตภัณฑ์พรีเมียม','stat-2':'ความพึงพอใจของลูกค้า','stat-3':'ส่วนผสมออกฤทธิ์','stat-4':'ระยะเวลาพักฟื้น',
+      'bs-eye':'เราคัดสรรวิทยาศาสตร์ คุณกำหนดความงาม','bs-h2':'นำหน้าการปฏิวัติความงามระดับโลก<br>ด้วยโซลูชัน Bio-Precision','bs-p':'ร่วมมือกับคลินิกและผู้เชี่ยวชาญทั่วเอเชียตะวันออกเฉียงใต้ เพื่อผลลัพธ์ที่เปลี่ยนแปลงชีวิต',
+      'co-hero-eye':'เกี่ยวกับเรา','co-hero-p':'สร้างเรื่องราวแห่งความงาม — ด้วยความบริสุทธิ์ ความแม่นยำ และจุดมุ่งหมาย',
+      'co-mission-eye':'พันธกิจของเรา','co-mission-h2':'เราสร้างเรื่องราวแห่งความงาม —<br><em style="font-style:italic;color:var(--rose);">สำหรับผู้ที่กำหนดมัน</em>','co-mission-p':'จัดหาโซลูชันความงามระดับพรีเมียมจากส่วนผสมคุณภาพสูงสุด — เสริมศักยภาพคลินิกทั่วเอเชียตะวันออกเฉียงใต้เพื่อผลลัพธ์ที่เปลี่ยนแปลงชีวิต',
+      'co-whowe-eye':'เราเป็นใคร','co-about-p':'Midam Lab Asia เป็นพันธมิตรจัดจำหน่ายในภูมิภาคของ K-Na Cosmedicos (เกาหลี) เชื่อมวิทยาศาสตร์การผลิตชั้นนำจากเกาหลีกับตลาดความงามที่เติบโตในเอเชียตะวันออกเฉียงใต้ <strong style="color:var(--dark);">Midam</strong> — ที่แปลว่า "เล่าเรื่อง" — สะท้อนความเชื่อว่าทุกการรักษาคือบทหนึ่งในเรื่องราวแห่งความงาม',
+      'co-partner1-eye':'ความร่วมมือเชิงกลยุทธ์','co-partner1-h2':'พันธมิตรระยะยาวของ<br>K-Na Cosmedicos','co-partner1-p':'Midam Lab Asia มีสิทธิ์เข้าถึงพอร์ตโฟลิโอทั้งหมดของ K-Na Cosmedicos รวมถึง D.D. Series, ViVi และ High ViVi นำโซลูชันมืออาชีพที่เชื่อถือได้จากเกาหลีสู่คลินิกในเอเชียตะวันออกเฉียงใต้',
+      'co-partner2-eye':'เอเชียตะวันออกเฉียงใต้ · ตลาดไทย','co-partner2-h2':'นำการขยายตัว<br>เข้าสู่ประเทศไทย','co-partner2-p':'Midam Lab Asia นำการขยายตัวของแบรนด์สู่ประเทศไทย โดยร่วมมือกับพันธมิตรคลินิกและ KOL ในพื้นที่ เพื่อสร้างความเป็นผู้นำแบรนด์ระยะยาวในตลาดที่ให้ความสำคัญกับความงามมากที่สุดในภูมิภาค',
+      'co-values-eye':'ค่านิยมของเรา','co-values-h2':'ความบริสุทธิ์ · ความแม่นยำ · ความร่วมมือ',
+      'co-purity-h4':'ความบริสุทธิ์','co-purity-p':'เลือกใช้เฉพาะวัตถุดิบบริสุทธิ์สูงสุด คัดสรรด้วยเกณฑ์ทางวิทยาศาสตร์ที่เข้มงวด',
+      'co-precision-h4':'ความแม่นยำ','co-precision-p':'การวิจัยและพัฒนาอย่างละเอียด พร้อมการยืนยันทางคลินิก — ผลิตภัณฑ์ที่ออกแบบมาเพื่อประสิทธิภาพสูงสุดทุกครั้ง',
+      'co-partnership-h4':'ความร่วมมือ','co-partnership-p':'เติบโตร่วมกับพันธมิตรคลินิกทั่วเอเชียตะวันออกเฉียงใต้ผ่านการทำงานร่วมกัน ความไว้วางใจ และความมุ่งมั่นร่วมกัน',
+      'pf-hero-eye':'ผลิตภัณฑ์ของเรา','pf-hero-p':'โซลูชันความงาม Bio-Precision สำหรับคลินิกมืออาชีพทั่วโลก',
+      'pf-intro-h3':'เราคัดสรรวิทยาศาสตร์ คุณกำหนดความงาม','pf-intro-p':'โซลูชันความงาม Bio-Precision ระดับพรีเมียม สำหรับคลินิกมืออาชีพ — D.D. Series, ViVi และ High ViVi เพื่อการรีโมเดลผิวแบบไม่รุกล้ำด้วยความแม่นยำทางคลินิก',
+      'pf-cut-tag':'Dew Diamond · การสลายไขมัน','pf-cut-p':'การสลายไขมันความเข้มข้นสูง เพื่อลดไขมันและเพิ่มความยืดหยุ่นของผิว','pf-cut-btn':'ดูผลิตภัณฑ์ →',
+      'pf-beam-tag':'Dew Diamond · สารต้านอนุมูลอิสระ','pf-beam-p':'สารต้านอนุมูลอิสระสูงสุดด้วย 30 ส่วนผสมที่ปลอดภัยและผ่านการพิสูจน์แล้ว','pf-beam-btn':'ดูผลิตภัณฑ์ →',
+      'pf-vivi-tag':'ครบวงจร · การรีโมเดลผิว','pf-vivi-p':'BHA + PHA + PLLA + HA — เทคโนโลยี MPPT™ เพื่อผลลัพธ์ที่มองเห็นได้','pf-vivi-btn':'ดูผลิตภัณฑ์ →',
+      'pf-hvivi-tag':'พรีเมียม · โปรโตคอลขั้นสูง','pf-hvivi-p':'การรีโมเดลผิวขั้นสูง สำหรับโปรโตคอลทางคลินิกระดับเข้มข้น','pf-hvivi-btn':'ดูผลิตภัณฑ์ →',
+      'ct-eye':'ติดต่อเรา','ct-h2':'เป็นพันธมิตรกับ<br>Midam Lab Asia','ct-p':'ไม่ว่าคุณจะเป็นคลินิก ผู้จัดจำหน่าย หรือ Content Creator — มาเติบโตไปด้วยกันทั่วเอเชียตะวันออกเฉียงใต้',
+      'ct-web-lbl':'เว็บไซต์','ct-email-lbl':'อีเมล','ct-name-ph':'ชื่อ-นามสกุล','ct-email-ph':'อีเมล','ct-msg-ph':'กรุณาแจ้งเรื่องที่สนใจ...','ct-btn':'ส่งข้อความ',
+      'ddc-banner-p':'การสลายไขมันอย่างแม่นยำ เพื่อลดไขมันและเพิ่มความยืดหยุ่นของผิว — ไม่มีเวลาพักฟื้น',
+      'ddc-info1-h4':'ประเภท','ddc-info1-p':'โซลูชันแอมพูลจัดรูปทรงระดับมืออาชีพ — ใช้ภายนอก เข้ากันได้กับอุปกรณ์ ไม่มีเวลาพักฟื้น',
+      'ddc-info2-h4':'เทคโนโลยีหลัก','ddc-info2-p':'อัตราส่วนการผสมโปรตีนที่เป็นกรรมสิทธิ์ — Bromelain 0.5% · Lecithin 1.0% · Centella Asiatica 3.346%',
+      'ddc-info3-h4':'การรับรอง','ddc-info3-p':'KFDA/MFDS (เกาหลี) · ลงทะเบียน TFDA ไทย (10-2-6900003393) · GS1 Global GTIN · ISO 22716 GMP',
+      'ddc-po-eye':'Dew Diamond Series · โซลูชันจัดรูปทรง','ddc-po-desc':'เอนไซม์สลายธรรมชาติกำจัดไขมันและอาการบวม Centella ความเข้มข้นสูงช่วยฟื้นฟูเกราะป้องกันผิว — ใช้ภายนอก เข้ากันได้กับอุปกรณ์ ไม่มีเวลาพักฟื้น',
+      'ddc-po-li1':'Bromelain 0.5% — การสลายและการจัดรูปทรง V-line','ddc-po-li2':'Lecithin 1.0% — การซึมผ่านและการอิมัลซิฟิเคชัน','ddc-po-li3':'Centella Asiatica 3.346% — ฟื้นฟูเกราะป้องกันและลดการอักเสบ','ddc-po-li4':'KFDA · TFDA ไทย · ISO 22716 GMP',
+      'ddc-triple-eye':'กลไกสามขั้นตอน','ddc-step1-h5':'ไลซิส','ddc-step1-p':'Bromelain สลายโปรตีนและลดอาการบวม เพื่อรูปทรง V-line ที่คมชัดขึ้น',
+      'ddc-step2-h5':'การส่งผ่าน','ddc-step2-p':'Lecithin อิมัลซิฟายไขมันและนำส่งส่วนผสมออกฤทธิ์ทั้งหมดลึกสู่ผิวหนัง',
+      'ddc-step3-h5':'การทำให้คงตัว','ddc-step3-p':'Centella และเปปไทด์ฟื้นฟูเกราะป้องกันผิว — ผิวตึงกระชับ ไม่ระคายเคือง',
+      'ddc-proto-eye':'โปรโตคอลคลินิก','ddc-proto1-h5':'ทำความสะอาดและทา','ddc-proto1-p':'ทา D.D. Cut ให้ทั่วบริเวณขากรรไกร แก้ม และใต้คาง',
+      'ddc-proto2-h5':'การใช้ร่วมกับอุปกรณ์','ddc-proto2-p':'LDM (อัลตราซาวนด์) หรือ Electroporation เพื่อการดูดซึมที่ลึกขึ้น',
+      'ddc-proto3-h5':'ปิดผนึกและจบ','ddc-proto3-p':'มาสก์เย็นหรือ LED แดง เพื่อล็อกส่วนผสมออกฤทธิ์และบำรุงผิว',
+      'bro-eye':'โบรชัวร์ผลิตภัณฑ์','bro-meta':'เอกสาร PDF · Midam Lab Asia','bro-dl':'ดู PDF →',
+      'ddc-bro-h3':'D.D. Cut — โบรชัวร์อย่างเป็นทางการ','ddc-bro-strong':'โบรชัวร์ D.D. Cut',
+      'ddb-banner-p':'30 ส่วนผสมออกฤทธิ์ — HA เปปไทด์ วิตามิน และกรดอะมิโน เพื่อผิวสว่างใสและเปล่งปลั่ง',
+      'ddb-info1-h4':'ประเภท','ddb-info1-p':'Dew Diamond Skin Booster — คุณภาพระดับการผลิตยา ผลิตในเกาหลี',
+      'ddb-info2-h4':'สูตร','ddb-info2-p':'Hyaluronic Acid แบบไม่ cross-linked · 4 เปปไทด์ · 8 วิตามินและสารต้านอนุมูลอิสระ · 11 กรดอะมิโน',
+      'ddb-info3-h4':'จัดจำหน่ายโดย','ddb-info3-p':'Midam Lab Asia — ห่วงโซ่สารต้านอนุมูลอิสระที่แข็งแกร่งด้วยการผสมผสานส่วนผสมพรีเมียมที่เหมาะสมที่สุด',
+      'ddb-po-eye':'Dew Diamond Series · Skin Booster','ddb-po-desc':'30 ส่วนผสมออกฤทธิ์ — ห่วงโซ่สารต้านอนุมูลอิสระที่เหมาะสมสำหรับความสว่างใส ความชุ่มชื้น และการฟื้นฟูเซลล์ ระดับยา ผลิตในเกาหลี',
+      'ddb-po-li1':'Hyaluronic Acid แบบไม่ cross-linked','ddb-po-li2':'4 เปปไทด์ · EGF · OP-2 · OP-4 · Palmitoyl','ddb-po-li3':'8 วิตามินและสารต้านอนุมูลอิสระ รวมถึง Glutathione','ddb-po-li4':'11 กรดอะมิโน เพื่อซ่อมแซมและเสริมเกราะป้องกันผิว',
+      'ddb-ing-eye':'ส่วนผสมหลัก','ddb-ing1-h5':'Sodium Hyaluronate','ddb-ing1-p':'เพิ่มความอิ่มฟูให้ผิว ลดริ้วรอย เสริมเกราะป้องกัน',
+      'ddb-ing2-h5':'Oligopeptide-1 (EGF)','ddb-ing2-p':'กระตุ้นเซลล์ เพิ่มคอลลาเจนและอีลาสติน',
+      'ddb-ing3-h5':'กลูตาไธโอน','ddb-ing3-p':'ยับยั้งเมลานิน ทำให้ผิวสว่างขึ้น สารต้านอนุมูลอิสระที่ทรงพลัง',
+      'ddb-ing4-h5':'Sodium DNA (PDRN)','ddb-ing4-p':'การฟื้นฟูเซลล์และซ่อมแซมเกราะป้องกันผิว',
+      'ddb-ing5-h5':'กรดแอสคอร์บิก','ddb-ing5-p':'ทำให้ผิวสว่างขึ้น ยับยั้งเมลานิน เพิ่มคอลลาเจน',
+      'ddb-ing6-h5':'วิตามิน B5 + B7','ddb-ing6-p':'ความสมดุลของความชุ่มชื้น การฟื้นฟูและความมีชีวิตชีวาของผิว',
+      'ddb-ing-note':'+ 11 กรดอะมิโน — Valine · Threonine · Isoleucine · Tryptophan · Glutamic · Tyrosine · Cysteine · Lysine · และอื่นๆ',
+      'ddb-bro-h3':'D.D. Beam — โบรชัวร์อย่างเป็นทางการ','ddb-bro-strong':'โบรชัวร์ D.D. Beam',
+      'vv-banner-p':'การรีโมเดลผิวมืออาชีพรุ่นใหม่ขับเคลื่อนด้วย MPPT™ — BHA + PHA + PLLA + HA เพื่อการเปลี่ยนแปลงที่มองเห็นได้โดยไม่มีเวลาพักฟื้น',
+      'vv-info1-h4':'เทคโนโลยี','vv-info1-p':'MPPT™ (Multi-Phase Precision Treatment) — 4 ขั้นตอน: เปิด · ปรับ · สัญญาณ · ฟื้นฟู',
+      'vv-info2-h4':'ส่วนผสมหลัก','vv-info2-p':'BHA (กรดไฮดรอกซีเบตา) · PHA (กรดโพลีไฮดรอกซี) · PLLA (โพลี-แอล-แลคติกแอซิด) · HA (ไฮยาลูรอนิกแอซิด)',
+      'vv-info3-h4':'ผลลัพธ์','vv-info3-p':'90% ของผู้ใช้เห็นผลลัพธ์ด้านเนื้อสัมผัสผิวที่เปลี่ยนแปลงภายใน 2 สัปดาห์ ไม่มีเวลาพักฟื้น',
+      'vv-po-eye':'การรีโมเดลผิวแบบครบวงจร · MPPT™','vv-po-desc':'BHA + PHA + PLLA + HA ในการรักษาเดียว — การลอกผิว การกระตุ้นคอลลาเจน และความชุ่มชื้นลึก โดยไม่มีเวลาพักฟื้น',
+      'vv-po-li1':'BHA — เปิดรูขุมขน สลายน้ำมันส่วนเกิน','vv-po-li2':'PHA — การผลัดเซลล์พร้อมความชุ่มชื้น การระคายเคืองน้อย','vv-po-li3':'PLLA — การสร้างคอลลาเจนใหม่ เพิ่มโครงสร้าง','vv-po-li4':'HA — ความชุ่มชื้น 1,000 เท่า','vv-po-li5':'เห็นผล 90% ใน 2 สัปดาห์ · ไม่มีเวลาพักฟื้น',
+      'vv-mppt-eye':'เทคโนโลยี MPPT™ 4 ขั้นตอน','vv-mppt1-h5':'เปิด','vv-mppt1-p':'BHA ล้างรูขุมขนและเปิดทางดูดซึม',
+      'vv-mppt2-h5':'ปรับ','vv-mppt2-p':'PHA ผลัดเซลล์ผิวและส่งความชุ่มชื้นลึก',
+      'vv-mppt3-h5':'สัญญาณ','vv-mppt3-p':'PLLA กระตุ้นการสร้างคอลลาเจนใหม่เพื่อปริมาณและความแน่นหนา',
+      'vv-mppt4-h5':'ฟื้นฟู','vv-mppt4-p':'HA กักเก็บความชุ่มชื้นเพื่อการฟื้นฟูที่ยืนยาว',
+      'vv-stat1-lbl':'เห็นผลใน 2 สัปดาห์','vv-stat2-lbl':'เตรียมและรีบูต','vv-stat3-lbl':'เปล่งประกายและชุ่มชื้น','vv-stat4-lbl':'กระชับและเผย',
+      'vv-proto1-h5':'หลังการรักษา','vv-proto1-p':'ทาหลังเลเซอร์หรือ MTS เพื่อบรรเทาและให้ความชุ่มชื้นทันที',
+      'vv-proto2-h5':'การดูแลผิวประจำวัน','vv-proto2-p':'ใช้หลังทำความสะอาดเพื่อรักษาเกราะความชุ่มชื้นและคอลลาเจน',
+      'vv-proto3-h5':'เวลาพักฟื้น','vv-proto3-p':'กลับสู่กิจกรรมประจำวันได้ทันทีหลังทุกการรักษา',
+      'vv-bro-h3':'ViVi Ampoule — โบรชัวร์อย่างเป็นทางการ','vv-bro-strong':'โบรชัวร์ ViVi Ampoule',
+      'hv-banner-p':'การรีโมเดลผิวทางคลินิกขั้นสูง — ประสิทธิภาพสูงสุด จำนวนครั้งน้อยลง ผลลัพธ์ที่ยืนยาว',
+      'hv-info1-h4':'ประเภท','hv-info1-p':'การรีโมเดลผิวขั้นสูงระดับพรีเมียม — ViVi เวอร์ชันประสิทธิภาพสูงสำหรับโปรโตคอลทางคลินิกระดับเข้มข้น',
+      'hv-info2-h4':'เทคโนโลยีหลัก','hv-info2-p':'Enhanced MPPT™ · PLLA ความเข้มข้นสูง · BHA+PHA Dual-Acid ขยายสูตร · Peptide Booster Complex',
+      'hv-info3-h4':'ผลลัพธ์','hv-info3-p':'ผลคอลลาเจน 6 เดือน+ · จำนวนครั้งน้อยลง · ความเข้มข้นสูงสุดในการรีโมเดล',
+      'hv-po-eye':'พรีเมียม · โปรโตคอลขั้นสูง','hv-po-desc':'ViVi เวอร์ชันประสิทธิภาพสูง — PLLA ขยายสูตร BHA+PHA เพิ่มประสิทธิภาพ และ Peptide Booster สำหรับการรีโมเดลระดับเข้มข้นในจำนวนครั้งน้อย',
+      'hv-po-li1':'PLLA ความเข้มข้นสูง — ผลคอลลาเจน 6–12 เดือน','hv-po-li2':'BHA+PHA เพิ่มประสิทธิภาพ — การผลัดเซลล์ที่ลึกขึ้น','hv-po-li3':'Peptide Booster — Argireline · Matrixyl · Leuphasyl','hv-po-li4':'จำนวนครั้งน้อย · ความเข้มข้นสูงสุดในการรีโมเดล',
+      'hv-ing-eye':'ส่วนผสมหลัก','hv-ing1-h5':'PLLA ความเข้มข้นสูง','hv-ing1-p':'การสร้างคอลลาเจนใหม่อย่างเข้มข้น คงอยู่ 6–12 เดือน',
+      'hv-ing2-h5':'BHA เพิ่มประสิทธิภาพ','hv-ing2-p':'การซึมผ่านรูขุมขนที่ลึกขึ้น ควบคุมน้ำมันส่วนเกิน',
+      'hv-ing3-h5':'PHA เพิ่มประสิทธิภาพ','hv-ing3-p':'การหมุนเวียนเซลล์พร้อมการปกป้องจากอนุมูลอิสระ',
+      'hv-ing4-h5':'Peptide Booster','hv-ing4-p':'ขยายการแสดงออกของคอลลาเจนและอีลาสติน',
+      'hv-ing5-h5':'ไนอาซินาไมด์','hv-ing5-p':'ซ่อมแซมเกราะป้องกัน ทำให้ผิวสว่างขึ้น ลดรอยแดง',
+      'hv-ing6-h5':'HA หลายขนาดโมเลกุล','hv-ing6-p':'เพิ่มความอิ่มฟูที่ผิว + ความชุ่มชื้นในชั้นลึก',
+      'hv-stat1-lbl':'ความเข้มข้น PLLA','hv-stat2-lbl':'ผลคอลลาเจน','hv-stat3-lbl':'จำนวนครั้งที่ต้องการ','hv-stat4-lbl':'ความเข้มข้นในการรีโมเดล',
+      'hv-proto-eye':'โปรโตคอลการรักษา','hv-proto1-h5':'การปรึกษา','hv-proto1-p':'ประเมินผิว หยุด Retinoid 7 วันก่อนการรักษา',
+      'hv-proto2-h5':'ก่อนการรักษา','hv-proto2-p':'ทำความสะอาด ปรับ pH 5.0–5.5 ยาชาตัวเลือก',
+      'hv-proto3-h5':'การทา','hv-proto3-p':'ทาตามโปรโตคอล Enhanced MPPT™',
+      'hv-proto4-h5':'หลังการรักษา','hv-proto4-p':'มาสก์ฟื้นฟู 20 นาที SPF 50+ เป็นเวลา 5 วัน',
+      'hv-proto5-h5':'หลักสูตร','hv-proto5-p':'3–4 ครั้ง · ห่าง 3–4 สัปดาห์',
+      'hv-bro-h3':'High ViVi — โบรชัวร์อย่างเป็นทางการ','hv-bro-strong':'โบรชัวร์ High ViVi'
+    }
+  };
+
+  function setLang(lang) {
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-th').classList.toggle('active', lang === 'th');
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const v = t[el.getAttribute('data-i18n')];
+      if (v !== undefined) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const v = t[el.getAttribute('data-i18n-html')];
+      if (v !== undefined) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      const v = t[el.getAttribute('data-i18n-ph')];
+      if (v !== undefined) el.placeholder = v;
+    });
+  }
 
   /* ── MOBILE NAV ── */
   function toggleMobileNav() {
