@@ -330,6 +330,39 @@
   .f-submit:hover { background:var(--rose-dk); }
 
   /* ══ BROCHURE ATTACHMENT ══ */
+  /* ══ HIGH VIVI COMING SOON ══ */
+  .hv-coming-soon {
+    background: var(--dark);
+    padding: 100px 56px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 420px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hv-coming-soon::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 50%, rgba(196,149,122,.12) 0%, transparent 70%);
+  }
+  .hv-cs-inner {
+    max-width: 680px; text-align: center; position: relative; z-index: 1;
+  }
+  .hv-cs-inner .eyebrow {
+    color: var(--rose); letter-spacing: 6px; margin-bottom: 24px;
+  }
+  .hv-cs-inner h2 {
+    font-size: 42px; font-weight: 400; color: #fff; margin-bottom: 24px; line-height: 1.2;
+  }
+  .hv-cs-inner h2 em { font-style: italic; color: var(--rose-lt); }
+  .hv-cs-inner p {
+    font-size: 16px; color: rgba(255,255,255,.55); line-height: 1.9; margin-bottom: 36px;
+  }
+  @media (max-width: 768px) {
+    .hv-coming-soon { padding: 72px 28px; min-height: 340px; }
+    .hv-cs-inner h2 { font-size: 28px; }
+    .hv-cs-inner p { font-size: 14px; }
+  }
+
   .brochure-section {
     padding: 56px 80px;
     background: var(--rose-bg);
@@ -1234,97 +1267,14 @@
       </div>
     </div>
   </div>
-  <!-- HIGH VIVI CONTENT -->
-  <div class="info-strip">
-    <div class="info-cell"><h4 data-i18n="hv-info1-h4">Classification</h4><p data-i18n="hv-info1-p">Premium-grade advanced skin remodeling — high-potency evolution of ViVi for intensive clinical protocols.</p></div>
-    <div class="info-cell"><h4 data-i18n="hv-info2-h4">Key Technology</h4><p data-i18n="hv-info2-p">Enhanced MPPT™ · High-Concentration PLLA · Amplified BHA+PHA Dual-Acid · Peptide Booster Complex</p></div>
-    <div class="info-cell"><h4 data-i18n="hv-info3-h4">Results</h4><p data-i18n="hv-info3-p">6 Mo+ Collagen Effect · Fewer Sessions Required · Maximum Remodeling Intensity</p></div>
-  </div>
-
-  <!-- Product Overview -->
-  <div class="prod-overview">
-    <div class="po-text" style="background:var(--dark);">
-      <p class="section-eyebrow" style="color:var(--rose-lt);" data-i18n="hv-po-eye">Premium · Advanced Protocol</p>
-      <h2 style="color:#fff;">High ViVi</h2>
-      <p class="po-desc" style="color:rgba(255,255,255,.6);" data-i18n="hv-po-desc">High-potency evolution of ViVi — amplified PLLA, enhanced BHA+PHA, and Peptide Booster for intensive remodeling in fewer sessions.</p>
-      <ul class="po-points">
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="hv-po-li1">High-Concentration PLLA — 6–12 month collagen effect</li>
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="hv-po-li2">Enhanced BHA+PHA — deeper resurfacing</li>
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="hv-po-li3">Peptide Booster — Argireline · Matrixyl · Leuphasyl</li>
-        <li style="color:rgba(255,255,255,.6);border-bottom-color:rgba(255,255,255,.08);" data-i18n="hv-po-li4">Fewer sessions · Maximum remodeling intensity</li>
-      </ul>
+  <!-- HIGH VIVI COMING SOON -->
+  <div class="hv-coming-soon">
+    <div class="hv-cs-inner">
+      <p class="eyebrow" data-i18n="hv-cs-eye">Coming Soon</p>
+      <h2 data-i18n="hv-cs-h2">High ViVi is on its way.</h2>
+      <p data-i18n="hv-cs-p">The most advanced evolution of ViVi — with high-concentration PLLA, amplified BHA+PHA, and Peptide Booster complex for maximum remodeling intensity. Launching in Southeast Asia soon.</p>
+      <span class="slide-btn" style="margin-top:8px;display:inline-block;" onclick="showPage('portfolio');setTimeout(()=>document.getElementById('contact-anchor').scrollIntoView({behavior:'smooth'}),100)" data-i18n="hv-cs-btn">Inquire Now</span>
     </div>
-    <div class="po-img">
-      <img src="http://www.knamedicos.com/default/img/hblock/content/about/img/img6.jpg" alt="High ViVi">
-    </div>
-  </div>
-
-  <!-- Key Actives -->
-  <div style="background:#fff;padding:56px 80px;">
-    <div style="max-width:1100px;margin:0 auto;">
-      <p class="eyebrow" style="text-align:center;margin-bottom:32px;" data-i18n="hv-ing-eye">Key Actives</p>
-      <div class="ing-grid">
-        <div class="ing-tag"><div class="it-icon">PLLA+</div><h5 data-i18n="hv-ing1-h5">High-Conc. PLLA</h5><p data-i18n="hv-ing1-p">Intense neocollagenesis lasting 6–12 months.</p></div>
-        <div class="ing-tag"><div class="it-icon">BHA+</div><h5 data-i18n="hv-ing2-h5">Enhanced BHA</h5><p data-i18n="hv-ing2-p">Deeper pore penetration, sebum control.</p></div>
-        <div class="ing-tag"><div class="it-icon">PHA+</div><h5 data-i18n="hv-ing3-h5">Enhanced PHA</h5><p data-i18n="hv-ing3-p">Cellular turnover with antioxidant protection.</p></div>
-        <div class="ing-tag"><div class="it-icon">Pep</div><h5 data-i18n="hv-ing4-h5">Peptide Booster</h5><p data-i18n="hv-ing4-p">Amplifies collagen &amp; elastin expression.</p></div>
-        <div class="ing-tag"><div class="it-icon">NIA</div><h5 data-i18n="hv-ing5-h5">Niacinamide</h5><p data-i18n="hv-ing5-p">Barrier repair, brightening, redness control.</p></div>
-        <div class="ing-tag"><div class="it-icon">HA</div><h5 data-i18n="hv-ing6-h5">Multi-Weight HA</h5><p data-i18n="hv-ing6-p">Surface plumping + deep dermal hydration.</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Stats + Protocol -->
-  <div style="background:var(--dark);padding:48px 80px;">
-    <div style="max-width:1100px;margin:0 auto;">
-      <div class="pd-stat-row">
-        <div class="pd-stat"><div class="ps-num">High</div><div class="ps-lbl" data-i18n="hv-stat1-lbl">PLLA Concentration</div></div>
-        <div class="pd-stat"><div class="ps-num">6 Mo+</div><div class="ps-lbl" data-i18n="hv-stat2-lbl">Collagen Effect</div></div>
-        <div class="pd-stat"><div class="ps-num">Fewer</div><div class="ps-lbl" data-i18n="hv-stat3-lbl">Sessions Required</div></div>
-        <div class="pd-stat"><div class="ps-num">Max</div><div class="ps-lbl" data-i18n="hv-stat4-lbl">Remodeling Intensity</div></div>
-      </div>
-      <p class="eyebrow" style="color:var(--rose-lt);text-align:center;margin:40px 0 28px;" data-i18n="hv-proto-eye">Treatment Protocol</p>
-      <div class="simple-steps" style="grid-template-columns:repeat(5,1fr);">
-        <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);padding:24px 20px;">
-          <div class="ss-num">1</div>
-          <h5 style="color:#fff;" data-i18n="hv-proto1-h5">Consultation</h5>
-          <p style="color:rgba(255,255,255,.5);" data-i18n="hv-proto1-p">Skin assessment. Stop retinoids 7 days prior.</p>
-        </div>
-        <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);padding:24px 20px;">
-          <div class="ss-num">2</div>
-          <h5 style="color:#fff;" data-i18n="hv-proto2-h5">Pre-Treatment</h5>
-          <p style="color:rgba(255,255,255,.5);" data-i18n="hv-proto2-p">Cleanse, stabilize pH 5.0–5.5. Anesthetic optional.</p>
-        </div>
-        <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);padding:24px 20px;">
-          <div class="ss-num">3</div>
-          <h5 style="color:#fff;" data-i18n="hv-proto3-h5">Application</h5>
-          <p style="color:rgba(255,255,255,.5);" data-i18n="hv-proto3-p">Apply per Enhanced MPPT™ protocol.</p>
-        </div>
-        <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);padding:24px 20px;">
-          <div class="ss-num">4</div>
-          <h5 style="color:#fff;" data-i18n="hv-proto4-h5">Post-Treatment</h5>
-          <p style="color:rgba(255,255,255,.5);" data-i18n="hv-proto4-p">Recovery mask 20 min. SPF 50+ for 5 days.</p>
-        </div>
-        <div class="simple-step" style="border-right-color:rgba(255,255,255,.08);padding:24px 20px;">
-          <div class="ss-num">5</div>
-          <h5 style="color:#fff;" data-i18n="hv-proto5-h5">Course</h5>
-          <p style="color:rgba(255,255,255,.5);" data-i18n="hv-proto5-p">3–4 sessions · 3–4 week intervals.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="brochure-section">
-    <p class="eyebrow" data-i18n="bro-eye">Product Brochure</p>
-    <h3 data-i18n="hv-bro-h3">High ViVi — Official Brochure</h3>
-    <a class="brochure-card" href="highvivi_brochure.pdf" target="_blank" rel="noopener">
-      <div class="brochure-icon"><div class="brochure-icon-fold"></div></div>
-      <div class="brochure-meta">
-        <strong data-i18n="hv-bro-strong">High ViVi Product Brochure</strong>
-        <span data-i18n="bro-meta">PDF Document · Midam Lab Asia</span>
-      </div>
-      <span class="brochure-dl" data-i18n="bro-dl">View PDF →</span>
-    </a>
   </div>
   <footer style="background:#111;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(196,149,122,.1)">
     <div class="logo-wrap" onclick="showPage('home')" style="cursor:pointer;"><div class="logo-icon"><svg viewBox="0 0 80 95" fill="none" width="28" height="28"><path d="M 18 32 C 5 42 5 68 40 82" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M 62 32 C 75 42 75 68 40 82" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M 18 32 C 22 14 36 8 40 8" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M 62 32 C 58 14 44 8 40 8" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M 40 8 C 40 35 40 60 40 82" stroke="#C4957A" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg></div><div class="logo-text" style="color:#C4957A;">MIDAMLABASIA</div></div>
@@ -1442,7 +1392,9 @@
       'hv-proto3-h5':'Application','hv-proto3-p':'Apply per Enhanced MPPT™ protocol.',
       'hv-proto4-h5':'Post-Treatment','hv-proto4-p':'Recovery mask 20 min. SPF 50+ for 5 days.',
       'hv-proto5-h5':'Course','hv-proto5-p':'3–4 sessions · 3–4 week intervals.',
-      'hv-bro-h3':'High ViVi — Official Brochure','hv-bro-strong':'High ViVi Product Brochure'
+      'hv-bro-h3':'High ViVi — Official Brochure','hv-bro-strong':'High ViVi Product Brochure',
+      'hv-cs-eye':'Coming Soon','hv-cs-h2':'High ViVi is on its way.','hv-cs-btn':'Inquire Now',
+      'hv-cs-p':'The most advanced evolution of ViVi — with high-concentration PLLA, amplified BHA+PHA, and Peptide Booster complex for maximum remodeling intensity. Launching in Southeast Asia soon.'
     },
     th: {
       'nav-about':'เกี่ยวกับเรา','nav-portfolio':'ผลิตภัณฑ์','nav-contact':'ติดต่อเรา',
@@ -1529,7 +1481,9 @@
       'hv-proto3-h5':'การทา','hv-proto3-p':'ทาตามโปรโตคอล Enhanced MPPT™',
       'hv-proto4-h5':'หลังการรักษา','hv-proto4-p':'มาสก์ฟื้นฟู 20 นาที SPF 50+ เป็นเวลา 5 วัน',
       'hv-proto5-h5':'หลักสูตร','hv-proto5-p':'3–4 ครั้ง · ห่าง 3–4 สัปดาห์',
-      'hv-bro-h3':'High ViVi — โบรชัวร์อย่างเป็นทางการ','hv-bro-strong':'โบรชัวร์ High ViVi'
+      'hv-bro-h3':'High ViVi — โบรชัวร์อย่างเป็นทางการ','hv-bro-strong':'โบรชัวร์ High ViVi',
+      'hv-cs-eye':'เร็วๆ นี้','hv-cs-h2':'High ViVi กำลังจะมาถึง','hv-cs-btn':'สอบถามข้อมูล',
+      'hv-cs-p':'วิวัฒนาการขั้นสูงสุดของ ViVi — ด้วย PLLA ความเข้มข้นสูง BHA+PHA ขยายสูตร และ Peptide Booster Complex เพื่อความเข้มข้นสูงสุดในการรีโมเดลผิว เตรียมเปิดตัวในเอเชียตะวันออกเฉียงใต้เร็วๆ นี้'
     }
   };
 
